@@ -60,16 +60,17 @@ const Logo = ({ color }) => {
 
   return (
     <div className='flex items-center'>
-      <Image src='/images/icon-app.png' alt='logo' width={30} height={30}/>
+      <Image src='/images/icon-app.png' alt='logo' width={60} height={60}/>
       <LogoText
         color={color}
         ref={logoTextRef}
         isHovered={isHovered}
         isCollapsed={layout === 'collapsed'}
         transitionDuration={transitionDuration}
+        className='text-[12px]'
       >
         {/* {themeConfig.templateName} */}
-        KPU Sulsel
+        KOMISI PEMILIHAN UMUM SULAWESI SELATAN
       </LogoText>
     </div>
   )

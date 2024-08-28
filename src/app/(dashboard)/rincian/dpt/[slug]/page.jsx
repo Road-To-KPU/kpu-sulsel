@@ -1,18 +1,31 @@
-import React from 'react'
+'use client'
 
-import UpcomingWebinar from './(component)/UpcomingWebinar'
-import EarningReportsWithTabs from './(component)/EarningReportsWithTabs'
-import LogisticsDeliveryExceptions from './(component)/LogisticsDeliveryExceptions'
+import { usePathname } from 'next/navigation'
+
+import UpcomingWebinar from '../../(component)/UpcomingWebinar'
+import EarningReportsWithTabs from '../../(component)/EarningReportsWithTabs'
+import LogisticsDeliveryExceptions from '../../(component)/LogisticsDeliveryExceptions'
+import { getImageByPathName } from '@/utils/imageMapper'
+
+
+
+
+
+
 
 const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
 const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
 
 export default function page() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const path = usePathname().split('/')
+  const image = getImageByPathName(path[path.length - 1])
+
   return (
     <div>
       <div className='flex justify-between my-3 h-[23.5rem]'>
         <div className='w-[30%]'>
-          <UpcomingWebinar />
+          <UpcomingWebinar image={image} />
         </div>
         <div className='w-[33%]'>
           <EarningReportsWithTabs
