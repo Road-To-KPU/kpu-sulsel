@@ -1,12 +1,17 @@
-import React from 'react'
+'use client'
+
+import { usePathname } from 'next/navigation'
+
 
 import { Card, Typography } from '@mui/material'
 
-import CardUsia from './(component)/(card-usia)/CardUsia'
-import CardDisablitas from './(component)/(card-disabilitas)/CardDisablitas'
-import Peta from './(component)/Peta'
-import LaporanTab from './(component)/LaporanTab'
-import RincianGender from './(component)/RincianGender'
+
+import { getImageByPathName } from '@/utils/imageMapper'
+import Peta from '@/app/(dashboard)/rincian/(component)/Peta'
+import LaporanTab from '@/app/(dashboard)/rincian/(component)/LaporanTab'
+import RincianGender from '@/app/(dashboard)/rincian/(component)/RincianGender'
+import CardUsia from '@/app/(dashboard)/rincian/(component)/(card-usia)/CardUsia'
+import CardDisablitas from '@/app/(dashboard)/rincian/(component)/(card-disabilitas)/CardDisablitas'
 
 const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
 const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
@@ -28,12 +33,15 @@ const dataDisabilitas = [
 const dataJenisKelamin = [60, 30]
 
 export default function Page() {
+  const path = usePathname().split('/').pop()
+  const image = getImageByPathName(path)
+
   return (
     <div>
       {/* First Row */}
       <div className='flex flex-wrap justify-between gap-4 my-3'>
         <div className='w-full md:w-[48%] lg:w-[30%]'>
-          <Peta src={'/images/peta/bantaeng.png'} />
+          <Peta src={image} />
         </div>
         <div className='w-full md:w-[48%] lg:w-[33%]'>
           <LaporanTab
