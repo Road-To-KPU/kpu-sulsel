@@ -17,15 +17,8 @@ import { useTheme } from '@mui/material/styles'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-// Vars
-const tabData = [
-  {
-    type: 'orders',
-    series: [{ data: [28, 10, 46, 38, 15] }]
-  }
-]
 
-const renderTabPanels = (value, theme, options, colors) => {
+const renderTabPanels = (value, theme, options, colors, tabData) => {
   return tabData.map((item, index) => {
     const max = Math.max(...item.series[0].data)
     const seriesIndex = item.series[0].data.indexOf(max)
@@ -45,7 +38,7 @@ const renderTabPanels = (value, theme, options, colors) => {
   })
 }
 
-const EarningReportsWithTabs = ({ categories, title, multiplier }) => {
+const LaporanTab = ({ categories, title, multiplier, tabData }) => {
   // States
   const [value, setValue] = useState('orders')
 
@@ -167,10 +160,10 @@ const EarningReportsWithTabs = ({ categories, title, multiplier }) => {
     <Card>
       <CardHeader title={title} />
       <CardContent>
-        <TabContext value={value}>{renderTabPanels(value, theme, options, colors)}</TabContext>
+        <TabContext value={value}>{renderTabPanels(value, theme, options, colors, tabData)}</TabContext>
       </CardContent>
     </Card>
   )
 }
 
-export default EarningReportsWithTabs
+export default LaporanTab

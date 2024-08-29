@@ -14,9 +14,8 @@ import OptionMenu from '@core/components/option-menu'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
-const deliveryExceptionsChartSeries = [60, 40]
 
-const LogisticsDeliveryExceptions = () => {
+const RincianGender = ({ data }) => {
   // Hooks
   const theme = useTheme()
 
@@ -95,13 +94,13 @@ const LogisticsDeliveryExceptions = () => {
 
   return (
     <Card className='bs-full'>
-      <CardHeader title='Jenis Kelamin' action={<OptionMenu options={['Select All', 'Refresh', 'Share']} />} />
+      <CardHeader title='Rincian Jenis Kelamin' action={<OptionMenu options={['Refresh']} />} />
       <CardContent>
         <AppReactApexCharts
           type='donut'
           height={452}
           width='100%'
-          series={deliveryExceptionsChartSeries}
+          series={data}
           options={options}
         />
       </CardContent>
@@ -109,4 +108,4 @@ const LogisticsDeliveryExceptions = () => {
   )
 }
 
-export default LogisticsDeliveryExceptions
+export default RincianGender
