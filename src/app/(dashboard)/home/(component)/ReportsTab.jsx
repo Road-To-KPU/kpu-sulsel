@@ -17,15 +17,7 @@ import { useTheme } from '@mui/material/styles'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-// Vars
-const tabData = [
-  {
-    type: 'orders',
-    series: [{ data: [28, 10, 46, 38, 15] }]
-  }
-]
-
-const renderTabPanels = (value, theme, options, colors) => {
+const renderTabPanels = (value, theme, options, colors, tabData) => {
   return tabData.map((item, index) => {
     const max = Math.max(...item.series[0].data)
     const seriesIndex = item.series[0].data.indexOf(max)
@@ -45,7 +37,7 @@ const renderTabPanels = (value, theme, options, colors) => {
   })
 }
 
-const EarningReportsWithTabs = ({ categories, title, multiplier }) => {
+const ReportsTab = ({ categories, title, multiplier, tabData }) => {
   // States
   const [value, setValue] = useState('orders')
 
@@ -54,7 +46,6 @@ const EarningReportsWithTabs = ({ categories, title, multiplier }) => {
 
   // Vars
   const disabledText = 'var(--mui-palette-text-disabled)'
-
   const colors = Array(9).fill('var(--mui-palette-primary-lightOpacity)')
 
   const options = {
@@ -115,9 +106,6 @@ const EarningReportsWithTabs = ({ categories, title, multiplier }) => {
     yaxis: {
       labels: {
         offsetX: -18,
-
-        // formatter: val => `${val}`,
-        // formatter dengan data array
         formatter: val => {
           val = val * multiplier
 
@@ -167,10 +155,10 @@ const EarningReportsWithTabs = ({ categories, title, multiplier }) => {
     <Card>
       <CardHeader title={title} />
       <CardContent>
-        <TabContext value={value}>{renderTabPanels(value, theme, options, colors)}</TabContext>
+        <TabContext value={value}>{renderTabPanels(value, theme, options, colors, tabData)}</TabContext>
       </CardContent>
     </Card>
   )
 }
 
-export default EarningReportsWithTabs
+export default ReportsTab

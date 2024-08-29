@@ -16,7 +16,7 @@ import OptionMenu from '@core/components/option-menu'
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 const deliveryExceptionsChartSeries = [60, 40]
 
-const LogisticsDeliveryExceptions = () => {
+const ChartUsia = () => {
   // Hooks
   const theme = useTheme()
 
@@ -109,4 +109,4 @@ const LogisticsDeliveryExceptions = () => {
   )
 }
 
-export default LogisticsDeliveryExceptions
+export default ChartUsia

@@ -18,9 +18,9 @@ const CardStatHorizontal = props => {
       <CardContent>
         <div className='flex items-center flex-wrap gap-2 justify-between'>
           <div className='flex flex-col gap-x-4 gap-y-0.5'>
-            <Typography variant='h5'>{stats}</Typography>
+            <Typography variant='body1'>{title}</Typography>
             <Typography variant='subtitle1' color='text.secondary'>
-              {title}
+              {stats}
             </Typography>
           </div>
           <CustomAvatar variant='rounded' color={avatarColor} skin={avatarSkin} size={avatarSize}>
