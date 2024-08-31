@@ -4,30 +4,7 @@ import Grid from '@mui/material/Grid'
 // Component Imports
 import CardDisablitasStyle from './CardDisablitasStyle'
 
-const data = [
-  {
-    title: 'Tuna Daksa',
-    jumlah: 10000
-  },
-  {
-    title: 'Tuna Netra',
-    jumlah: 20000
-  },
-  {
-    title: 'Tuna Rungu',
-    jumlah: 30000
-  },
-  {
-    title: 'Tuna Grahita',
-    jumlah: 50000
-  },
-  {
-    title: 'Disabilitas Lainnya',
-    jumlah: 1000
-  }
-]
-
-const CardDisablitas = () => {
+const CardDisablitas = ({ data }) => {
   if (data) {
     return (
       <Grid container spacing={6}>

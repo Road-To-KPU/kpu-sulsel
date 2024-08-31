@@ -2,9 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-
 import { Card, Typography } from '@mui/material'
-
 
 import { getImageByPathName } from '@/utils/imageMapper'
 import Peta from '@/app/(dashboard)/rincian/(component)/Peta'
@@ -126,13 +124,13 @@ export default function Page() {
           <Typography variant='h6' className='my-4 text-lg'>
             Rincian Usia
           </Typography>
-          <CardUsia data={dataUsiaRincian}/>
+          <CardUsia data={dataUsiaRincian} />
         </Card>
         <Card className='w-full md:w-[48%] lg:w-[33%] p-2'>
           <Typography variant='h6' className='mt-4 mb-3 text-lg'>
             Rincian Disabilitas
           </Typography>
-          <CardDisablitas data={dataDisabilitasRincian}/>
+          <CardDisablitas data={dataDisabilitasRincian} />
         </Card>
       </div>
     </div>

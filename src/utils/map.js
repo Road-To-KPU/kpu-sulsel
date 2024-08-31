@@ -22,5 +22,5 @@ export const kabupaten = [
   { name: 'Bantaeng', coords: { top: '74%', left: '25%' }, link: 'bantaeng' },
   { name: 'Jeneponto', coords: { top: '75%', left: '13%' }, link: 'jeneponto' },
   { name: 'Takalar', coords: { top: '71%', left: '10%' }, link: 'takalar' },
-  { name: 'Selayar', coords: { top: '85%', left: '47%' }, link: 'selayar' },
+  { name: 'Selayar', coords: { top: '85%', left: '47%' }, link: 'selayar' }
 ]

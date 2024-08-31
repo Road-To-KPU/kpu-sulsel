@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link'
 
 import { kabupaten } from '@/utils/map';
 import ButtonGroup from '@components/ButtonGroup'
@@ -31,17 +32,17 @@ export default function Page() {
             height={930}
           />
           {kabupaten.map((kab, index) => (
-            <div
+            <Link
               key={index}
               className='absolute flex flex-col items-center cursor-pointer'
               style={{ top: kab.coords.top, left: kab.coords.left }}
-              onClick={() => (window.location.href = kab.link)}
+              href={`/rincian/dptb/${kab.link}`}
             >
               <i className='tabler-map-pin-filled text-black text-[20px]' />
               <span className='ml-1 text-md font-bold text-[#eaeaea]'>
                 {kab.name}
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
