@@ -59,7 +59,7 @@ const Logo = ({ color }) => {
 
   return (
     <div className='flex items-center'>
-      <Image src='/images/icon-app.png' alt='logo' width={50} height={50} />
+      <Image src='/images/icon-app.png' alt='logo' width={38} height={40} />
       <LogoText
         color={color}
         ref={logoTextRef}

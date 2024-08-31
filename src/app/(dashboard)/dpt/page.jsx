@@ -10,7 +10,7 @@ export default function Page() {
   const buttonTitles = [
     'DPT Sulawesi Selatan',
     'DPT Kab/Kota',
-    'Disabilitas',
+    'Disabilitas', 
     'Klasifikasi Usia',
     'Cek DPT ONLINE',
   ];

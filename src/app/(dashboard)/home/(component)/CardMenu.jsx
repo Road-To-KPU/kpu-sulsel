@@ -2,7 +2,7 @@
 import Grid from '@mui/material/Grid'
 
 // Component Imports
-import CardStatHorizontal from './Horizontal'
+import CardStatHorizontal from './CardStatHorizontal'
 
 const data = [
   {
