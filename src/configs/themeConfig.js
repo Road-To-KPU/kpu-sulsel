@@ -16,9 +16,9 @@
  * Another way is to clear the cookie from the browser's Application/Storage tab and then reload the page.
  */
 const themeConfig = {
-  templateName: 'KPU SULSEL',
+  templateName: 'KOMISI PEMILIHAN UMUM SULAWESI SELATAN',
   homePageUrl: '/home',
-  settingsCookieName: 'vuexy-mui-next-demo-1',
+  settingsCookieName: 'kpum-sulsel-settings',
   mode: 'system', // 'system', 'light', 'dark'
   skin: 'default', // 'default', 'bordered'
   semiDark: false, // true, false
