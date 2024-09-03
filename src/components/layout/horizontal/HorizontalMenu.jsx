@@ -19,6 +19,7 @@ import menuRootStyles from '@core/styles/horizontal/menuRootStyles'
 import verticalNavigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
 import verticalMenuItemStyles from '@core/styles/vertical/menuItemStyles'
 import verticalMenuSectionStyles from '@core/styles/vertical/menuSectionStyles'
+import { usePathname } from 'next/navigation'
 
 const RenderExpandIcon = ({ level }) => (
   <StyledHorizontalNavExpandIcon level={level}>
@@ -41,6 +42,7 @@ const HorizontalMenu = () => {
   // Vars
   const { skin } = settings
   const { transitionDuration } = verticalNavOptions
+
 
   return (
     <HorizontalNav
@@ -73,7 +75,9 @@ const HorizontalMenu = () => {
         <MenuItem href='/home' icon={<i className='tabler-smart-home' />}>
           Dashboard
         </MenuItem>
-        <SubMenu label={"Daftar Pemilih Tetap"} icon={<i className='tabler-list' />} href='/dpt'>
+        {/*dinamis label*/}
+        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} href='/dpt'>
+          <MenuItem href="/dpt">DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
           <MenuItem>Disabilitas</MenuItem>
