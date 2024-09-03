@@ -66,7 +66,7 @@ const Logo = ({ color }) => {
         isHovered={isHovered}
         isCollapsed={layout === 'collapsed'}
         transitionDuration={transitionDuration}
-        className='text-[13px]'
+        className='text-[25px]'
       >
         {/* {themeConfig.templateName} */}
         KOMISI PEMILIHAN UMUM SULAWESI SELATAN

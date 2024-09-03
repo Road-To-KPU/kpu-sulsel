@@ -2,7 +2,7 @@
 import { useTheme } from '@mui/material/styles'
 
 // Component Imports
-import HorizontalNav, { Menu, MenuItem } from '@menu/horizontal-menu'
+import HorizontalNav, { Menu, MenuItem, SubMenu } from '@menu/horizontal-menu'
 import VerticalNavContent from './VerticalNavContent'
 
 // Hook Imports
@@ -73,12 +73,26 @@ const HorizontalMenu = () => {
         <MenuItem href='/home' icon={<i className='tabler-smart-home' />}>
           Dashboard
         </MenuItem>
-        <MenuItem href='/dpt' icon={<i className='tabler-list' />}>
+        <SubMenu label={"Daftar Pemilih Tetap"} icon={<i className='tabler-list' />} href='/dpt'>
+          <MenuItem>DPT Sulawesi Selatan</MenuItem>
+          <MenuItem>DPT Kab/Kota</MenuItem>
+          <MenuItem>Disabilitas</MenuItem>
+          <MenuItem>Klasifikasi Usia</MenuItem>
+          <MenuItem>Cek DPT Online</MenuItem>
+        </SubMenu>
+        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-list-add' />} href='/dptb'>
+          <MenuItem>Syarat Pindah Memilih</MenuItem>
+          <MenuItem>Rekap DPTb Sulsel</MenuItem>
+          <MenuItem>Rekap DPTb Kab/Kota</MenuItem>
+          <MenuItem>Posko Layanan DPTb</MenuItem>
+          <MenuItem>Titik Kordinat TPS Sulsel</MenuItem>
+        </SubMenu>
+        {/* <MenuItem href='/dpt' icon={<i className='tabler-list' />}>
           Daftar Pemilih Tetap
-        </MenuItem>
-        <MenuItem href='/dptb' icon={<i className='tabler-playlist-add' />}>
+        </MenuItem> */}
+        {/* <MenuItem href='/dptb' icon={<i className='tabler-playlist-add' />}>
           Daftar Pemilih Tambahan
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem href='/' icon={<i className='tabler-users' />}>
           TPS Lokasi Khusus
         </MenuItem>

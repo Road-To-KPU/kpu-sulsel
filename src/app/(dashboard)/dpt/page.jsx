@@ -61,11 +61,11 @@ export default function Page() {
       )}
 
       <div className='flex'>
-        <div className='mr-6 space-y-2'>
+        {/* <div className='mr-6 space-y-2'>
           {buttonTitles.map((title, index) => (
             <ButtonGroup key={index} title={title} />
           ))}
-        </div>
+        </div> */}
         <div className='relative'>
           <Image
             src={'/images/peta-sulsel1.png'}

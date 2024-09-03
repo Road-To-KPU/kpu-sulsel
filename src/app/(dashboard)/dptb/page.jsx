@@ -19,11 +19,11 @@ export default function Page() {
     <div className='flex flex-col items-center'>
       <h1 className='text-3xl font-bold mb-6'>PROVINSI SULAWESI SELATAN</h1>
       <div className='flex'>
-        <div className='mr-6 space-y-2'>
+        {/* <div className='mr-6 space-y-2'>
           {buttonTitles.map((title, index) => (
             <ButtonGroup key={index} title={title} />
           ))}
-        </div>
+        </div> */}
         <div className='relative'>
           <Image
             src={'/images/peta-sulsel1.png'}

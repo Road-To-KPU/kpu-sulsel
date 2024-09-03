@@ -27,7 +27,7 @@ const renderTabPanels = (value, theme, options, colors, tabData) => {
       <TabPanel key={index} value={item.type} className='!p-0'>
         <AppReactApexCharts
           type='bar'
-          height={360}
+          height={410}
           width='100%'
           options={{ ...options, colors: finalColors }}
           series={item.series}
@@ -57,7 +57,7 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
       bar: {
         borderRadius: 6,
         distributed: true,
-        columnWidth: '33%',
+        columnWidth: '43%',
         borderRadiusApplication: 'end',
         dataLabels: { position: 'top' }
       }
