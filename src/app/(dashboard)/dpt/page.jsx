@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 import Image from 'next/image';
 
@@ -17,6 +18,12 @@ export default function Page() {
   const [cardActive, setCardActive] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState(null);
   const router = useRouter();
+  const [data, setData] = useState([]);
+
+
+
+  // console.log('State data:', data);
+
 
   const buttonTitles = [
     'DPT Sulawesi Selatan',
@@ -44,11 +51,6 @@ export default function Page() {
                 <p>Jumlah Pemilih</p>
                 <p>Jumlah TPS</p>
                 <p>Jumlah DPT</p>
-              </div>
-              <div className="text-right text-gray-900 font-semibold">
-                <p>: {selectedRegion.jumlahPemilih}</p>
-                <p>: {selectedRegion.jumlahTPS}</p>
-                <p>: {selectedRegion.jumlahDPT}</p>
               </div>
             </div>
             <div className="flex justify-end space-x-4">
@@ -91,23 +93,25 @@ export default function Page() {
               className="absolute flex flex-col items-center cursor-pointer"
               style={{ top: kab.coords.top, left: kab.coords.left }}
             >
-              <i className="tabler-map-pin-filled text-[20px]" />
-              <div
-                onClick={() =>
-                  handleClick({
-                    name: kab.name,
-                    jumlahPemilih: kab.jumlahPemilih,
-                    jumlahTPS: kab.jumlahTPS,
-                    jumlahDPT: kab.jumlahDPT,
-                    link: kab.link,
-                  })
-                }
-                className="text-md text-[#eaeaea] font-bold"
-              >
-                {kab.name}
-              </div>
+              <Link href={`/rincian/dpt/${kab.link}`}>
+                <i className="tabler-map-pin-filled text-[20px]" />
+              </Link>
+                <div
+                  onClick={() =>
+                    handleClick({
+                      name: kab.name,
+                      jumlahPemilih: kab.jumlahPemilih,
+                      jumlahTPS: kab.jumlahTPS,
+                      jumlahDPT: kab.jumlahDPT,
+                      link: kab.link
+                    })
+                  }
+                  className="text-md text-[#eaeaea] font-bold"
+                >
+                  {kab.name}
+                </div>
             </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import { usePathname } from 'next/navigation'
 
 
@@ -65,32 +67,57 @@ const dataUsiaRincian = [
   }
 ]
 
-const dataDisabilitasRincian = [
-  {
-    title: 'Tuna Daksa',
-    jumlah: 10000
-  },
-  {
-    title: 'Tuna Netra',
-    jumlah: 20000
-  },
-  {
-    title: 'Tuna Rungu',
-    jumlah: 30000
-  },
-  {
-    title: 'Tuna Grahita',
-    jumlah: 50000
-  },
-  {
-    title: 'Disabilitas Lainnya',
-    jumlah: 1000
-  }
-]
-
 export default function Page() {
   const path = usePathname().split('/').pop()
   const image = getImageByPathName(path)
+  const [data, setData] = useState([])
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch('/api/data');
+
+      if (!res.ok) {
+        throw new Error('Gagal mengambil data');
+      }
+
+      const data = await res.json();
+
+      console.log('Fetched data:', data);
+
+      setData(data);
+    } catch (error) {
+      console.error('Fetch Error:', error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log('Data:', data);
+
+  const dataDisabilitasRincian = [
+    {
+      title: 'Tuna Daksa',
+      jumlah: data.filter((item) => item.tuna_daksa).length
+    },
+    {
+      title: 'Tuna Netra',
+      jumlah: data.filter((item) => item.tuna_netra).length
+    },
+    {
+      title: 'Tuna Rungu',
+      jumlah: data.filter((item) => item.tuna_rungu === 'Tuna Rungu').length
+    },
+    {
+      title: 'Tuna Grahita',
+      jumlah: data.filter((item) => item.tuna_grahita).length
+    },
+    {
+      title: 'Disabilitas Lainnya',
+      jumlah: data.filter((item) => item.disabilitas_lainnya).length
+    }
+  ]
 
   return (
     <div>
