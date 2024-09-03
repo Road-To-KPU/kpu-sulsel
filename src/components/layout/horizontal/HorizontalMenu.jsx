@@ -70,25 +70,25 @@ const HorizontalMenu = () => {
           menuSectionStyles: verticalMenuSectionStyles(verticalNavOptions, theme)
         }}
       >
-        <MenuItem href='/' icon={<i className='tabler-smart-home' />}>
+        <MenuItem href='/home' icon={<i className='tabler-smart-home' />}>
           Dashboard
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-list' />}>
+        <MenuItem href='/dpt' icon={<i className='tabler-list' />}>
           Daftar Pemilih Tetap
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-playlist-add' />}>
+        <MenuItem href='/dptb' icon={<i className='tabler-playlist-add' />}>
           Daftar Pemilih Tambahan
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-users' />}>
+        <MenuItem href='/' icon={<i className='tabler-users' />}>
           TPS Lokasi Khusus
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-buildings' />}>
+        <MenuItem href='/' icon={<i className='tabler-building' />}>
           SATKER
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-building-community' />}>
+        <MenuItem href='/' icon={<i className='tabler-building-community' />}>
           DAPIL
         </MenuItem>
-        <MenuItem href='/about' icon={<i className='tabler-chart-pie' />}>
+        <MenuItem href='/' icon={<i className='tabler-chart-pie' />}>
           Partisipasi Pemilu/Pilkada
         </MenuItem>
       </Menu>
