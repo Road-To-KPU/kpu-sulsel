@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 import Image from 'next/image'
 
@@ -91,7 +92,7 @@ export default function Page() {
               <i className='tabler-map-pin-filled text-[20px]' />
               <div className='text-md text-[#eaeaea] font-bold'>{kab.name}</div>
             </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
