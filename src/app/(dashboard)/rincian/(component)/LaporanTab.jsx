@@ -59,7 +59,7 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
       bar: {
         borderRadius: 6,
         distributed: true,
-        columnWidth: '33%',
+        columnWidth: '48%',
         borderRadiusApplication: 'end',
         dataLabels: { position: 'top' }
       }

@@ -78,9 +78,11 @@ const HorizontalMenu = () => {
           <MenuItem href='/dpt'>DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
-          <MenuItem>Disabilitas</MenuItem>
-          <MenuItem>Klasifikasi Usia</MenuItem>
-          <MenuItem>Cek DPT Online</MenuItem>
+          <MenuItem href='/rincian/dpt/disabilitas'>Disabilitas</MenuItem>
+          <MenuItem href='/rincian/dpt/klasifikasi-usia'>Klasifikasi Usia</MenuItem>
+          <MenuItem href='https://cekdptonline.kpu.go.id/' target='_blank'>
+            Cek DPT Online
+          </MenuItem>
         </SubMenu>
         <SubMenu label={'Daftar Pemilih Tambahan'} icon={<i className='tabler-list-add' />} href='/dptb'>
           <MenuItem>Syarat Pindah Memilih</MenuItem>
