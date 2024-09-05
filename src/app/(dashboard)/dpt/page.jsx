@@ -3,21 +3,19 @@
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 
 import Image from 'next/image'
 
 import Button from '@mui/material/Button'
 
-import ButtonGroup from '@components/ButtonGroup'
 import { kabupaten } from '@/utils/map'
+
+import HorizontalMenu from '@/components/layout/horizontal/HorizontalMenu'
 
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const router = useRouter()
-
-  const buttonTitles = ['DPT Sulawesi Selatan', 'DPT Kab/Kota', 'Disabilitas', 'Klasifikasi Usia', 'Cek DPT ONLINE']
 
   const handleClick = region => {
     setSelectedRegion(region)
@@ -61,11 +59,6 @@ export default function Page() {
       )}
 
       <div className='flex'>
-        {/* <div className='mr-6 space-y-2'>
-          {buttonTitles.map((title, index) => (
-            <ButtonGroup key={index} title={title} />
-          ))}
-        </div> */}
         <div className='relative'>
           <Image
             src={'/images/peta-sulsel1.png'}
@@ -92,7 +85,7 @@ export default function Page() {
               <i className='tabler-map-pin-filled text-[20px]' />
               <div className='text-md text-[#eaeaea] font-bold'>{kab.name}</div>
             </div>
-            ))}
+          ))}
         </div>
       </div>
     </div>
