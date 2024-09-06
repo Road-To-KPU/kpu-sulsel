@@ -43,7 +43,7 @@ const Header = props => {
         [horizontalLayoutClasses.headerStatic]: headerStatic,
         [horizontalLayoutClasses.headerBlur]: headerBlur,
         [horizontalLayoutClasses.headerContentCompact]: headerContentCompact,
-        [horizontalLayoutClasses.headerContentWide]: headerContentWide
+        [horizontalLayoutClasses.headerContentWide]: headerContentWide,
       })}
     >
       {children}

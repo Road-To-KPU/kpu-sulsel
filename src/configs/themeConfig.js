@@ -18,9 +18,9 @@
 const themeConfig = {
   templateName: 'KOMISI PEMILIHAN UMUM SULAWESI SELATAN',
   homePageUrl: '/home',
-  settingsCookieName: 'kpum-sulsel-settings',
+  settingsCookieName: 'kpu-sulsel-settings',
   mode: 'system', // 'system', 'light', 'dark'
-  skin: 'default', // 'default', 'bordered'
+  skin: 'bordered', // 'default', 'bordered'
   semiDark: false, // true, false
   layout: 'horizontal', // 'vertical', 'collapsed', 'horizontal'
   layoutPadding: 24, // Common padding for header, content, footer layout components (in px)
