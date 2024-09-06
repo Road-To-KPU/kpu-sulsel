@@ -123,7 +123,7 @@ const MenuItem = (props, ref) => {
       rootStyles={rootStyles}
     >
       <MenuButton
-        className={classnames(menuClasses.button, { [menuClasses.active]: active })}
+        className={classnames(menuClasses.button, { [menuClasses.active]: active }, 'text-sm')}
         component={component}
         tabIndex={disabled ? -1 : 0}
         onClick={handleClick}
