@@ -75,23 +75,25 @@ export default function Page() {
               className='absolute flex flex-col items-center cursor-pointer'
               style={{ top: kab.coords.top, left: kab.coords.left }}
             >
-                <Link href={`/rincian/dpt/${kab.link}`}>
-                  <i className="tabler-map-pin-filled text-[20px]" />
-                </Link>
-                <div
-                  className="text-md text-[#eaeaea] font-bold"
-                  onClick={() =>
-                    handleClick({
-                      name: kab.name,
-                      jumlahPemilih: kab.jumlahPemilih,
-                      jumlahTPS: kab.jumlahTPS,
-                      jumlahDPT: kab.jumlahDPT,
-                      link: kab.link
-                    })
-                  }
-                >{kab.name}</div>
+              <Link href={`/rincian/dpt/${kab.link}`}>
+                <i className='tabler-map-pin-filled text-[20px]' />
+              </Link>
+              <div
+                className='ml-1 text-md font-bold text-[#eaeaea]'
+                onClick={() =>
+                  handleClick({
+                    name: kab.name,
+                    jumlahPemilih: kab.jumlahPemilih,
+                    jumlahTPS: kab.jumlahTPS,
+                    jumlahDPT: kab.jumlahDPT,
+                    link: kab.link
+                  })
+                }
+              >
+                <div>{kab.name}</div>
+              </div>
             </div>
-            ))}
+          ))}
         </div>
       </div>
     </div>

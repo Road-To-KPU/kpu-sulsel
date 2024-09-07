@@ -19,7 +19,6 @@ import menuRootStyles from '@core/styles/horizontal/menuRootStyles'
 import verticalNavigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
 import verticalMenuItemStyles from '@core/styles/vertical/menuItemStyles'
 import verticalMenuSectionStyles from '@core/styles/vertical/menuSectionStyles'
-import { usePathname } from 'next/navigation'
 
 const RenderExpandIcon = ({ level }) => (
   <StyledHorizontalNavExpandIcon level={level}>
@@ -42,7 +41,6 @@ const HorizontalMenu = () => {
   // Vars
   const { skin } = settings
   const { transitionDuration } = verticalNavOptions
-
 
   return (
     <HorizontalNav
@@ -76,13 +74,15 @@ const HorizontalMenu = () => {
           Dashboard
         </MenuItem>
         {/*dinamis label*/}
-        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />}>
-          <MenuItem href="/dpt">DPT</MenuItem>
+        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} href='/dpt'>
+          <MenuItem href='/dpt'>DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
-          <MenuItem>Disabilitas</MenuItem>
-          <MenuItem>Klasifikasi Usia</MenuItem>
-          <MenuItem>Cek DPT Online</MenuItem>
+          <MenuItem href='/rincian/dpt/disabilitas'>Disabilitas</MenuItem>
+          <MenuItem href='/rincian/dpt/klasifikasi-usia'>Klasifikasi Usia</MenuItem>
+          <MenuItem href='https://cekdptonline.kpu.go.id/' target='_blank'>
+            Cek DPT Online
+          </MenuItem>
         </SubMenu>
         <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-list-add' />} >
           <MenuItem href='/dptb'>DPTb</MenuItem>
