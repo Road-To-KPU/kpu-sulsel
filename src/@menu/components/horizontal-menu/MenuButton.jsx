@@ -25,7 +25,7 @@ export const menuButtonStyles = props => {
     cursor: 'pointer',
     paddingInline: '20px',
     '&:hover': {
-      backgroundColor: '#f3f3f3'
+      backgroundColor: '#ce3e12'
     },
     '&:focus-visible': {
       outline: 'none',
@@ -42,10 +42,10 @@ export const menuButtonStyles = props => {
       ...(level === 0
         ? {
             color: 'white',
-            backgroundColor: '#765feb'
+            backgroundColor: '#ce3e12'
           }
         : {
-            ...(children ? { backgroundColor: '#f3f3f3' } : { color: '#765feb', backgroundColor: '#765feb1f' })
+            ...(children ? { backgroundColor: '#f3f3f3' } : { color: '#765feb', backgroundColor: '#ce3e12' })
           })
     }
   })

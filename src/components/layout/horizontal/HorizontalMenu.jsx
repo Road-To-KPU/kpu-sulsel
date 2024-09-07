@@ -84,19 +84,14 @@ const HorizontalMenu = () => {
             Cek DPT Online
           </MenuItem>
         </SubMenu>
-        <SubMenu label={'Daftar Pemilih Tambahan'} icon={<i className='tabler-list-add' />} href='/dptb'>
+        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-list-add' />} >
+          <MenuItem href='/dptb'>DPTb</MenuItem>
           <MenuItem>Syarat Pindah Memilih</MenuItem>
           <MenuItem>Rekap DPTb Sulsel</MenuItem>
           <MenuItem>Rekap DPTb Kab/Kota</MenuItem>
           <MenuItem>Posko Layanan DPTb</MenuItem>
           <MenuItem>Titik Kordinat TPS Sulsel</MenuItem>
         </SubMenu>
-        {/* <MenuItem href='/dpt' icon={<i className='tabler-list' />}>
-          Daftar Pemilih Tetap
-        </MenuItem> */}
-        {/* <MenuItem href='/dptb' icon={<i className='tabler-playlist-add' />}>
-          Daftar Pemilih Tambahan
-        </MenuItem> */}
         <MenuItem href='/' icon={<i className='tabler-users' />}>
           TPS Lokasi Khusus
         </MenuItem>
