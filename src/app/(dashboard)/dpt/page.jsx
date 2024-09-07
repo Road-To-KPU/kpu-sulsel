@@ -27,7 +27,7 @@ export default function Page() {
       <h1 className='text-3xl font-bold mb-6'>PROVINSI SULAWESI SELATAN</h1>
 
       {cardActive && selectedRegion && (
-        <div className='absolute z-50 top-0 left-0 w-full h-full flex justify-center items-center'>
+        <div className='fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center'>
           <div className='bg-white w-[700px] p-8 rounded-lg shadow-lg'>
             <h2 className='text-xl font-bold mb-4'>{selectedRegion.name}</h2>
             <div className='grid grid-cols-2 gap-4 mb-6'>
@@ -63,27 +63,33 @@ export default function Page() {
           <Image
             src={'/images/peta-sulsel1.png'}
             alt={'Peta Sulawesi Selatan'}
-            width={600}
-            height={930}
-            className='rounded'
+            width={380}
+            height={630}
+            className='lg:w-[580px] lg:h-[900px]' // width={600} height={930}
           />
           {kabupaten.map((kab, index) => (
             <div
               key={index}
               className='absolute flex flex-col items-center cursor-pointer'
               style={{ top: kab.coords.top, left: kab.coords.left }}
-              onClick={() =>
-                handleClick({
-                  name: kab.name,
-                  jumlahPemilih: kab.jumlahPemilih,
-                  jumlahTPS: kab.jumlahTPS,
-                  jumlahDPT: kab.jumlahDPT,
-                  link: kab.link
-                })
-              }
             >
-              <i className='tabler-map-pin-filled text-[20px]' />
-              <div className='text-md text-[#eaeaea] font-bold'>{kab.name}</div>
+              <Link href={`/rincian/dpt/${kab.link}`}>
+                <i className='tabler-map-pin-filled text-[20px]' />
+              </Link>
+              <div
+                className='ml-1 text-md font-bold text-[#eaeaea]'
+                onClick={() =>
+                  handleClick({
+                    name: kab.name,
+                    jumlahPemilih: kab.jumlahPemilih,
+                    jumlahTPS: kab.jumlahTPS,
+                    jumlahDPT: kab.jumlahDPT,
+                    link: kab.link
+                  })
+                }
+              >
+                <div>{kab.name}</div>
+              </div>
             </div>
           ))}
         </div>

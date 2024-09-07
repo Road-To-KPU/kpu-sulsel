@@ -7,12 +7,16 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 
 // MUI Imports
+import { useTheme } from '@mui/material/styles'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import TabPanel from '@mui/lab/TabPanel'
 import TabContext from '@mui/lab/TabContext'
-import { useTheme } from '@mui/material/styles'
+
+import primaryColorConfig from '@configs/primaryColorConfig'
+
+import themeConfig from '@configs/themeConfig'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
@@ -44,9 +48,11 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
   // Hooks
   const theme = useTheme()
 
+
+
   // Vars
   const disabledText = 'var(--mui-palette-text-disabled)'
-  const colors = Array(9).fill('var(--mui-palette-primary-lightOpacity)')
+  const colors = [primaryColorConfig[0].light, primaryColorConfig[0].dark]
 
   const options = {
     chart: {

@@ -24,7 +24,9 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="c8d42fd9-c8e7-4d2c-a0b0-08162d17919a" object-ref="consoles/simak" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c8d42fd9-c8e7-4d2c-a0b0-08162d17919a" />

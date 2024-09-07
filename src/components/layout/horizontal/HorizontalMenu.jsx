@@ -80,35 +80,20 @@ const HorizontalMenu = () => {
           <MenuItem href='/dpt'>DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
-          <MenuItem
-            onClick={() =>
-              handleClick({
-                name: 'Disabilitas',
-                jumlahPemilih: 100,
-                jumlahTPS: 50,
-                jumlahDPT: 80,
-                link: 'disabilitas'
-              })
-            }
-          >
-            Disabilitas
+          <MenuItem href='/rincian/dpt/disabilitas'>Disabilitas</MenuItem>
+          <MenuItem href='/rincian/dpt/klasifikasi-usia'>Klasifikasi Usia</MenuItem>
+          <MenuItem href='https://cekdptonline.kpu.go.id/' target='_blank'>
+            Cek DPT Online
           </MenuItem>
-          <MenuItem>Klasifikasi Usia</MenuItem>
-          <MenuItem>Cek DPT Online</MenuItem>
         </SubMenu>
-        <SubMenu label={'Daftar Pemilih Tambahan'} icon={<i className='tabler-list-add' />} href='/dptb'>
+        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-list-add' />} >
+          <MenuItem href='/dptb'>DPTb</MenuItem>
           <MenuItem>Syarat Pindah Memilih</MenuItem>
           <MenuItem>Rekap DPTb Sulsel</MenuItem>
           <MenuItem>Rekap DPTb Kab/Kota</MenuItem>
           <MenuItem>Posko Layanan DPTb</MenuItem>
           <MenuItem>Titik Kordinat TPS Sulsel</MenuItem>
         </SubMenu>
-        {/* <MenuItem href='/dpt' icon={<i className='tabler-list' />}>
-          Daftar Pemilih Tetap
-        </MenuItem> */}
-        {/* <MenuItem href='/dptb' icon={<i className='tabler-playlist-add' />}>
-          Daftar Pemilih Tambahan
-        </MenuItem> */}
         <MenuItem href='/' icon={<i className='tabler-users' />}>
           TPS Lokasi Khusus
         </MenuItem>
