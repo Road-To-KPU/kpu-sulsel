@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation'
 
 import Image from 'next/image'
 
+import Link from 'next/link'
+
 import Button from '@mui/material/Button'
 
 import { kabupaten } from '@/utils/map'
-
-import HorizontalMenu from '@/components/layout/horizontal/HorizontalMenu'
 
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
