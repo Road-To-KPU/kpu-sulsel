@@ -11,6 +11,7 @@ import { useTheme } from '@mui/material/styles'
 
 // Components Imports
 import OptionMenu from '@core/components/option-menu'
+import primaryColorConfig from '@configs/primaryColorConfig'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
@@ -25,10 +26,8 @@ const RincianGender = ({ data }) => {
       width: 0
     },
     colors: [
-      'var(--mui-palette-success-main)',
-      'rgba(var(--mui-palette-success-mainChannel) / 0.8)',
-      'rgba(var(--mui-palette-success-mainChannel) / 0.6)',
-      'rgba(var(--mui-palette-success-mainChannel) / 0.4)'
+      primaryColorConfig[0].dark,
+      primaryColorConfig[0].light,
     ],
     dataLabels: {
       enabled: false,
@@ -43,7 +42,7 @@ const RincianGender = ({ data }) => {
       markers: {
         width: 8,
         height: 8,
-        offsetY: 1,
+        offsetY: -1,
         offsetX: theme.direction === 'rtl' ? 8 : -4
       },
       itemMargin: {
@@ -53,7 +52,7 @@ const RincianGender = ({ data }) => {
       fontSize: '13px',
       fontWeight: 400,
       labels: {
-        colors: 'var()',
+        colors: 'white',
         useSeriesColors: false
       }
     },
@@ -70,21 +69,17 @@ const RincianGender = ({ data }) => {
             show: true,
             value: {
               fontSize: '24px',
-              color: 'var(--mui-palette-text-primary)',
+              color: 'white',
               fontWeight: 500,
               offsetY: -20
             },
-            name: { offsetY: 20 },
+            name: { offsetY: 20, color: 'white' },
             total: {
               show: true,
               fontSize: '0.9375rem',
               fontWeight: 400,
               label: 'Rata-Rata Pemilih',
-              color: 'var(--mui-palette-text-secondary)',
-
-              // formatter() {
-              //   return '100%'
-              // }
+              color: 'white',
             }
           }
         }
@@ -93,8 +88,15 @@ const RincianGender = ({ data }) => {
   }
 
   return (
-    <Card className='bs-full'>
-      <CardHeader title='Rincian Jenis Kelamin' action={<OptionMenu options={['Refresh']} />} />
+    <Card className='bs-full bg-orange-800'>
+      <CardHeader
+        title='Jenis Kelamin'
+        sx={{
+          '& .MuiCardHeader-title': {
+            color: 'white'
+          }
+        }}
+      />
       <CardContent>
         <AppReactApexCharts
           type='donut'

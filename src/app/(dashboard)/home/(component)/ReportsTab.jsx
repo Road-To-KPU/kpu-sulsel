@@ -16,8 +16,6 @@ import TabContext from '@mui/lab/TabContext'
 
 import primaryColorConfig from '@configs/primaryColorConfig'
 
-import themeConfig from '@configs/themeConfig'
-
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
@@ -48,10 +46,8 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
   // Hooks
   const theme = useTheme()
 
-
-
   // Vars
-  const disabledText = 'var(--mui-palette-text-disabled)'
+  const disabledText = 'white'
   const colors = [primaryColorConfig[0].light, primaryColorConfig[0].dark]
 
   const options = {
@@ -75,7 +71,7 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
       formatter: val => `${val}k`,
       style: {
         fontWeight: 500,
-        colors: ['var(--mui-palette-text-primary)'],
+        colors: ['white'],
         fontSize: theme.typography.body1.fontSize
       }
     },
@@ -158,8 +154,15 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
   }
 
   return (
-    <Card>
-      <CardHeader title={title} />
+    <Card className='bg-orange-800'>
+      <CardHeader
+        title={title}
+        sx={{
+          '& .MuiCardHeader-title': {
+            color: 'white'
+          }
+        }}
+      />
       <CardContent>
         <TabContext value={value}>{renderTabPanels(value, theme, options, colors, tabData)}</TabContext>
       </CardContent>
