@@ -10,7 +10,7 @@ const data = [
     stats: 1000,
     avatarIcon: 'tabler-list',
     avatarIconSize: 26,
-    avatarColor: 'error',
+    avatarColor: 'warning',
     avatarSize: 42,
     avatarSkin: 'light'
   },
@@ -19,7 +19,7 @@ const data = [
     stats: 2000,
     avatarIcon: 'tabler-playlist-add',
     avatarIconSize: 26,
-    avatarColor: 'error',
+    avatarColor: 'warning',
     avatarSize: 42,
     avatarSkin: 'light'
   },
@@ -28,7 +28,7 @@ const data = [
     stats: 3000,
     avatarIcon: 'tabler-users',
     avatarIconSize: 26,
-    avatarColor: 'error',
+    avatarColor: 'warning',
     avatarSize: 42,
     avatarSkin: 'light'
   },
@@ -37,7 +37,7 @@ const data = [
     stats: '',
     avatarIcon: 'tabler-building',
     avatarIconSize: 26,
-    avatarColor: 'error',
+    avatarColor: 'warning',
     avatarSize: 42,
     avatarSkin: 'light'
   },
@@ -46,7 +46,7 @@ const data = [
     stats: '',
     avatarIcon: 'tabler-building-community',
     avatarIconSize: 26,
-    avatarColor: 'error',
+    avatarColor: 'warning',
     avatarSize: 42,
     avatarSkin: 'light'
   },
@@ -55,10 +55,10 @@ const data = [
     stats: '',
     avatarIcon: 'tabler-chart-pie',
     avatarIconSize: 26,
-    avatarColor: 'error',
+    avatarColor: 'warning',
     avatarSize: 42,
     avatarSkin: 'light'
-  },
+  }
 ]
 
 const CardMenu = () => {
