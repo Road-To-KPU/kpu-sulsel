@@ -76,7 +76,7 @@ const HorizontalMenu = () => {
         <MenuItem href='/home' icon={<i className='tabler-smart-home' />}>
           Dashboard
         </MenuItem>
-        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} >
+        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} href='/dpt' >
           <MenuItem href='/dpt'>DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
