@@ -43,7 +43,7 @@ const ChartUsia = () => {
       markers: {
         width: 8,
         height: 8,
-        offsetY: 1,
+        offsetY: -1,
         offsetX: theme.direction === 'rtl' ? 8 : -4
       },
       itemMargin: {
@@ -53,7 +53,7 @@ const ChartUsia = () => {
       fontSize: '13px',
       fontWeight: 400,
       labels: {
-        colors: 'var()',
+        colors: 'white',
         useSeriesColors: false
       }
     },
@@ -70,21 +70,17 @@ const ChartUsia = () => {
             show: true,
             value: {
               fontSize: '24px',
-              color: 'var(--mui-palette-text-primary)',
+              color: 'white',
               fontWeight: 500,
               offsetY: -20
             },
-            name: { offsetY: 20 },
+            name: { offsetY: 20, color: 'white' },
             total: {
               show: true,
               fontSize: '0.9375rem',
               fontWeight: 400,
               label: 'Rata-Rata Pemilih',
-              color: 'var(--mui-palette-text-secondary)',
-
-              // formatter() {
-              //   return '100%'
-              // }
+              color: 'white',
             }
           }
         }
@@ -93,8 +89,15 @@ const ChartUsia = () => {
   }
 
   return (
-    <Card className='bs-full'>
-      <CardHeader title='Jenis Kelamin' action={<OptionMenu options={['Select All', 'Refresh', 'Share']} />} />
+    <Card className='bs-full bg-orange-800'>
+      <CardHeader
+        title='Jenis Kelamin'
+        sx={{
+          '& .MuiCardHeader-title': {
+            color: 'white'
+          }
+        }}
+      />
       <CardContent>
         <AppReactApexCharts
           type='donut'

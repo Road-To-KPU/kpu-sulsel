@@ -1,3 +1,5 @@
+import { usePathname } from 'next/navigation'
+
 // MUI Imports
 import { useTheme } from '@mui/material/styles'
 
@@ -84,7 +86,7 @@ const HorizontalMenu = () => {
             Cek DPT Online
           </MenuItem>
         </SubMenu>
-        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-list-add' />} >
+        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-list-add' />} href='/dptb' >
           <MenuItem href='/dptb'>DPTb</MenuItem>
           <MenuItem>Syarat Pindah Memilih</MenuItem>
           <MenuItem>Rekap DPTb Sulsel</MenuItem>

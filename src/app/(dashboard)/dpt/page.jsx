@@ -3,13 +3,13 @@
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 
 import Image from 'next/image'
 
+import Link from 'next/link'
+
 import Button from '@mui/material/Button'
 
-import ButtonGroup from '@components/ButtonGroup'
 import { kabupaten } from '@/utils/map'
 
 import { useTheme } from '@mui/material/styles'
@@ -18,13 +18,7 @@ export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const router = useRouter()
-
-  // current theme applied
-  const theme = useTheme()
-
-
-  const buttonTitles = ['DPT Sulawesi Selatan', 'DPT Kab/Kota', 'Disabilitas', 'Klasifikasi Usia', 'Cek DPT ONLINE']
-
+  
   const handleClick = region => {
     setSelectedRegion(region)
     setCardActive(true)
