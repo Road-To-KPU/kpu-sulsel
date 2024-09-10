@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 /.vscode/
+.idea/
+.idea/dbnavigator.xml
 
 # testing
 /coverage

@@ -11,11 +11,13 @@ import { useTheme } from '@mui/material/styles'
 
 // Components Imports
 import OptionMenu from '@core/components/option-menu'
+import primaryColorConfig from '@configs/primaryColorConfig'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
+const deliveryExceptionsChartSeries = [60, 40]
 
-const RincianGender = ({ data }) => {
+const ChartUsia = () => {
   // Hooks
   const theme = useTheme()
 
@@ -25,10 +27,8 @@ const RincianGender = ({ data }) => {
       width: 0
     },
     colors: [
-      'var(--mui-palette-success-main)',
-      'rgba(var(--mui-palette-success-mainChannel) / 0.8)',
-      'rgba(var(--mui-palette-success-mainChannel) / 0.6)',
-      'rgba(var(--mui-palette-success-mainChannel) / 0.4)'
+      primaryColorConfig[0].dark,
+      primaryColorConfig[0].light,
     ],
     dataLabels: {
       enabled: false,
@@ -94,13 +94,13 @@ const RincianGender = ({ data }) => {
 
   return (
     <Card className='bs-full'>
-      <CardHeader title='Rincian Jenis Kelamin' action={<OptionMenu options={['Refresh']} />} />
+      <CardHeader title='Jenis Kelamin' action={<OptionMenu options={['Select All', 'Refresh', 'Share']} />} />
       <CardContent>
         <AppReactApexCharts
           type='donut'
           height={452}
           width='100%'
-          series={data}
+          series={deliveryExceptionsChartSeries}
           options={options}
         />
       </CardContent>
@@ -108,4 +108,4 @@ const RincianGender = ({ data }) => {
   )
 }
 
-export default RincianGender
+export default ChartUsia

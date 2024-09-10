@@ -20,6 +20,7 @@ import verticalNavigationCustomStyles from '@core/styles/vertical/navigationCust
 import verticalMenuItemStyles from '@core/styles/vertical/menuItemStyles'
 import verticalMenuSectionStyles from '@core/styles/vertical/menuSectionStyles'
 
+
 const RenderExpandIcon = ({ level }) => (
   <StyledHorizontalNavExpandIcon level={level}>
     <i className='tabler-chevron-right' />
@@ -73,8 +74,7 @@ const HorizontalMenu = () => {
         <MenuItem href='/home' icon={<i className='tabler-smart-home' />}>
           Dashboard
         </MenuItem>
-        {/*dinamis label*/}
-        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} href='/dpt'>
+        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} >
           <MenuItem href='/dpt'>DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
