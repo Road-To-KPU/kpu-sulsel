@@ -12,11 +12,13 @@ import Button from '@mui/material/Button'
 
 import { kabupaten } from '@/utils/map'
 
+import { useTheme } from '@mui/material/styles'
+
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const router = useRouter()
-
+  
   const handleClick = region => {
     setSelectedRegion(region)
     setCardActive(true)
@@ -28,7 +30,7 @@ export default function Page() {
 
       {cardActive && selectedRegion && (
         <div className='fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center'>
-          <div className='bg-white w-[700px] p-8 rounded-lg shadow-lg'>
+          <div className={`bg-white w-[700px] p-8 rounded-lg shadow-lg ${theme.palette.mode === 'dark' ? 'dark:bg-gray-800' : 'dark:bg-white'}`}>
             <h2 className='text-xl font-bold mb-4'>{selectedRegion.name}</h2>
             <div className='grid grid-cols-2 gap-4 mb-6'>
               <div className='text-gray-700'>
@@ -74,10 +76,10 @@ export default function Page() {
               style={{ top: kab.coords.top, left: kab.coords.left }}
             >
               <Link href={`/rincian/dpt/${kab.link}`}>
-                <i className='tabler-map-pin-filled text-[20px]' />
+                <i className='tabler-map-pin-filled text-[16px] lg:text-[20px]' />
               </Link>
               <div
-                className='ml-1 text-md font-bold text-[#eaeaea]'
+                className='ml-1 text-[10px] lg:text-sm font-bold text-[#eaeaea]'
                 onClick={() =>
                   handleClick({
                     name: kab.name,

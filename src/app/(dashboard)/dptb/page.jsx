@@ -12,10 +12,16 @@ import Button from '@mui/material/Button'
 import ButtonGroup from '@components/ButtonGroup'
 import { kabupaten } from '@/utils/map'
 
+import { useTheme } from '@mui/material/styles'
+
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const router = useRouter()
+
+  // current theme applied
+  const theme = useTheme()
+
 
   const buttonTitles = ['DPT Sulawesi Selatan', 'DPT Kab/Kota', 'Disabilitas', 'Klasifikasi Usia', 'Cek DPT ONLINE']
 
@@ -30,7 +36,7 @@ export default function Page() {
 
       {cardActive && selectedRegion && (
         <div className='fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center'>
-          <div className='bg-white w-[700px] p-8 rounded-lg shadow-lg'>
+          <div className={`bg-white w-[700px] p-8 rounded-lg shadow-lg ${theme.palette.mode === 'dark' ? 'dark:bg-gray-800' : 'dark:bg-white'}`}>
             <h2 className='text-xl font-bold mb-4'>{selectedRegion.name}</h2>
             <div className='grid grid-cols-2 gap-4 mb-6'>
               <div className='text-gray-700'>
@@ -49,7 +55,7 @@ export default function Page() {
                 Tutup
               </Button>
               <Button
-                onClick={() => router.push(`/rincian/dptb/${selectedRegion.link}`)}
+                onClick={() => router.push(`/rincian/dpt/${selectedRegion.link}`)}
                 variant='contained'
                 className='rounded-full'
               >
@@ -67,7 +73,7 @@ export default function Page() {
             alt={'Peta Sulawesi Selatan'}
             width={380}
             height={630}
-            className='lg:w-[600px] lg:h-[930px]'
+            className='lg:w-[580px] lg:h-[900px]' // width={600} height={930}
           />
           {kabupaten.map((kab, index) => (
             <div
@@ -76,10 +82,10 @@ export default function Page() {
               style={{ top: kab.coords.top, left: kab.coords.left }}
             >
               <Link href={`/rincian/dpt/${kab.link}`}>
-                <i className="tabler-map-pin-filled text-[20px]" />
+                <i className='tabler-map-pin-filled text-[20px]' />
               </Link>
               <div
-                className="text-md text-[#eaeaea] font-bold"
+                className='ml-1 text-md font-bold text-[#eaeaea]'
                 onClick={() =>
                   handleClick({
                     name: kab.name,
@@ -89,7 +95,9 @@ export default function Page() {
                     link: kab.link
                   })
                 }
-              >{kab.name}</div>
+              >
+                <div>{kab.name}</div>
+              </div>
             </div>
           ))}
         </div>

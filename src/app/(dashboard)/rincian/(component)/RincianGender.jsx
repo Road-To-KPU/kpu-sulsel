@@ -15,8 +15,9 @@ import primaryColorConfig from '@configs/primaryColorConfig'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
+const deliveryExceptionsChartSeries = [60, 40]
 
-const RincianGender = ({ data }) => {
+const ChartUsia = () => {
   // Hooks
   const theme = useTheme()
 
@@ -102,7 +103,7 @@ const RincianGender = ({ data }) => {
           type='donut'
           height={452}
           width='100%'
-          series={data}
+          series={deliveryExceptionsChartSeries}
           options={options}
         />
       </CardContent>
@@ -110,4 +111,4 @@ const RincianGender = ({ data }) => {
   )
 }
 
-export default RincianGender
+export default ChartUsia
