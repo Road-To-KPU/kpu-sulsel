@@ -10,15 +10,18 @@ import Link from 'next/link'
 
 import Button from '@mui/material/Button'
 
+import { useTheme } from '@mui/material/styles'
+
 import { kabupaten } from '@/utils/map'
 
-import { useTheme } from '@mui/material/styles'
 
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const router = useRouter()
-  
+
+  const theme = useTheme()
+
   const handleClick = region => {
     setSelectedRegion(region)
     setCardActive(true)
