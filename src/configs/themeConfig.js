@@ -19,7 +19,7 @@ const themeConfig = {
   templateName: 'KOMISI PEMILIHAN UMUM SULAWESI SELATAN',
   homePageUrl: '/home',
   settingsCookieName: 'kpu-sulsel-settings',
-  mode: 'system', // 'system', 'light', 'dark'
+  mode: 'light', // 'system', 'light', 'dark'
   skin: 'bordered', // 'default', 'bordered'
   semiDark: false, // true, false
   layout: 'horizontal', // 'vertical', 'collapsed', 'horizontal'
