@@ -9,12 +9,13 @@ import classnames from 'classnames'
 // Components Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 
+
 const CardStatHorizontal = props => {
   // Props
   const { stats, avatarIcon, avatarColor, title, avatarSkin, avatarSize, avatarIconSize } = props
 
   return (
-    <Card className='bs-full bg-red-800 hover:bg-red-500'>
+    <Card className='bs-full bg-[#FB773C]'>
       <CardContent>
         <div className='flex items-center flex-wrap gap-2 justify-between'>
           <div className='flex flex-col gap-x-4 gap-y-0.5'>

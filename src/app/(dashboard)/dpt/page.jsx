@@ -17,6 +17,8 @@ import { useTheme } from '@mui/material/styles'
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
+
+  const theme = useTheme()
   const router = useRouter()
   
   const handleClick = region => {
