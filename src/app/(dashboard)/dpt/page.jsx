@@ -18,6 +18,8 @@ import { kabupaten } from '@/utils/map'
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
+
+  const theme = useTheme()
   const router = useRouter()
 
   const theme = useTheme()

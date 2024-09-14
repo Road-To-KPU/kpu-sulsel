@@ -3,9 +3,10 @@
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 
 import Image from 'next/image'
+
+import Link from 'next/link'
 
 import Button from '@mui/material/Button'
 
@@ -13,15 +14,20 @@ import { useTheme } from '@mui/material/styles'
 
 import ButtonGroup from '@components/ButtonGroup'
 
+
 import { kabupaten } from '@/utils/map'
 
 
 export default function Page() {
   const [cardActive, setCardActive] = useState(false)
   const [selectedRegion, setSelectedRegion] = useState(null)
-  const router = useRouter()
 
   const theme = useTheme()
+
+  const router = useRouter()
+  
+
+
 
   const handleClick = region => {
     setSelectedRegion(region)
@@ -53,7 +59,7 @@ export default function Page() {
                 Tutup
               </Button>
               <Button
-                onClick={() => router.push(`/rincian/dpt/${selectedRegion.link}`)}
+                onClick={() => router.push(`/rincian/dptb/${selectedRegion.link}`)}
                 variant='contained'
                 className='rounded-full'
               >
@@ -79,11 +85,11 @@ export default function Page() {
               className='absolute flex flex-col items-center cursor-pointer'
               style={{ top: kab.coords.top, left: kab.coords.left }}
             >
-              <Link href={`/rincian/dpt/${kab.link}`}>
-                <i className='tabler-map-pin-filled text-[20px]' />
+              <Link href={`/rincian/dptb/${kab.link}`}>
+                <i className='tabler-map-pin-filled text-[16px] lg:text-[20px]' />
               </Link>
               <div
-                className='ml-1 text-md font-bold text-[#eaeaea]'
+                className='ml-1 text-[10px] lg:text-sm font-bold text-[#eaeaea]'
                 onClick={() =>
                   handleClick({
                     name: kab.name,

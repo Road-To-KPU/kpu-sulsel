@@ -83,9 +83,9 @@ const HorizontalMenu = () => {
             Cek DPT Online
           </MenuItem>
         </SubMenu>
-        <SubMenu label={'Daftar Pemilih Tambahan'} icon={<i className='tabler-playlist-add' />} href='/dptb'>
+        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-checklist' />}>
           <MenuItem href='/dptb'>DPTb</MenuItem>
-          <MenuItem>Syarat Pindah Memilih</MenuItem>
+          <MenuItem href={'/dptb/syarat-pindah'}>Syarat Pindah Memilih</MenuItem>
           <MenuItem>Rekap DPTb Sulsel</MenuItem>
           <MenuItem>Rekap DPTb Kab/Kota</MenuItem>
           <MenuItem>Posko Layanan DPTb</MenuItem>
