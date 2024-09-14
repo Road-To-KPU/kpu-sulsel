@@ -20,9 +20,7 @@ export default function Page() {
   const [selectedRegion, setSelectedRegion] = useState(null)
 
   const theme = useTheme()
-  const router = useRouter()
-
-  const theme = useTheme()
+  const router = useRouter()  
 
   const handleClick = region => {
     setSelectedRegion(region)
