@@ -168,7 +168,7 @@ const colorSchemes = skin => {
           darkerOpacity: 'rgb(var(--mui-palette-primary-mainChannel) / 0.38)'
         },
         secondary: {
-          main: '#808390',
+          main: '#0F0F0F',
           light: '#999CA6',
           dark: '#737682',
           contrastText: '#FFF',
@@ -232,8 +232,8 @@ const colorSchemes = skin => {
         divider: `rgb(var(--mui-mainColorChannels-dark) / 0.12)`,
         dividerChannel: 'var(--mui-mainColorChannels-dark)',
         background: {
-          default: skin === 'bordered' ? '#343131' : '#25293C',
-          paper: '#343131',
+          default: skin === 'bordered' ? '#0F0F0F' : '#0F0F0F',
+          paper: '#0F0F0F',
           paperChannel: '47 51 73'
         },
         action: {
@@ -266,7 +266,7 @@ const colorSchemes = skin => {
           successFilledBg: 'var(--mui-palette-success-main)'
         },
         Avatar: {
-          defaultBg: '#373B50'
+          defaultBg: '#0F0F0F'
         },
         Chip: {
           defaultBorder: 'var(--mui-palette-divider)'
