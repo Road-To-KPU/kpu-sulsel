@@ -41,30 +41,30 @@ const data = [
     avatarSize: 42,
     avatarSkin: 'light'
   },
-  {
-    title: 'DAPIL',
-    stats: '',
-    avatarIcon: 'tabler-building-community',
-    avatarIconSize: 26,
-    avatarColor: 'warning',
-    avatarSize: 42,
-    avatarSkin: 'light'
-  },
-  {
-    title: 'Partisipasi Pemilu/Pilkada',
-    stats: '',
-    avatarIcon: 'tabler-chart-pie',
-    avatarIconSize: 26,
-    avatarColor: 'warning',
-    avatarSize: 42,
-    avatarSkin: 'light'
-  }
+  // {
+  //   title: 'DAPIL',
+  //   stats: '',
+  //   avatarIcon: 'tabler-building-community',
+  //   avatarIconSize: 26,
+  //   avatarColor: 'warning',
+  //   avatarSize: 42,
+  //   avatarSkin: 'light'
+  // },
+  // {
+  //   title: 'Partisipasi Pemilu/Pilkada',
+  //   stats: '',
+  //   avatarIcon: 'tabler-chart-pie',
+  //   avatarIconSize: 26,
+  //   avatarColor: 'warning',
+  //   avatarSize: 42,
+  //   avatarSkin: 'light'
+  // }
 ]
 
 const CardMenu = () => {
   if (data) {
     return (
-      <Grid container spacing={6} className='items-center'>
+      <Grid container spacing={2} className='items-center'>
         {data.map((item, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <CardStatHorizontal {...item} />
