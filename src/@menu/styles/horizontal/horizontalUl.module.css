@@ -36,21 +36,6 @@
   display: none; /* Menghilangkan scrollbar di Chrome, Safari, Edge secara default */
 }
 
-.root:hover {
-  /* Ketika menu di-hover, scrollbar akan muncul */
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgba(0, 0, 0, 0.2) rgba(255, 255, 255, 0.1); /* Warna scrollbar dan track */
-}
-
-.root:hover::-webkit-scrollbar {
-  display: block; /* Memunculkan scrollbar di Chrome, Safari, Edge */
-}
-
-.root:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.15); /* Warna scrollbar dengan transparansi lebih tinggi */
-  border-radius: 12px; /* Radius yang lebih besar pada sudut scrollbar */
-}
-
 .root:hover::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
