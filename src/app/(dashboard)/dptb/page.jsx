@@ -25,7 +25,7 @@ export default function Page() {
   const theme = useTheme()
 
   const router = useRouter()
-  
+
 
 
 
@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <div className='flex flex-col items-center'>
-      <h1 className='text-3xl font-bold mb-6'>PROVINSI SULAWESI SELATAN</h1>
+      <h1 className='text-3xl font-bold mb-6'>DAFTAR PEMILIH TAMBAHAN PROVINSI SULAWESI SELATAN</h1>
 
       {cardActive && selectedRegion && (
         <div className='fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center'>

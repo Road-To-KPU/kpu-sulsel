@@ -120,14 +120,14 @@ export default function Page() {
         <div className='w-full md:w-[48%] lg:w-[30%]'>
           <RincianGender data={dataJenisKelamin} />
         </div>
-        <Card className='w-full md:w-[48%] lg:w-[33%] p-2'>
-          <Typography variant='h6' className='my-4 text-lg'>
+        <Card className='w-full md:w-[48%] lg:w-[33%] p-2 bg-orange-800'>
+          <Typography variant='h6' className='my-4 text-lg text-white'>
             Rincian Usia
           </Typography>
           <CardUsia data={dataUsiaRincian} />
         </Card>
-        <Card className='w-full md:w-[48%] lg:w-[33%] p-2'>
-          <Typography variant='h6' className='mt-4 mb-3 text-lg'>
+        <Card className='w-full md:w-[48%] lg:w-[33%] p-2 bg-orange-800'>
+          <Typography variant='h6' className='mt-4 mb-3 text-lg text-white'>
             Rincian Disabilitas
           </Typography>
           <CardDisablitas data={dataDisabilitasRincian} />
