@@ -73,7 +73,7 @@ const HorizontalMenu = () => {
         <MenuItem href='/home' icon={<i className='tabler-smart-home' />}>
           Dashboard
         </MenuItem>
-        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />} href='/dpt'>
+        <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />}>
           <MenuItem href='/dpt'>DPT</MenuItem>
           <MenuItem>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
@@ -83,7 +83,7 @@ const HorizontalMenu = () => {
             Cek DPT Online
           </MenuItem>
         </SubMenu>
-        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-checklist' />} href='/dptb'>
+        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-checklist' />}>
           <MenuItem href='/dptb'>DPTb</MenuItem>
           <MenuItem href={'/dptb/syarat-pindah'}>Syarat Pindah Memilih</MenuItem>
           <MenuItem>Rekap DPTb Sulsel</MenuItem>
