@@ -41,6 +41,7 @@ const data = [
     avatarSize: 42,
     avatarSkin: 'light'
   },
+  
   // {
   //   title: 'DAPIL',
   //   stats: '',
