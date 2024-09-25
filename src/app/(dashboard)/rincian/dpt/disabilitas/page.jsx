@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import ReportsTab from '@/app/(dashboard)/home/(component)/ReportsTab';
+import ReportsTab from '@/app/(dashboard)/home/(component)/ReportsTab'
 
-const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya'];
+const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
 
 const dataDisabilitas = [
   {
     type: 'orders',
-    series: [{ data: [20, 21, 36, 40, 42] }],
-  },
-];
+    series: [{ data: [20, 21, 36, 40, 42] }]
+  }
+]
 
 export default function Page() {
   return (
@@ -23,5 +23,5 @@ export default function Page() {
         />
       </div>
     </div>
-  );
+  )
 }

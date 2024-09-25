@@ -4,7 +4,6 @@ import barru from '../../public/images/peta/barru.png'
 import bone from '../../public/images/peta/bone.png'
 import bulukumba from '../../public/images/peta/bulukumba.png'
 import enrekang from '../../public/images/peta/enrekang.png'
-import jeneponto from '../../public/images/peta/jeneponto.png'
 import luwu from '../../public/images/peta/luwu.png'
 import luwuTimur from '../../public/images/peta/luwu_timur.png'
 import maros from '../../public/images/peta/maros.png'
@@ -21,6 +20,7 @@ import wajo from '../../public/images/peta/wajo.png'
 import makassar from '../../public/images/peta/makassar.png'
 import gowa from '../../public/images/peta/gowa.png'
 import sinjai from '../../public/images/peta/sinjai.png'
+import jeneponto from '../../public/images/peta/Jeneponto.png'
 
 const imageMap = {
   luwu_utara: luwuUtara,

@@ -1,6 +1,8 @@
 'use client'
 
 // Component Imports
+import { useEffect, useState } from 'react'
+
 import Navigation from './Navigation'
 import NavbarContent from './NavbarContent'
 import Navbar from '@layouts/components/horizontal/Navbar'
@@ -12,6 +14,16 @@ import useHorizontalNav from '@menu/hooks/useHorizontalNav'
 const Header = () => {
   // Hooks
   const { isBreakpointReached } = useHorizontalNav()
+
+  // State to ensure component only renders after client-side mount
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    // Set to true after mount on client
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) return null // Don't render anything on the server
 
   return (
     <>
