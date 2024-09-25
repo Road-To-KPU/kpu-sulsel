@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ReportsTab from '@/app/(dashboard)/home/_components/ReportsTab'
+import ReportsTab from '@/app/(dashboard)/home/(component)/ReportsTab'
 
 const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
 
