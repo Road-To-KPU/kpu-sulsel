@@ -67,25 +67,31 @@ const CardMenu = () => {
         overflowX: 'auto',
         display: 'flex',
         gap: 2,
-        padding: 2,
+        paddingY: 2,
+        flexDirection: { xs: 'column', sm: 'row' }, // Menjadi kolom pada mobile, row pada desktop
         '::-webkit-scrollbar': {
-          height: '1px' // Atur ketebalan scrollbar horizontal
+          height: '1px'
         },
         '::-webkit-scrollbar-track': {
-          backgroundColor: '#f1f1f1', // Warna dasar scrollbar,
-          borderRadius: '10px' // Membuat scrollbar lebih membulat
+          backgroundColor: '#f1f1f1'
         },
         '::-webkit-scrollbar-thumb': {
-          backgroundColor: '#888', // Warna "jempol" scrollbar
-          borderRadius: '10px' // Membuat scrollbar lebih membulat
+          backgroundColor: '#888',
+          borderRadius: '10px'
         },
         '::-webkit-scrollbar-thumb:hover': {
-          backgroundColor: '#555' // Warna scrollbar ketika di-hover
+          backgroundColor: '#555'
         }
       }}
     >
       {data.map((item, index) => (
-        <Box key={index} sx={{ flex: '0 0 25%', maxWidth: '25%' }}>
+        <Box
+          key={index}
+          sx={{
+            flex: { xs: '0 0 100%', sm: '0 0 25%' }, // Lebar penuh di mobile, 25% di desktop
+            maxWidth: { xs: '100%', sm: '25%' }
+          }}
+        >
           <CardStatHorizontal {...item} />
         </Box>
       ))}
