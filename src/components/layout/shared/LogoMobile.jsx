@@ -66,7 +66,7 @@ const LogoMobile = ({ color }) => {
         isHovered={isHovered}
         isCollapsed={layout === 'collapsed'}
         transitionDuration={transitionDuration}
-        className='text-[18px] lg:text-[13px] ml-2'
+        className='text-[13px] lg:text-[15px] ml-2'
       >
         Dashboard KPU Sulsel
       </LogoText>
