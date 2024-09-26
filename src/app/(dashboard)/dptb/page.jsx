@@ -74,7 +74,7 @@ export default function Page() {
         <div className='relative'>
           <Image
             src={'/images/peta-sulsel1.png'}
-            alt={'Peta Sulawesi Selatan'}
+            alt={'PetaKab Sulawesi Selatan'}
             width={380}
             height={630}
             className='lg:w-[580px] lg:h-[900px]' // width={600} height={930}

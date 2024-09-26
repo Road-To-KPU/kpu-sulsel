@@ -25,6 +25,8 @@
     "@prisma/client": "^5.19.1",
     "apexcharts": "^3.52.0",
     "classnames": "2.5.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.7.0",
     "keen-slider": "^6.8.6",
     "mysql2": "^3.11.0",
     "next": "14.2.4",
@@ -42,7 +44,8 @@
     "react-use": "17.5.0",
     "recharts": "^2.12.7",
     "server-only": "0.0.1",
-    "serverless-mysql": "^1.5.5"
+    "serverless-mysql": "^1.5.5",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "@iconify/json": "2.2.218",

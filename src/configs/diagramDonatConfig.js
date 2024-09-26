@@ -1,27 +1,11 @@
-'use client'
-
-// Next Imports
-import dynamic from 'next/dynamic'
-
-// MUI Imports
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
 import { useTheme } from '@mui/material/styles'
 
-// Components Imports
-import OptionMenu from '@core/components/option-menu'
 import primaryColorConfig from '@configs/primaryColorConfig'
 
-// Styled Component Imports
-const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
-const data = [60, 40]
-
-const ChartUsia = () => {
-  // Hooks
+export const useChartOptions = () => {
   const theme = useTheme()
 
-  const options = {
+  return {
     labels: ['Laki-Laki', 'Perempuan'],
     stroke: {
       width: 0
@@ -74,44 +58,17 @@ const ChartUsia = () => {
               fontWeight: 500,
               offsetY: -20
             },
-            name: {
-              offsetY: 20,
-              color: 'white'
-            },
+            name: { offsetY: 20, color: 'white' },
             total: {
               show: true,
               fontSize: '0.9375rem',
               fontWeight: 400,
               label: 'Rata-Rata Pemilih',
-              color: 'white'
+              color: 'white',
             }
           }
         }
       }
     }
   }
-
-  return (
-    <Card className='bs-full bg-orange-800'>
-      <CardHeader
-        title='Jenis Kelamin'
-        sx={{
-          '& .MuiCardHeader-title': {
-            color: 'white'
-          }
-        }}
-      />
-      <CardContent>
-        <AppReactApexCharts
-          type='donut'
-          height={452}
-          width='100%'
-          series={data}
-          options={options}
-        />
-      </CardContent>
-    </Card>
-  )
 }
-
-export default ChartUsia

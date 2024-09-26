@@ -1,8 +1,7 @@
 // MUI Imports
 import Grid from '@mui/material/Grid'
+import CardUsiaStyle from '@views/global/CardUsiaStyle'
 
-// Component Imports
-import CardStyle from './CardStyle'
 
 const CardUsia = ( {data} ) => {
   if (data) {
@@ -10,7 +9,7 @@ const CardUsia = ( {data} ) => {
       <Grid container spacing={3} className='flex'>
         {data.map((item, index) => (
           <Grid item xs={16} sm={6} key={index}>
-            <CardStyle {...item} />
+            <CardUsiaStyle {...item} />
           </Grid>
         ))}
       </Grid>

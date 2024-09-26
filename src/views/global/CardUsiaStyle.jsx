@@ -5,7 +5,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 
-const CardStyle = props => {
+const CardUsiaStyle = props => {
   // Props
   const { umur, title, data, image } = props
 
@@ -29,4 +29,4 @@ const CardStyle = props => {
   )
 }
 
-export default CardStyle
+export default CardUsiaStyle
