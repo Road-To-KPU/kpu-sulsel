@@ -56,22 +56,16 @@ export default function Page() {
             <h2 className='text-xl font-bold mb-4'>{selectedRegion.name}</h2>
             <div className='grid grid-cols-2 gap-4 mb-6'>
               <div className='text-gray-700'>
-                <p className='flex justify-between'>
-                  <span>Jumlah DPT</span>
-                  <span>: {selectedRegion.jumlahPemilih}</span>
-                </p>
-                <p className='flex justify-between'>
-                  <span>Jumlah TPS</span>
-                  <span>: {selectedRegion.jumlahTPS}</span>
-                </p>
-                <p className='flex justify-between'>
-                  <span>Jumlah Kecamatan</span>
-                  <span>: {selectedRegion.jumlahKecamatan}</span>
-                </p>
-                <p className='flex justify-between'>
-                  <span>Jumlah Kelurahan</span>
-                  <span>: {selectedRegion.jumlahKelurahan}</span>
-                </p>
+                <p>Jumlah DPT</p>
+                <p>Jumlah TPS</p>
+                <p>Jumlah Kecamatan</p>
+                <p>Jumlah Kelurahan</p>
+              </div>
+              <div className='text-right text-gray-900 font-semibold'>
+                <p className='flex'>: {selectedRegion.jumlahPemilih}</p>
+                <p className='flex'>: {selectedRegion.jumlahTPS}</p>
+                <p className='flex'>: {selectedRegion.jumlahKecamatan}</p>
+                <p className='flex'>: {selectedRegion.jumlahKelurahan}</p>
               </div>
             </div>
             <div className='flex justify-end space-x-4'>
@@ -114,7 +108,7 @@ export default function Page() {
                   handleClick({
                     name: kab.kabupaten,
                     jumlahPemilih: kab.totalPemilih,
-                    jumlahTPS: 0,
+                    jumlahTPS: kab.totalTps,
                     jumlahKecamatan: kab.totalKecamatan,
                     jumlahKelurahan: kab.totalKelurahan,
                     link: kab.link
