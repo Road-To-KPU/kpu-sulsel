@@ -26,34 +26,42 @@ export async function GET(request) {
     const totalKecamatan = kabupaten.kecamatan.length
     const totalKelurahan = kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0)
 
-    const { totalL, totalP } = kabupaten.kecamatan.reduce(
-      (acc, kecamatan) => {
-        kecamatan.kelurahan.forEach(kelurahan => {
-          kelurahan.tps.forEach(tps => {
-            acc.totalL += tps.l || 0
-            acc.totalP += tps.p || 0
+    const data = result.map(kabupaten => {
+      const totalKecamatan = kabupaten.kecamatan.length
+
+      const totalKelurahan = kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0)
+
+      const { totalL, totalP, totalTps } = kabupaten.kecamatan.reduce(
+        (acc, kecamatan) => {
+          kecamatan.kelurahan.forEach(kelurahan => {
+            acc.totalTps += kelurahan.tps.length
+            kelurahan.tps.forEach(tps => {
+              acc.totalL += tps.l || 0
+              acc.totalP += tps.p || 0
+            })
           })
-        })
 
-        return acc
-      },
-      { totalL: 0, totalP: 0 }
-    )
+          return acc
+        },
+        { totalL: 0, totalP: 0, totalTps: 0 }
+      )
 
-    const totalPemilih = totalL + totalP // Total DPT (L + P)
+      const totalPemilih = totalL + totalP
 
-    return {
-      kabupaten: kabupaten.nama,
-      coordsTop: kabupaten.coordsTop,
-      coordsLeft: kabupaten.coordsLeft,
-      link: kabupaten.link,
-      totalL,
-      totalP,
-      totalPemilih, // Total DPT
-      totalKecamatan,
-      totalKelurahan
-    }
+      return {
+        kabupaten: kabupaten.nama,
+        coordsTop: kabupaten.coordsTop,
+        coordsLeft: kabupaten.coordsLeft,
+        link: kabupaten.link,
+        totalL,
+        totalP,
+        totalPemilih,
+        totalKecamatan,
+        totalKelurahan,
+        totalTps
+      }
+    })
+
+    return NextResponse.json({ data })
   })
-
-  return NextResponse.json({ data })
 }
