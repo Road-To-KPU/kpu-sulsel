@@ -49,7 +49,7 @@ model kelurahan {
 
 model klasifikasi_usia {
   id             String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  kabupaten_id   String?    @db.VarChar(4)
+  kab_id         String?    @db.VarChar(4)
   usia_0_20      Int?
   usia_21_30     Int?
   usia_31_40     Int?
@@ -58,7 +58,7 @@ model klasifikasi_usia {
   usia_61_70     Int?
   usia_71_keatas Int?
   total          Int?
-  kabupaten      kabupaten? @relation(fields: [kabupaten_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  kabupaten      kabupaten? @relation(fields: [kab_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "klasifikasi_usia_kabupaten_id_fkey")
 }
 
 model kode_wilayah {

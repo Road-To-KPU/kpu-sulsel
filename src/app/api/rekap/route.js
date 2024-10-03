@@ -23,11 +23,17 @@ export async function GET(request) {
   });
 
   const data = result.map((kabupaten) => {
+
     const totalKecamatan = kabupaten.kecamatan.length;
+
+
     const totalKelurahan = kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0);
-    const { totalL, totalP } = kabupaten.kecamatan.reduce(
+
+
+    const { totalL, totalP, totalTps } = kabupaten.kecamatan.reduce(
       (acc, kecamatan) => {
         kecamatan.kelurahan.forEach(kelurahan => {
+          acc.totalTps += kelurahan.tps.length;
           kelurahan.tps.forEach(tps => {
             acc.totalL += tps.l || 0;
             acc.totalP += tps.p || 0;
@@ -35,10 +41,11 @@ export async function GET(request) {
         });
         return acc;
       },
-      { totalL: 0, totalP: 0 }
+      { totalL: 0, totalP: 0, totalTps: 0 }
     );
 
-    const totalPemilih = totalL + totalP; // Total DPT (L + P)
+
+    const totalPemilih = totalL + totalP;
 
     return {
       kabupaten: kabupaten.nama,
@@ -47,9 +54,10 @@ export async function GET(request) {
       link: kabupaten.link,
       totalL,
       totalP,
-      totalPemilih, // Total DPT
+      totalPemilih,
       totalKecamatan,
       totalKelurahan,
+      totalTps,
     };
   });
 
