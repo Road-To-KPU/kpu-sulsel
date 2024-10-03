@@ -19,7 +19,6 @@ import primaryColorConfig from '@configs/primaryColorConfig'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-
 const renderTabPanels = (value, theme, options, colors, tabData) => {
   return tabData.map((item, index) => {
     const max = Math.max(...item.series[0].data)
@@ -30,7 +29,7 @@ const renderTabPanels = (value, theme, options, colors, tabData) => {
       <TabPanel key={index} value={item.type} className='!p-0'>
         <AppReactApexCharts
           type='bar'
-          height={275}
+          height={325}
           width='100%'
           options={{ ...options, colors: finalColors }}
           series={item.series}

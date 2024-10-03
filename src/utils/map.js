@@ -5,7 +5,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'luwu_utara'
+    link: 'luwu_utara',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Luwu Timur',
@@ -13,7 +15,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'luwu_timur'
+    link: 'luwu_timur',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Toraja Utara',
@@ -21,7 +25,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'toraja_utara'
+    link: 'toraja_utara',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Tana Toraja',
@@ -29,7 +35,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'tana_toraja'
+    link: 'tana_toraja',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Palopo',
@@ -37,16 +45,29 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'palopo'
+    link: 'palopo',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
-  { name: 'Luwu', coords: { top: '28%', left: '36%' }, jumlahPemilih: 20, jumlahTPS: 30, jumlahDPT: 40, link: 'luwu' },
+  {
+    name: 'Luwu',
+    coords: { top: '28%', left: '36%' },
+    jumlahPemilih: 20,
+    jumlahTPS: 30,
+    jumlahDPT: 40,
+    link: 'luwu',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
+  },
   {
     name: 'Enrekang',
     coords: { top: '30%', left: '22%' },
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'enrekang'
+    link: 'enrekang',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Pinrang',
@@ -54,7 +75,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'pinrang'
+    link: 'pinrang',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Sidrap',
@@ -62,25 +85,49 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'sidrap'
+    link: 'sidrap',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
-  { name: 'Wajo', coords: { top: '43%', left: '35%' }, jumlahPemilih: 20, jumlahTPS: 30, jumlahDPT: 40, link: 'wajo' },
+  {
+    name: 'Wajo',
+    coords: { top: '43%', left: '35%' },
+    jumlahPemilih: 20,
+    jumlahTPS: 30,
+    jumlahDPT: 40,
+    link: 'wajo',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
+  },
   {
     name: 'Pare-pare',
     coords: { top: '43%', left: '13%' },
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'parepare'
+    link: 'parepare',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
-  { name: 'Bone', coords: { top: '56%', left: '35%' }, jumlahPemilih: 20, jumlahTPS: 30, jumlahDPT: 40, link: 'bone' },
+  {
+    name: 'Bone',
+    coords: { top: '56%', left: '35%' },
+    jumlahPemilih: 20,
+    jumlahTPS: 30,
+    jumlahDPT: 40,
+    link: 'bone',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
+  },
   {
     name: 'Soppeng',
     coords: { top: '48%', left: '23%' },
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'soppeng'
+    link: 'soppeng',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Barru',
@@ -88,7 +135,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'barru'
+    link: 'barru',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Pangkep',
@@ -96,7 +145,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'pangkep'
+    link: 'pangkep',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Maros',
@@ -104,7 +155,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'maros'
+    link: 'maros',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Makassar',
@@ -112,16 +165,29 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'makassar'
+    link: 'makassar',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
-  { name: 'Gowa', coords: { top: '70%', left: '20%' }, jumlahPemilih: 20, jumlahTPS: 30, jumlahDPT: 40, link: 'gowa' },
+  {
+    name: 'Gowa',
+    coords: { top: '70%', left: '20%' },
+    jumlahPemilih: 20,
+    jumlahTPS: 30,
+    jumlahDPT: 40,
+    link: 'gowa',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
+  },
   {
     name: 'Sinjai',
     coords: { top: '67%', left: '35%' },
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'sinjai'
+    link: 'sinjai',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Bulukumba',
@@ -129,7 +195,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'bulukumba'
+    link: 'bulukumba',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Bantaeng',
@@ -137,7 +205,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'bantaeng'
+    link: 'bantaeng',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Jeneponto',
@@ -145,7 +215,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'jeneponto'
+    link: 'jeneponto',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Takalar',
@@ -153,7 +225,9 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'takalar'
+    link: 'takalar',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   },
   {
     name: 'Selayar',
@@ -161,6 +235,8 @@ export const kabupaten = [
     jumlahPemilih: 20,
     jumlahTPS: 30,
     jumlahDPT: 40,
-    link: 'selayar'
+    link: 'selayar',
+    jumlahKecamatan: 20,
+    jumlahKelurahan: 30
   }
 ]

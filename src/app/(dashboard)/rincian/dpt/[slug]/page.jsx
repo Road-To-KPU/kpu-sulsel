@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
 
-
 import { Card, Typography } from '@mui/material'
-
 
 import { getImageByPathName } from '@/utils/imageMapper'
 import Peta from '@/app/(dashboard)/rincian/(component)/Peta'
@@ -14,6 +12,7 @@ import LaporanTab from '@/app/(dashboard)/rincian/(component)/LaporanTab'
 import RincianGender from '@/app/(dashboard)/rincian/(component)/RincianGender'
 import CardUsia from '@/app/(dashboard)/rincian/(component)/(card-usia)/CardUsia'
 import CardDisablitas from '@/app/(dashboard)/rincian/(component)/(card-disabilitas)/CardDisablitas'
+import getKabupatenName from '@/utils/kabupatenName'
 
 const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
 const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
@@ -70,52 +69,53 @@ const dataUsiaRincian = [
 export default function Page() {
   const path = usePathname().split('/').pop()
   const image = getImageByPathName(path)
+  const nameKabupaten = getKabupatenName(path)
   const [data, setData] = useState([])
 
   const fetchData = async () => {
     try {
-      const res = await fetch('/api/data');
+      const res = await fetch('/api/data')
 
       if (!res.ok) {
-        throw new Error('Gagal mengambil data');
+        throw new Error('Gagal mengambil data')
       }
 
-      const data = await res.json();
+      const data = await res.json()
 
-      console.log('Fetched data:', data);
+      console.log('Fetched data:', data)
 
-      setData(data);
+      setData(data)
     } catch (error) {
-      console.error('Fetch Error:', error.message);
+      console.error('Fetch Error:', error.message)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
-  console.log('Data:', data);
+  console.log('Data:', data)
 
   const dataDisabilitasRincian = [
     {
       title: 'Tuna Daksa',
-      jumlah: data.filter((item) => item.tuna_daksa).length
+      jumlah: data.filter(item => item.tuna_daksa).length
     },
     {
       title: 'Tuna Netra',
-      jumlah: data.filter((item) => item.tuna_netra).length
+      jumlah: data.filter(item => item.tuna_netra).length
     },
     {
       title: 'Tuna Rungu',
-      jumlah: data.filter((item) => item.tuna_rungu === 'Tuna Rungu').length
+      jumlah: data.filter(item => item.tuna_rungu === 'Tuna Rungu').length
     },
     {
       title: 'Tuna Grahita',
-      jumlah: data.filter((item) => item.tuna_grahita).length
+      jumlah: data.filter(item => item.tuna_grahita).length
     },
     {
       title: 'Disabilitas Lainnya',
-      jumlah: data.filter((item) => item.disabilitas_lainnya).length
+      jumlah: data.filter(item => item.disabilitas_lainnya).length
     }
   ]
 
@@ -124,7 +124,7 @@ export default function Page() {
       {/* First Row */}
       <div className='flex flex-wrap justify-between gap-4 my-3'>
         <div className='w-full md:w-[48%] lg:w-[30%]'>
-          <Peta src={image} />
+          <Peta src={image} nameKabupaten={nameKabupaten} />
         </div>
         <div className='w-full md:w-[48%] lg:w-[33%]'>
           <LaporanTab
@@ -153,13 +153,13 @@ export default function Page() {
           <Typography variant='h6' className='my-4 text-lg text-white'>
             Rincian Usia
           </Typography>
-          <CardUsia data={dataUsiaRincian}/>
+          <CardUsia data={dataUsiaRincian} />
         </Card>
         <Card className='w-full md:w-[48%] lg:w-[33%] p-2 bg-orange-800'>
           <Typography variant='h6' className='mt-4 mb-3 text-lg text-white'>
             Rincian Disabilitas
           </Typography>
-          <CardDisablitas data={dataDisabilitasRincian}/>
+          <CardDisablitas data={dataDisabilitasRincian} />
         </Card>
       </div>
     </div>

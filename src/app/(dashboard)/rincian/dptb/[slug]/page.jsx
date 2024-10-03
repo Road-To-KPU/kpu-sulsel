@@ -10,6 +10,7 @@ import LaporanTab from '@/app/(dashboard)/rincian/(component)/LaporanTab'
 import RincianGender from '@/app/(dashboard)/rincian/(component)/RincianGender'
 import CardUsia from '@/app/(dashboard)/rincian/(component)/(card-usia)/CardUsia'
 import CardDisablitas from '@/app/(dashboard)/rincian/(component)/(card-disabilitas)/CardDisablitas'
+import getKabupatenName from '@/utils/kabupatenName'
 
 const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
 const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
@@ -89,13 +90,14 @@ const dataDisabilitasRincian = [
 export default function Page() {
   const path = usePathname().split('/').pop()
   const image = getImageByPathName(path)
+  const nameKabupaten = getKabupatenName(path)
 
   return (
     <div>
       {/* First Row */}
       <div className='flex flex-wrap justify-between gap-4 my-3'>
         <div className='w-full md:w-[48%] lg:w-[30%]'>
-          <Peta src={image} />
+          <Peta src={image} nameKabupaten={nameKabupaten} />
         </div>
         <div className='w-full md:w-[48%] lg:w-[33%]'>
           <LaporanTab
