@@ -4,6 +4,7 @@ import prisma from '@/libs/prisma'; // Prisma client instance
 
 export async function GET(req, { params }) {
   const { kab_id, kec_id, kelurahan_id } = params;
+
   if (!kab_id && !kec_id && !kelurahan_id) {
     const result = await prisma.kabupaten.findMany({
       include: {
@@ -26,6 +27,7 @@ export async function GET(req, { params }) {
 
     return NextResponse.json({ data: result });
   }
+
   const kabupatenWhere = kab_id ? { id: kab_id } : {};
   const kecamatanWhere = kec_id ? { id: kec_id } : {};
   const kelurahanWhere = kelurahan_id ? { id: kelurahan_id } : {};
@@ -50,6 +52,7 @@ export async function GET(req, { params }) {
       },
     },
   });
+
   const data = result.map((kabupaten) => {
     const kecamatanData = kabupaten.kecamatan.map((kecamatan) => {
       const kelurahanData = kecamatan.kelurahan.map((kelurahan) => {
@@ -90,5 +93,6 @@ export async function GET(req, { params }) {
       kecamatanData,
     };
   });
+  
   return NextResponse.json({ data });
 }
