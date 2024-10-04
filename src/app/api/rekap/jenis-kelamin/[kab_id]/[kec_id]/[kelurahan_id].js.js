@@ -31,6 +31,7 @@ export async function GET(req, { params }) {
   const kabupatenWhere = kab_id ? { id: kab_id } : {};
   const kecamatanWhere = kec_id ? { id: kec_id } : {};
   const kelurahanWhere = kelurahan_id ? { id: kelurahan_id } : {};
+  
   const result = await prisma.kabupaten.findMany({
     where: kabupatenWhere,
     include: {
@@ -93,6 +94,6 @@ export async function GET(req, { params }) {
       kecamatanData,
     };
   });
-  
+
   return NextResponse.json({ data });
 }
