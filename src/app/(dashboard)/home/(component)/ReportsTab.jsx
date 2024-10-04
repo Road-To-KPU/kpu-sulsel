@@ -65,30 +65,17 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
       }
     },
     legend: { show: false },
-    tooltip: {
-      enabled: true,
-      theme: 'dark',
-      y: {
-        formatter: val => {
-          if (val >= 1000) {
-            return `${val}`
-          }
-
-          return `${val}`
-        },
-        title: {
-          formatter: () => 'Jumlah'
-        }
-      }
-    },
+    tooltip: { enabled: false },
     dataLabels: {
       offsetY: -11,
       formatter: val => {
-        if (val >= 1000) {
+        if (val >= 1000000) {
+          return `${(val / 1000000).toFixed(2)}M`
+        } else if (val >= 1000) {
           return `${(val / 1000).toFixed(2)}k`
         }
 
-        return `${val}k`
+        return `${val}`
       },
       style: {
         fontWeight: 500,
@@ -130,11 +117,13 @@ const ReportsTab = ({ categories, title, multiplier, tabData }) => {
       labels: {
         offsetX: -18,
         formatter: val => {
-          if (val >= 1000) {
+          if (val >= 1000000) {
+            return `${(val / 1000000).toFixed(2)}M`
+          } else if (val >= 1000) {
             return `${(val / 1000).toFixed(2)}k`
           }
 
-          return `${val}k`
+          return `${val}`
         },
         style: {
           colors: disabledText,
