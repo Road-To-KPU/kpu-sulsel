@@ -25,8 +25,8 @@ export default function Page() {
                 data: [
                   data?.totalKlasifikasiUsia.usia_0_20,
                   data?.totalKlasifikasiUsia.usia_21_30,
-                  data?.totalKlasifikasiUsia.usia_31_40,
-                  data?.totalKlasifikasiUsia.usia_51_60,
+                  data?.totalKlasifikasiUsia.usia_31_40 + data?.totalKlasifikasiUsia.usia_41_50,
+                  data?.totalKlasifikasiUsia.usia_51_60 + data?.totalKlasifikasiUsia.usia_61_70,
                   data?.totalKlasifikasiUsia.usia_71_keatas
                 ]
               }
@@ -43,11 +43,10 @@ export default function Page() {
               {
                 data: [
                   data?.totalDisabilitas.fisik,
-                  data?.totalDisabilitas.intelektual,
-                  data?.totalDisabilitas.mental,
-                  data?.totalDisabilitas.sensorik_wicara,
+                  data?.totalDisabilitas.sensorik_netra,
                   data?.totalDisabilitas.sensorik_rungu,
-                  data?.totalDisabilitas.sensorik_netra
+                  data?.totalDisabilitas.intelektual + data?.totalDisabilitas.mental,
+                  data?.totalDisabilitas.sensorik_wicara
                 ]
               }
             ]
@@ -67,14 +66,7 @@ export default function Page() {
 
   const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
 
-  const disabilitasCategoriesReport = [
-    'Fisik',
-    'Intelektual',
-    'Mental',
-    'Sensorik Wicara',
-    'Sensorik Rungu',
-    'Sensorik Netra'
-  ]
+  const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Tuna Wicara']
 
   if (loading) {
     return <div>Loading...</div> // Indikator loading
