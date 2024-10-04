@@ -1,5 +1,6 @@
-import prisma from '@/libs/prisma'; // Prisma client instance
 import { NextResponse } from 'next/server';
+
+import prisma from '@/libs/prisma'; // Prisma client instance
 
 export async function GET(req, { params }) {
   const { kab_id, kec_id, kelurahan_id } = params;
