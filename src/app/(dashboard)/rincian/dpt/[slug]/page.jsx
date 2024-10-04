@@ -15,7 +15,7 @@ import CardDisablitas from '@/app/(dashboard)/rincian/(component)/(card-disabili
 import getKabupatenName from '@/utils/kabupatenName'
 
 const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
-const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
+const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Tuna Wicara']
 
 export default function Page() {
   const path = usePathname().split('/').pop()
@@ -65,13 +65,13 @@ export default function Page() {
     {
       title: 'Gen X',
       image: '/images/genx.png',
-      data: data?.klasifikasi_usia[0]?.usia_31_40 || 0,
+      data: data?.klasifikasi_usia[0]?.usia_31_40 + data?.klasifikasi_usia[0]?.usia_41_50 || 0,
       umur: 'Usia 36-50 tahun'
     },
     {
       title: 'Baby Boomer',
       image: '/images/babyboomer.png',
-      data: data?.klasifikasi_usia[0]?.usia_51_60 || 0,
+      data: data?.klasifikasi_usia[0]?.usia_51_60 + data?.klasifikasi_usia[0]?.usia_61_70 || 0,
       umur: 'Usia 51-70 tahun'
     },
     {
@@ -97,11 +97,11 @@ export default function Page() {
     },
     {
       title: 'Tuna Grahita',
-      jumlah: data?.disabilitas[0]?.intelektual || 'Data tidak tersedia'
+      jumlah: data?.disabilitas[0]?.intelektual + data?.disabilitas[0]?.mental || 'Data tidak tersedia'
     },
     {
-      title: 'Disabilitas Lainnya',
-      jumlah: data?.disabilitas[0]?.mental || 'Data tidak tersedia'
+      title: 'Tuna Wicara',
+      jumlah: data?.disabilitas[0]?.sensorik_wicara || 'Data tidak tersedia'
     }
   ]
 
@@ -113,8 +113,8 @@ export default function Page() {
           data: [
             data?.klasifikasi_usia[0]?.usia_0_20 || 0,
             data?.klasifikasi_usia[0]?.usia_21_30 || 0,
-            data?.klasifikasi_usia[0]?.usia_31_40 || 0,
-            data?.klasifikasi_usia[0]?.usia_51_60 || 0,
+            data?.klasifikasi_usia[0]?.usia_31_40 + data?.klasifikasi_usia[0]?.usia_41_50 || 0,
+            data?.klasifikasi_usia[0]?.usia_51_60 + data?.klasifikasi_usia[0]?.usia_61_70 || 0,
             data?.klasifikasi_usia[0]?.usia_71_keatas || 0
           ]
         }
@@ -131,8 +131,8 @@ export default function Page() {
             data?.disabilitas[0]?.fisik || 0,
             data?.disabilitas[0]?.sensorik_netra || 0,
             data?.disabilitas[0]?.sensorik_rungu || 0,
-            data?.disabilitas[0]?.intelektual || 0,
-            data?.disabilitas[0]?.mental || 0
+            data?.disabilitas[0]?.intelektual + data?.disabilitas[0]?.mental || 0,
+            data?.disabilitas[0]?.sensorik_wicara || 0
           ]
         }
       ]
