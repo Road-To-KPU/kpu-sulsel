@@ -1,25 +1,95 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 import CardMenu from './(component)/CardMenu'
 import ReportsTab from './(component)/ReportsTab'
 import ChartUsia from './(component)/ChartUsia'
 
-const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
-const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Lainnya']
-
-const dataUsia = [
-  {
-    type: 'orders',
-    series: [{ data: [28, 10, 36, 38, 15] }]
-  }
-]
-
-const dataDisabilitas = [
-  {
-    type: 'orders',
-    series: [{ data: [20, 21, 36, 40, 42] }]
-  }
-]
-
 export default function Page() {
+  const [dataUsia, setDataUsia] = useState([])
+  const [dataDisabilitas, setDataDisabilitas] = useState([])
+  const [loading, setLoading] = useState(true) // State untuk loading
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/dashboard')
+        const data = await response.json()
+
+        const usiaData = [
+          {
+            type: 'orders',
+            series: [
+              {
+                data: [
+                  data?.totalKlasifikasiUsia.usia_0_20,
+                  data?.totalKlasifikasiUsia.usia_21_30,
+                  data?.totalKlasifikasiUsia.usia_31_40,
+                  data?.totalKlasifikasiUsia.usia_41_50,
+                  data?.totalKlasifikasiUsia.usia_51_60,
+                  data?.totalKlasifikasiUsia.usia_61_70,
+                  data?.totalKlasifikasiUsia.usia_71_keatas
+                ]
+              }
+            ]
+          }
+        ]
+
+        setDataUsia(usiaData)
+
+        const disabilitasData = [
+          {
+            type: 'orders',
+            series: [
+              {
+                data: [
+                  data?.totalDisabilitas.fisik,
+                  data?.totalDisabilitas.intelektual,
+                  data?.totalDisabilitas.mental,
+                  data?.totalDisabilitas.sensorik_wicara,
+                  data?.totalDisabilitas.sensorik_rungu,
+                  data?.totalDisabilitas.sensorik_netra
+                ]
+              }
+            ]
+          }
+        ]
+
+        setDataDisabilitas(disabilitasData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      } finally {
+        setLoading(false) // Menghentikan loading setelah data diterima atau error
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  const usiaCategoriesReport = [
+    'Usia 0-20',
+    'Usia 21-30',
+    'Usia 31-40',
+    'Usia 41-50',
+    'Usia 51-60',
+    'Usia 61-70',
+    'Usia 71+'
+  ]
+
+  const disabilitasCategoriesReport = [
+    'Fisik',
+    'Intelektual',
+    'Mental',
+    'Sensorik Wicara',
+    'Sensorik Rungu',
+    'Sensorik Netra'
+  ]
+
+  if (loading) {
+    return <div>Loading...</div> // Indikator loading
+  }
+
   return (
     <div>
       <div className='my-3'>
