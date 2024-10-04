@@ -26,9 +26,7 @@ export default function Page() {
                   data?.totalKlasifikasiUsia.usia_0_20,
                   data?.totalKlasifikasiUsia.usia_21_30,
                   data?.totalKlasifikasiUsia.usia_31_40,
-                  data?.totalKlasifikasiUsia.usia_41_50,
                   data?.totalKlasifikasiUsia.usia_51_60,
-                  data?.totalKlasifikasiUsia.usia_61_70,
                   data?.totalKlasifikasiUsia.usia_71_keatas
                 ]
               }
@@ -67,15 +65,7 @@ export default function Page() {
     fetchData()
   }, [])
 
-  const usiaCategoriesReport = [
-    'Usia 0-20',
-    'Usia 21-30',
-    'Usia 31-40',
-    'Usia 41-50',
-    'Usia 51-60',
-    'Usia 61-70',
-    'Usia 71+'
-  ]
+  const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
 
   const disabilitasCategoriesReport = [
     'Fisik',
