@@ -19,7 +19,6 @@ import primaryColorConfig from '@configs/primaryColorConfig'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-
 const renderTabPanels = (value, theme, options, colors, tabData) => {
   return tabData.map((item, index) => {
     const max = Math.max(...item.series[0].data)
@@ -30,7 +29,7 @@ const renderTabPanels = (value, theme, options, colors, tabData) => {
       <TabPanel key={index} value={item.type} className='!p-0'>
         <AppReactApexCharts
           type='bar'
-          height={275}
+          height={325}
           width='100%'
           options={{ ...options, colors: finalColors }}
           series={item.series}
@@ -69,7 +68,13 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
     tooltip: { enabled: false },
     dataLabels: {
       offsetY: -11,
-      formatter: val => `${val}k`,
+      formatter: val => {
+        if (val >= 1000) {
+          return `${(val / 1000).toFixed(2)}k`
+        }
+
+        return `${val}k`
+      },
       style: {
         fontWeight: 500,
         colors: ['white'],
@@ -109,13 +114,12 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
     yaxis: {
       labels: {
         offsetX: -18,
-
-        // formatter: val => `${val}`,
-        // formatter dengan data array
         formatter: val => {
-          val = val * multiplier
+          if (val >= 1000) {
+            return `${(val / 1000).toFixed(2)}k`
+          }
 
-          return `${val}`
+          return `${val}k`
         },
         style: {
           colors: disabledText,
