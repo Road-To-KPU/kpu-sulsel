@@ -21,6 +21,7 @@ import makassar from '../../public/images/peta/makassar.png'
 import gowa from '../../public/images/peta/gowa.png'
 import sinjai from '../../public/images/peta/sinjai.png'
 import jeneponto from '../../public/images/peta/Jeneponto.png'
+import palopo from '../../public/images/peta/palopo.png'
 
 const imageMap = {
   luwu_utara: luwuUtara,
@@ -36,6 +37,7 @@ const imageMap = {
   pangkep: pangkep,
   parepare: parepare,
   pinrang: pinrang,
+  palopo: palopo,
   selayar: selayar,
   sidrap: sidrap,
   soppeng: soppeng,

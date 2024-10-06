@@ -14,8 +14,10 @@ const CardStyle = props => {
       <CardContent className='p-3'>
         <div className='flex items-center flex-wrap gap-1 justify-around'>
           <Image src={image} className='items-center' width={35} height={70} />
-          <div className='flex flex-col'>
-            <Typography variant='caption' color='white'>{title}</Typography>
+          <div className='flex flex-col text-right'>
+            <Typography variant='caption' color='white'>
+              {title}
+            </Typography>
             <Typography variant='caption' color='white'>
               {data}
             </Typography>
