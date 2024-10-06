@@ -3,9 +3,13 @@ import Image from 'next/image'
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import { Typography } from '@mui/material'
+import { Typography, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 const Peta = ({ src, nameKabupaten }) => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
     <Card className='h-[100%] bg-orange-800'>
       <CardContent className='p-5'>
@@ -13,7 +17,7 @@ const Peta = ({ src, nameKabupaten }) => {
           {nameKabupaten}
         </Typography>
         <div className='flex h-[21rem] pli-2.5 pbs-4 rounded bg-orange-600'>
-          <Image src={src} className='items-center' width={300} height={300} />
+          <Image src={src} className='items-center' width={isMobile ? 250 : 300} height={isMobile ? 310 : 300} />
         </div>
       </CardContent>
     </Card>
