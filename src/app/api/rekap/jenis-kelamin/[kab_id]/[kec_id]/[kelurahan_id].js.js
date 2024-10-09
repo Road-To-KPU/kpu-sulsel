@@ -1,8 +1,10 @@
-import prisma from '@/libs/prisma'; // Prisma client instance
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
+
+import prisma from '@/libs/prisma' // Prisma client instance
 
 export async function GET(req, { params }) {
-  const { kab_id, kec_id, kelurahan_id } = params;
+  const { kab_id, kec_id, kelurahan_id } = params
+
   if (!kab_id && !kec_id && !kelurahan_id) {
     const result = await prisma.kabupaten.findMany({
       include: {
@@ -25,9 +27,11 @@ export async function GET(req, { params }) {
 
     return NextResponse.json({ data: result })
   }
-  const kabupatenWhere = kab_id ? { id: kab_id } : {};
-  const kecamatanWhere = kec_id ? { id: kec_id } : {};
-  const kelurahanWhere = kelurahan_id ? { id: kelurahan_id } : {};
+
+  const kabupatenWhere = kab_id ? { id: kab_id } : {}
+  const kecamatanWhere = kec_id ? { id: kec_id } : {}
+  const kelurahanWhere = kelurahan_id ? { id: kelurahan_id } : {}
+
   const result = await prisma.kabupaten.findMany({
     where: kabupatenWhere,
     include: {
@@ -40,21 +44,22 @@ export async function GET(req, { params }) {
               tps: {
                 select: {
                   l: true,
-                  p: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  });
-  const data = result.map((kabupaten) => {
-    const kecamatanData = kabupaten.kecamatan.map((kecamatan) => {
-      const kelurahanData = kecamatan.kelurahan.map((kelurahan) => {
-        const totalL = kelurahan.tps.reduce((sum, tps) => sum + (tps.l || 0), 0);
-        const totalP = kelurahan.tps.reduce((sum, tps) => sum + (tps.p || 0), 0);
-        const totalPemilih = totalL + totalP;
+                  p: true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  })
+
+  const data = result.map(kabupaten => {
+    const kecamatanData = kabupaten.kecamatan.map(kecamatan => {
+      const kelurahanData = kecamatan.kelurahan.map(kelurahan => {
+        const totalL = kelurahan.tps.reduce((sum, tps) => sum + (tps.l || 0), 0)
+        const totalP = kelurahan.tps.reduce((sum, tps) => sum + (tps.p || 0), 0)
+        const totalPemilih = totalL + totalP
 
         return {
           kelurahan: kelurahan.nama,
@@ -86,8 +91,9 @@ export async function GET(req, { params }) {
       totalL,
       totalP,
       totalPemilih,
-      kecamatanData,
-    };
-  });
-  return NextResponse.json({ data });
+      kecamatanData
+    }
+  })
+
+  return NextResponse.json({ data })
 }
