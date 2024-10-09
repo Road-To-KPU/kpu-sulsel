@@ -1,10 +1,8 @@
-import { NextResponse } from 'next/server';
-
 import prisma from '@/libs/prisma'; // Prisma client instance
+import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
   const { kab_id, kec_id, kelurahan_id } = params;
-
   if (!kab_id && !kec_id && !kelurahan_id) {
     const result = await prisma.kabupaten.findMany({
       include: {
@@ -15,23 +13,21 @@ export async function GET(req, { params }) {
                 tps: {
                   select: {
                     l: true,
-                    p: true,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    });
+                    p: true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    })
 
-    return NextResponse.json({ data: result });
+    return NextResponse.json({ data: result })
   }
-
   const kabupatenWhere = kab_id ? { id: kab_id } : {};
   const kecamatanWhere = kec_id ? { id: kec_id } : {};
   const kelurahanWhere = kelurahan_id ? { id: kelurahan_id } : {};
-  
   const result = await prisma.kabupaten.findMany({
     where: kabupatenWhere,
     include: {
@@ -53,7 +49,6 @@ export async function GET(req, { params }) {
       },
     },
   });
-
   const data = result.map((kabupaten) => {
     const kecamatanData = kabupaten.kecamatan.map((kecamatan) => {
       const kelurahanData = kecamatan.kelurahan.map((kelurahan) => {
@@ -65,26 +60,26 @@ export async function GET(req, { params }) {
           kelurahan: kelurahan.nama,
           totalL,
           totalP,
-          totalPemilih,
-        };
-      });
+          totalPemilih
+        }
+      })
 
-      const totalL = kelurahanData.reduce((sum, k) => sum + k.totalL, 0);
-      const totalP = kelurahanData.reduce((sum, k) => sum + k.totalP, 0);
-      const totalPemilih = totalL + totalP;
+      const totalL = kelurahanData.reduce((sum, k) => sum + k.totalL, 0)
+      const totalP = kelurahanData.reduce((sum, k) => sum + k.totalP, 0)
+      const totalPemilih = totalL + totalP
 
       return {
         kecamatan: kecamatan.nama,
         totalL,
         totalP,
         totalPemilih,
-        kelurahanData,
-      };
-    });
+        kelurahanData
+      }
+    })
 
-    const totalL = kecamatanData.reduce((sum, k) => sum + k.totalL, 0);
-    const totalP = kecamatanData.reduce((sum, k) => sum + k.totalP, 0);
-    const totalPemilih = totalL + totalP;
+    const totalL = kecamatanData.reduce((sum, k) => sum + k.totalL, 0)
+    const totalP = kecamatanData.reduce((sum, k) => sum + k.totalP, 0)
+    const totalPemilih = totalL + totalP
 
     return {
       kabupaten: kabupaten.nama,
@@ -94,6 +89,5 @@ export async function GET(req, { params }) {
       kecamatanData,
     };
   });
-
   return NextResponse.json({ data });
 }

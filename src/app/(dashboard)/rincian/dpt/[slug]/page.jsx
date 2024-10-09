@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation'
 
 import { Card, Typography } from '@mui/material'
 
+// import { set } from 'react-datepicker/dist/date_utils'
+
 import { getImageByPathName } from '@/utils/imageMapper'
 import Peta from '@/app/(dashboard)/rincian/(component)/Peta'
 import LaporanTab from '@/app/(dashboard)/rincian/(component)/LaporanTab'
@@ -24,6 +26,8 @@ export default function Page() {
 
   // State untuk menyimpan data dari API
   const [data, setData] = useState(null)
+  const [dataJenisKelamin, setDataJenisKelamin] = useState([])
+  const [totalPemilihKelamin, setTotalPemilihKelamin] = useState(0)
 
   // Fetch data dari API
   useEffect(() => {
@@ -35,6 +39,8 @@ export default function Page() {
         console.log('Data:', result?.data)
 
         setData(result?.data)
+        setDataJenisKelamin([result?.data?.totalLakiLaki, result?.data?.totalPerempuan])
+        setTotalPemilihKelamin(result?.data?.totalPemilih)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -47,37 +53,39 @@ export default function Page() {
     return <div>Loading...</div>
   }
 
-  const dataJenisKelamin = [60, 30]
-
   const dataUsiaRincian = [
     {
       title: 'Gen Z',
       image: '/images/genz.png',
-      data: data?.klasifikasi_usia[0]?.usia_0_20 || 0,
+      data: (data?.klasifikasi_usia[0]?.usia_0_20 || 0).toLocaleString('id-ID'),
       umur: 'Usia 17-25 tahun'
     },
     {
       title: 'Gen Millenial',
       image: '/images/genmilenial.png',
-      data: data?.klasifikasi_usia[0]?.usia_21_30 || 0,
+      data: (data?.klasifikasi_usia[0]?.usia_21_30 || 0).toLocaleString('id-ID'),
       umur: 'Usia 26-35 tahun'
     },
     {
       title: 'Gen X',
       image: '/images/genx.png',
-      data: data?.klasifikasi_usia[0]?.usia_31_40 + data?.klasifikasi_usia[0]?.usia_41_50 || 0,
+      data: (
+        (data?.klasifikasi_usia[0]?.usia_31_40 || 0) + (data?.klasifikasi_usia[0]?.usia_41_50 || 0)
+      ).toLocaleString('id-ID'),
       umur: 'Usia 36-50 tahun'
     },
     {
       title: 'Baby Boomer',
       image: '/images/babyboomer.png',
-      data: data?.klasifikasi_usia[0]?.usia_51_60 + data?.klasifikasi_usia[0]?.usia_61_70 || 0,
+      data: (
+        (data?.klasifikasi_usia[0]?.usia_51_60 || 0) + (data?.klasifikasi_usia[0]?.usia_61_70 || 0)
+      ).toLocaleString('id-ID'),
       umur: 'Usia 51-70 tahun'
     },
     {
       title: 'Pre Boomer',
       image: '/images/preboomer.png',
-      data: data?.klasifikasi_usia[0]?.usia_71_keatas || 0,
+      data: (data?.klasifikasi_usia[0]?.usia_71_keatas || 0).toLocaleString('id-ID'),
       umur: 'Usia 71+ tahun'
     }
   ]
@@ -85,23 +93,23 @@ export default function Page() {
   const dataDisabilitasRincian = [
     {
       title: 'Tuna Daksa',
-      jumlah: data?.disabilitas[0]?.fisik || 'Data tidak tersedia'
+      jumlah: (data?.disabilitas[0]?.fisik || 0).toLocaleString('id-ID')
     },
     {
       title: 'Tuna Netra',
-      jumlah: data?.disabilitas[0]?.sensorik_netra || 'Data tidak tersedia'
+      jumlah: (data?.disabilitas[0]?.sensorik_netra || 0).toLocaleString('id-ID')
     },
     {
       title: 'Tuna Rungu',
-      jumlah: data?.disabilitas[0]?.sensorik_rungu || 'Data tidak tersedia'
+      jumlah: (data?.disabilitas[0]?.sensorik_rungu || 0).toLocaleString('id-ID')
     },
     {
       title: 'Tuna Grahita',
-      jumlah: data?.disabilitas[0]?.intelektual + data?.disabilitas[0]?.mental || 'Data tidak tersedia'
+      jumlah: ((data?.disabilitas[0]?.intelektual || 0) + (data?.disabilitas[0]?.mental || 0)).toLocaleString('id-ID')
     },
     {
       title: 'Tuna Wicara',
-      jumlah: data?.disabilitas[0]?.sensorik_wicara || 'Data tidak tersedia'
+      jumlah: (data?.disabilitas[0]?.sensorik_wicara || 0).toLocaleString('id-ID')
     }
   ]
 
@@ -167,7 +175,7 @@ export default function Page() {
       {/* Second Row */}
       <div className='flex flex-wrap justify-between gap-4 my-5'>
         <div className='w-full md:w-[48%] lg:w-[30%]'>
-          <RincianGender data={dataJenisKelamin} />
+          <RincianGender data={dataJenisKelamin} totalPemilihGender={totalPemilihKelamin} />
         </div>
         <Card className='w-full md:w-[48%] lg:w-[33%] p-2 bg-orange-800'>
           <Typography variant='h6' className='my-4 text-lg text-white'>

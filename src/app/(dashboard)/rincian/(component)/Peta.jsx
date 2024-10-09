@@ -17,7 +17,13 @@ const Peta = ({ src, nameKabupaten }) => {
           {nameKabupaten}
         </Typography>
         <div className='flex h-[21rem] pli-2.5 pbs-4 rounded bg-orange-600'>
-          <Image src={src} className='items-center' width={isMobile ? 250 : 300} height={isMobile ? 310 : 300} />
+          <Image
+            src={src}
+            alt='Peta'
+            className='items-center'
+            width={isMobile ? 250 : 300}
+            height={isMobile ? 310 : 300}
+          />
         </div>
       </CardContent>
     </Card>
