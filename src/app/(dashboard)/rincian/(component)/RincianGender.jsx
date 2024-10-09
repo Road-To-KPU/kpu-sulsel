@@ -15,9 +15,10 @@ import primaryColorConfig from '@configs/primaryColorConfig'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
-const deliveryExceptionsChartSeries = [60, 40]
 
-const ChartUsia = () => {
+// const deliveryExceptionsChartSeries = [60, 40]
+
+const ChartUsia = ({ data, totalPemilihGender }) => {
   // Hooks
   const theme = useTheme()
 
@@ -26,14 +27,11 @@ const ChartUsia = () => {
     stroke: {
       width: 0
     },
-    colors: [
-      primaryColorConfig[0].dark,
-      primaryColorConfig[0].light,
-    ],
+    colors: [primaryColorConfig[0].dark, primaryColorConfig[0].light],
     dataLabels: {
       enabled: false,
       formatter(val) {
-        return `${Number.parseInt(val)}%`
+        return `${Number(val).toLocaleString('id-ID')}`
       }
     },
     legend: {
@@ -72,7 +70,8 @@ const ChartUsia = () => {
               fontSize: '24px',
               color: 'white',
               fontWeight: 500,
-              offsetY: -20
+              offsetY: -20,
+              formatter: val => Number(val).toLocaleString('id-ID')
             },
             name: { offsetY: 20, color: 'white' },
             total: {
@@ -81,6 +80,7 @@ const ChartUsia = () => {
               fontWeight: 400,
               label: 'Rata-Rata Pemilih',
               color: 'white',
+              formatter: () => totalPemilihGender.toLocaleString('id-ID')
             }
           }
         }
@@ -99,13 +99,7 @@ const ChartUsia = () => {
         }}
       />
       <CardContent>
-        <AppReactApexCharts
-          type='donut'
-          height={452}
-          width='100%'
-          series={deliveryExceptionsChartSeries}
-          options={options}
-        />
+        <AppReactApexCharts type='donut' height={452} width='100%' series={data} options={options} />
       </CardContent>
     </Card>
   )

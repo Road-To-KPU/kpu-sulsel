@@ -9,7 +9,9 @@ import ChartUsia from './(component)/ChartUsia'
 export default function Page() {
   const [dataUsia, setDataUsia] = useState([])
   const [dataDisabilitas, setDataDisabilitas] = useState([])
-  const [loading, setLoading] = useState(true) // State untuk loading
+  const [data, setData] = useState([0, 0])
+  const [totalPemilih, setTotalPemilih] = useState(0)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,10 +56,15 @@ export default function Page() {
         ]
 
         setDataDisabilitas(disabilitasData)
+
+        const { totalLakiLaki, totalPerempuan, totalPemilih } = data
+
+        setData([totalLakiLaki, totalPerempuan])
+        setTotalPemilih(totalPemilih)
       } catch (error) {
         console.error('Error fetching data:', error)
       } finally {
-        setLoading(false) // Menghentikan loading setelah data diterima atau error
+        setLoading(false)
       }
     }
 
@@ -69,17 +76,17 @@ export default function Page() {
   const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Tuna Wicara']
 
   if (loading) {
-    return <div>Loading...</div> // Indikator loading
+    return <div>Loading...</div>
   }
 
   return (
     <div>
       <div className='my-3'>
-        <CardMenu />
+        <CardMenu pemilihTetap={totalPemilih} />
       </div>
       <div className='flex justify-between flex-wrap my-10'>
         <div className='w-full md:w-[30%] mb-4 md:mb-0'>
-          <ChartUsia />
+          <ChartUsia data={data} totalPemilih={totalPemilih} />
         </div>
         <div className='w-full md:w-[33%] mb-4 md:mb-0'>
           <ReportsTab
@@ -92,7 +99,7 @@ export default function Page() {
         <div className='w-full md:w-[33%]'>
           <ReportsTab
             title={'Pemilih Disabilitas'}
-            multiplier={4000}
+            multiplier={10000}
             categories={disabilitasCategoriesReport}
             tabData={dataDisabilitas}
           />
