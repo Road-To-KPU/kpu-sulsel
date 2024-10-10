@@ -12,6 +12,8 @@ export default function Page() {
   const [data, setData] = useState([0, 0])
   const [totalPemilih, setTotalPemilih] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [tpsUmum, setTpsUmum] = useState(0)
+  const [tpsKhusus, setTpsKhusus] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,10 +59,9 @@ export default function Page() {
 
         setDataDisabilitas(disabilitasData)
 
-        const { totalLakiLaki, totalPerempuan, totalPemilih } = data
+        // const { totalLakiLaki, totalPerempuan } = data
 
-        setData([totalLakiLaki, totalPerempuan])
-        setTotalPemilih(totalPemilih)
+        // setData([totalLakiLaki, totalPerempuan])
       } catch (error) {
         console.error('Error fetching data:', error)
       } finally {
@@ -68,6 +69,44 @@ export default function Page() {
       }
     }
 
+    const countData = async () => {
+        try {
+            const response = await fetch('/api/rekap/dpt')
+
+            const data = await response.json()
+            const totalLakiLaki = data.reduce((acc, item) => acc + item.l, 0)
+            const totalPerempuan = data.reduce((acc, item) => acc + item.p, 0)
+            const totalPemilih = data.reduce((acc, item) => acc + item.lp, 0)
+
+
+            const countTPS = data.reduce((acc, item) => acc + item.tps, 0)
+            setTpsUmum(countTPS)
+
+            setData([totalLakiLaki, totalPerempuan])
+
+            setTotalPemilih(totalPemilih)
+        } catch (error) {
+            console.error('Error counting data:', error)
+        }
+    }
+
+    const jumlahTpsKhusus = async () => {
+        try {
+            const response = await fetch('/api/rekap/tpsKhusus');
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const tpsJumlah = await response.json();
+            setTpsKhusus(tpsJumlah);
+        } catch (error) {
+            console.error('Error counting data:', error);
+        }
+    }
+
+    jumlahTpsKhusus()
+    countData()
     fetchData()
   }, [])
 
@@ -82,7 +121,7 @@ export default function Page() {
   return (
     <div>
       <div className='my-3'>
-        <CardMenu pemilihTetap={totalPemilih} />
+        <CardMenu pemilihTetap={totalPemilih} tpsUmum={tpsUmum} tpsKhusus={tpsKhusus} />
       </div>
       <div className='flex justify-between flex-wrap my-10'>
         <div className='w-full md:w-[30%] mb-4 md:mb-0'>
