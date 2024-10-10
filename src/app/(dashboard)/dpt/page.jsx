@@ -64,12 +64,12 @@ export default function Page() {
                 <p>Pemilih Perempuan</p>
               </div>
               <div className='text-right md:ml-[15rem] text-gray-900 font-semibold'>
-                <p className='flex'>: {selectedRegion.jumlahPemilih}</p>
-                <p className='flex'>: {selectedRegion.jumlahTPS}</p>
-                <p className='flex'>: {selectedRegion.jumlahKecamatan}</p>
-                <p className='flex'>: {selectedRegion.jumlahKelurahan}</p>
-                <p className='flex'>: {selectedRegion.jumlahLaki}</p>
-                <p className='flex'>: {selectedRegion.jumlahPerempuan}</p>
+                <p className='flex'>: {selectedRegion.jumlahPemilih.toLocaleString('id-ID')}</p>
+                <p className='flex'>: {selectedRegion.jumlahTPS.toLocaleString('id-ID')}</p>
+                <p className='flex'>: {selectedRegion.jumlahKecamatan.toLocaleString('id-ID')}</p>
+                <p className='flex'>: {selectedRegion.jumlahKelurahan.toLocaleString('id-ID')}</p>
+                <p className='flex'>: {selectedRegion.jumlahLaki.toLocaleString('id-ID')}</p>
+                <p className='flex'>: {selectedRegion.jumlahPerempuan.toLocaleString('id-ID')}</p>
               </div>
             </div>
             <div className='flex justify-end space-x-2 md:space-x-4'>

@@ -89,9 +89,9 @@ export default function Page() {
               <TableRow key={index} sx={{ '&:nth-of-type(odd)': { backgroundColor: '#f9f9f9' } }}>
                 <TableCell>{item.nama_kabupaten}</TableCell>
                 <TableCell>{item.tps}</TableCell>
-                <TableCell>{item.l.toLocaleString()}</TableCell>
-                <TableCell>{item.p.toLocaleString()}</TableCell>
-                <TableCell>{item.lp.toLocaleString()}</TableCell>
+                <TableCell>{item.l.toLocaleString('id-ID')}</TableCell>
+                <TableCell>{item.p.toLocaleString('id-ID')}</TableCell>
+                <TableCell>{item.lp.toLocaleString('id-ID')}</TableCell>
               </TableRow>
             ))}
           </TableBody>
