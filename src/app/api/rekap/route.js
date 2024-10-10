@@ -8,11 +8,7 @@ export async function GET() {
       include: {
         kecamatan: {
           include: {
-            kelurahan: {
-              include: {
-                tps: true
-              }
-            }
+            kelurahan: true
           }
         }
       }
@@ -29,15 +25,11 @@ export async function GET() {
 
     const data = kabupatenData.map(kabupaten => {
       const totalKecamatan = kabupaten.kecamatan.length;
-
       const totalKelurahan = kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0);
 
-      const totalTps = kabupaten.kecamatan.reduce((sum, kecamatan) =>
-        sum + kecamatan.kelurahan.reduce((kelSum, kelurahan) => kelSum + kelurahan.tps.length, 0), 0);
-
-      // Hitung total L dan P dari tes_rekap
       const rekapForKabupaten = rekapData.filter(rekap => rekap.kode_wilayah === kabupaten.id);
 
+      const totalTps = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.tps || 0), 0);
       const totalL = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.l || 0), 0);
       const totalP = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.p || 0), 0);
       const totalPemilih = totalL + totalP;
