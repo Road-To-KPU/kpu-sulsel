@@ -10,6 +10,7 @@ export async function GET() {
         nama: true,
       },
     });
+
     const rekapData = await prisma.tes_rekap.findMany({
       select: {
         kode_wilayah: true,
@@ -36,7 +37,9 @@ export async function GET() {
 
     return NextResponse.json(result);
   } catch (error) {
+
     console.error(error);
+    
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -80,10 +80,9 @@ export default function Page() {
 
 
             const countTPS = data.reduce((acc, item) => acc + item.tps, 0)
+
             setTpsUmum(countTPS)
-
             setData([totalLakiLaki, totalPerempuan])
-
             setTotalPemilih(totalPemilih)
         } catch (error) {
             console.error('Error counting data:', error)
