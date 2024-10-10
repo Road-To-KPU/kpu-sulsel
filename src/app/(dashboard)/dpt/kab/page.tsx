@@ -1,5 +1,7 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
+
 import {
   Container,
   Typography,
@@ -27,12 +29,16 @@ export default function Page() {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/rekap/dpt');
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+
         const result = await response.json();
+
         setData(result);
       } catch (error) {
+
         setError(error instanceof Error ? error.message : 'Unknown error');
         setSnackbarOpen(true);
       } finally {
