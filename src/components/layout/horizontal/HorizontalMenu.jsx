@@ -75,7 +75,7 @@ const HorizontalMenu = () => {
         </MenuItem>
         <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />}>
           <MenuItem href='/dpt'>DPT</MenuItem>
-          <MenuItem>DPT Sulawesi Selatan</MenuItem>
+          <MenuItem href='/dpt/kab'>DPT Sulawesi Selatan</MenuItem>
           <MenuItem>DPT Kab/Kota</MenuItem>
           <MenuItem href='/rincian/dpt/disabilitas'>Disabilitas</MenuItem>
           <MenuItem href='/rincian/dpt/klasifikasi-usia'>Klasifikasi Usia</MenuItem>
