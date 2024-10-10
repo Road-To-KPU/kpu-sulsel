@@ -5,8 +5,8 @@ import prisma from '@/libs/prisma';
 export async function GET() {
   try {
     const tpsKhusus = await prisma.tps_khusus.findMany();
-    if (!Array.isArray(tpsKhusus) || tpsKhusus.length === 0) {
 
+    if (!Array.isArray(tpsKhusus) || tpsKhusus.length === 0) {
       return NextResponse.json({ message: 'No data found' }, { status: 404 });
     }
 

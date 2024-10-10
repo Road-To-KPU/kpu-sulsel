@@ -22,6 +22,7 @@ export async function GET() {
 
     rekapData.forEach(item => {
       const kabupaten = kabupatenData.find(kab => kab.id === item.kode_wilayah);
+      
       item.nama_kabupaten = kabupaten?.nama || '';
     });
 
@@ -39,7 +40,7 @@ export async function GET() {
   } catch (error) {
 
     console.error(error);
-    
+
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

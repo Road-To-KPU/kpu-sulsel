@@ -98,6 +98,7 @@ export default function Page() {
             }
 
             const tpsJumlah = await response.json();
+            
             setTpsKhusus(tpsJumlah);
         } catch (error) {
             console.error('Error counting data:', error);
