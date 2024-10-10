@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 
 import CardStatHorizontal from './CardStatHorizontal'
 
-const CardMenu = ({ pemilihTetap }) => {
+const CardMenu = ({ pemilihTetap, tpsUmum, tpsKhusus }) => {
   const data = [
     {
       title: 'Daftar Pemilih Tetap',
@@ -17,7 +17,7 @@ const CardMenu = ({ pemilihTetap }) => {
     },
     {
       title: 'Daftar Pemilih Tambahan',
-      stats: 2000,
+      stats: '-',
       avatarIcon: 'tabler-playlist-add',
       avatarIconSize: 26,
       avatarColor: 'error',
@@ -25,36 +25,18 @@ const CardMenu = ({ pemilihTetap }) => {
       avatarSkin: 'light'
     },
     {
+        title: 'TPS',
+        stats: tpsUmum.toLocaleString('id-ID'),
+        avatarIcon: 'tabler-users',
+        avatarIconSize: 26,
+        avatarColor: 'error',
+        avatarSize: 42,
+        avatarSkin: 'light'
+    },
+    {
       title: 'TPS Lokasi Khusus',
-      stats: 3000,
+      stats: tpsKhusus.toLocaleString('id-ID'),
       avatarIcon: 'tabler-users',
-      avatarIconSize: 26,
-      avatarColor: 'error',
-      avatarSize: 42,
-      avatarSkin: 'light'
-    },
-    {
-      title: 'SATKER',
-      stats: '',
-      avatarIcon: 'tabler-building',
-      avatarIconSize: 26,
-      avatarColor: 'error',
-      avatarSize: 42,
-      avatarSkin: 'light'
-    },
-    {
-      title: 'DAPIL',
-      stats: '',
-      avatarIcon: 'tabler-building-community',
-      avatarIconSize: 26,
-      avatarColor: 'error',
-      avatarSize: 42,
-      avatarSkin: 'light'
-    },
-    {
-      title: 'Partisipasi Pemilu/Pilkada',
-      stats: '',
-      avatarIcon: 'tabler-chart-pie',
       avatarIconSize: 26,
       avatarColor: 'error',
       avatarSize: 42,
