@@ -39,8 +39,10 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+
       try {
         const response = await fetch('/api/rekap/dpt');
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -70,8 +72,11 @@ export default function Page() {
     setDialogLoading(true);
 
     try {
+
       const response = await fetch(`/api/rekap/dpt`);
+
       const { kecamatan_summaries } = await response.json();
+
       setKecamatanSummaries(kecamatan_summaries);
     } catch (error) {
       console.error('Failed to fetch kecamatan data:', error);
@@ -82,7 +87,9 @@ export default function Page() {
 
   const handleKecamatanClick = async (kecamatan) => {
     setSelectedKecamatan(kecamatan);
+
     setStep(2);
+
     setDialogLoading(true);
 
     try {
