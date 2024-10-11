@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
+import { Box } from '@mui/material'
 import Skeleton from '@mui/material/Skeleton'
+
 import CardMenu from './(component)/CardMenu'
 import ReportsTab from './(component)/ReportsTab'
 import ChartUsia from './(component)/ChartUsia'
-import { Box } from '@mui/material'
 
 export default function Page() {
   const [dataUsia, setDataUsia] = useState([])
