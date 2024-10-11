@@ -41,12 +41,15 @@ export async function GET() {
 
     rekapData.forEach(item => {
       const kabupaten = kabupatenData.find(kab => kab.id === item.kode_wilayah.substring(0, 4));
+
       item.nama_kabupaten = kabupaten?.nama || '';
 
       const kecamatan = kecamatanData.find(kec => kec.id === item.kode_wilayah.substring(0, 6));
+
       item.nama_kecamatan = kecamatan?.nama || '';
 
       const kelurahan = kelurahanData.find(kel => kel.id === item.kode_wilayah.substring(0, 10));
+      
       item.nama_kelurahan = kelurahan?.nama || '';
     });
 
