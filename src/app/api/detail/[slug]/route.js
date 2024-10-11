@@ -1,21 +1,21 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
 
-import prisma from '@/libs/prisma';
-import getKabupatenName from '@/utils/kabupatenName';
+import prisma from '@/libs/prisma'
+import getKabupatenName from '@/utils/kabupatenName'
 
 export async function GET(request, { params }) {
-  const { slug } = params;
+  const { slug } = params
 
-  const namaKabupaten = getKabupatenName(slug);
-  const namaKabupatenUpper = namaKabupaten.toUpperCase();
+  const namaKabupaten = getKabupatenName(slug)
+  const namaKabupatenUpper = namaKabupaten.toUpperCase()
 
   try {
     const kabupaten = await prisma.kabupaten.findFirst({
       where: {
         nama: {
           equals: namaKabupatenUpper,
-          mode: 'insensitive',
-        },
+          mode: 'insensitive'
+        }
       },
       select: {
         nama: true,
@@ -27,8 +27,8 @@ export async function GET(request, { params }) {
             sensorik_wicara: true,
             sensorik_rungu: true,
             sensorik_netra: true,
-            total: true,
-          },
+            total: true
+          }
         },
         klasifikasi_usia: {
           select: {
@@ -39,32 +39,43 @@ export async function GET(request, { params }) {
             usia_51_60: true,
             usia_61_70: true,
             usia_71_keatas: true,
-            total: true,
-          },
+            total: true
+          }
         },
-      },
-    });
+        kecamatan: {
+          select: {
+            kelurahan: {
+              select: {
+                tps: {
+                  select: {
+                    l: true,
+                    p: true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    })
 
     if (!kabupaten) {
-      return NextResponse.json({ error: 'Kabupaten not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Kabupaten not found' }, { status: 404 })
     }
 
-    const rekapData = await prisma.tes_rekap.findFirst({
-      where: {
-        kode_wilayah: kabupaten.id,
-      },
-      select: {
-        l: true,
-        p: true,
-      },
-    });
+    let totalLakiLaki = 0
+    let totalPerempuan = 0
 
-    const totalLakiLakiRekap = rekapData.reduce((sum, item) => sum + (item.l || 0), 0);
-    const totalPerempuanRekap = rekapData.reduce((sum, item) => sum + (item.p || 0), 0);
-
-    const totalLakiLaki = totalLakiLakiRekap;
-    const totalPerempuan = totalPerempuanRekap;
-    const totalPemilih = totalLakiLaki + totalPerempuan;
+    if (kabupaten.kecamatan && kabupaten.kecamatan.length > 0) {
+      kabupaten.kecamatan.forEach(kecamatan => {
+        kecamatan.kelurahan.forEach(kelurahan => {
+          kelurahan.tps.forEach(tps => {
+            totalLakiLaki += tps.l || 0
+            totalPerempuan += tps.p || 0
+          })
+        })
+      })
+    }
 
     const result = {
       nama: kabupaten.nama,
@@ -72,13 +83,13 @@ export async function GET(request, { params }) {
       klasifikasi_usia: kabupaten.klasifikasi_usia,
       totalLakiLaki,
       totalPerempuan,
-      totalPemilih,
-    };
+      totalPemilih: totalLakiLaki + totalPerempuan
+    }
 
-    return NextResponse.json({ data: result });
+    return NextResponse.json({ data: result })
   } catch (error) {
-    console.error(error);
+    console.error(error)
 
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
   }
 }
