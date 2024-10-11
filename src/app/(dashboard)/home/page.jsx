@@ -72,6 +72,7 @@ export default function Page() {
         try {
             const response = await fetch('/api/rekap/dpt');
             const { rekap_kabupaten } = await response.json();
+
             console.log({ rekap_kabupaten });
 
             const totalPemilihDpt = rekap_kabupaten
