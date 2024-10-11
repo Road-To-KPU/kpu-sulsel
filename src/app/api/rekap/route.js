@@ -24,8 +24,8 @@ export async function GET() {
     });
 
     const data = kabupatenData.map(kabupaten => {
-      const totalKecamatan = kabupaten.kecamatan.length;
-      const totalKelurahan = kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0);
+      const totalKecamatan = kabupaten.kecamatan.length + 1;
+      const totalKelurahan = (kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0)) + 1;
 
       const rekapForKabupaten = rekapData.filter(rekap => rekap.kode_wilayah === kabupaten.id);
 
