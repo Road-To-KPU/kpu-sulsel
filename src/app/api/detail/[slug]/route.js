@@ -10,7 +10,6 @@ export async function GET(request, { params }) {
   const namaKabupatenUpper = namaKabupaten.toUpperCase();
 
   try {
-    // Mengambil data kabupaten, termasuk disabilitas, klasifikasi usia, dan tps
     const kabupaten = await prisma.kabupaten.findFirst({
       where: {
         nama: {
@@ -43,20 +42,6 @@ export async function GET(request, { params }) {
             total: true,
           },
         },
-        kecamatan: {
-          select: {
-            kelurahan: {
-              select: {
-                tps: {
-                  select: {
-                    l: true,
-                    p: true,
-                  },
-                },
-              },
-            },
-          },
-        },
       },
     });
 
@@ -64,7 +49,6 @@ export async function GET(request, { params }) {
       return NextResponse.json({ error: 'Kabupaten not found' }, { status: 404 });
     }
 
-    // Mengambil data dari tes_rekap berdasarkan kode_wilayah kabupaten
     const rekapData = await prisma.tes_rekap.findMany({
       where: {
         kode_wilayah: kabupaten.id,
@@ -75,28 +59,11 @@ export async function GET(request, { params }) {
       },
     });
 
-    // Hitung total laki-laki dan perempuan dari rekapData (tes_rekap)
     const totalLakiLakiRekap = rekapData.reduce((sum, item) => sum + (item.l || 0), 0);
     const totalPerempuanRekap = rekapData.reduce((sum, item) => sum + (item.p || 0), 0);
 
-    // Hitung total laki-laki dan perempuan dari data tps kabupaten
-    let totalLakiLakiTps = 0;
-    let totalPerempuanTps = 0;
-
-    if (kabupaten.kecamatan && kabupaten.kecamatan.length > 0) {
-      kabupaten.kecamatan.forEach(kecamatan => {
-        kecamatan.kelurahan.forEach(kelurahan => {
-          kelurahan.tps.forEach(tps => {
-            totalLakiLakiTps += tps.l || 0;
-            totalPerempuanTps += tps.p || 0;
-          });
-        });
-      });
-    }
-
-    // Gabungkan total dari tes_rekap dan tps
-    const totalLakiLaki = totalLakiLakiRekap + totalLakiLakiTps;
-    const totalPerempuan = totalPerempuanRekap + totalPerempuanTps;
+    const totalLakiLaki = totalLakiLakiRekap;
+    const totalPerempuan = totalPerempuanRekap;
     const totalPemilih = totalLakiLaki + totalPerempuan;
 
     const result = {
@@ -111,7 +78,7 @@ export async function GET(request, { params }) {
     return NextResponse.json({ data: result });
   } catch (error) {
     console.error(error);
-    
+
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
 }
