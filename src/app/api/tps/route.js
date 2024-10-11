@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
+
   console.log("cocok ini ??");
+
   try {
     return NextResponse.json({
       status: 200,

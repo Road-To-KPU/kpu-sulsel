@@ -48,8 +48,8 @@ export async function GET(request, { params }) {
               select: {
                 tps: {
                   select: {
-                    l: true, // Pemilih laki-laki
-                    p: true // Pemilih perempuan
+                    l: true,
+                    p: true
                   }
                 }
               }
@@ -63,11 +63,9 @@ export async function GET(request, { params }) {
       return NextResponse.json({ error: 'Kabupaten not found' }, { status: 404 })
     }
 
-    // Menghitung total pemilih laki-laki (L) dan perempuan (P) dari semua kecamatan dan kelurahan
     let totalLakiLaki = 0
     let totalPerempuan = 0
 
-    // Periksa apakah kecamatan ada dan berisi data
     if (kabupaten.kecamatan && kabupaten.kecamatan.length > 0) {
       kabupaten.kecamatan.forEach(kecamatan => {
         kecamatan.kelurahan.forEach(kelurahan => {
@@ -79,7 +77,6 @@ export async function GET(request, { params }) {
       })
     }
 
-    // Menggabungkan hasil dengan data lain dari kabupaten
     const result = {
       nama: kabupaten.nama,
       disabilitas: kabupaten.disabilitas,
