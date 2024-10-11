@@ -95,6 +95,7 @@ export default function Page() {
     try {
       const response = await fetch(`/api/rekap/dpt`);
       const { kelurahan_summaries } = await response.json();
+
       setKelurahanSummaries(kelurahan_summaries);
     } catch (error) {
       console.error('Failed to fetch kelurahan data:', error);
