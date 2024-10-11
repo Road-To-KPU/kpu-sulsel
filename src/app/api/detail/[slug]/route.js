@@ -111,6 +111,7 @@ export async function GET(request, { params }) {
     return NextResponse.json({ data: result });
   } catch (error) {
     console.error(error);
+    
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
 }
