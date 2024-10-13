@@ -23,13 +23,13 @@ const CardMenu = ({ pemilihTetap, tpsUmum, tpsKhusus }) => {
       avatarSkin: 'light'
     },
     {
-        title: 'TPS',
-        stats: tpsUmum.toLocaleString('id-ID'),
-        avatarIcon: 'tabler-users',
-        avatarIconSize: 26,
-        avatarColor: 'error',
-        avatarSize: 42,
-        avatarSkin: 'light'
+      title: 'TPS',
+      stats: tpsUmum.toLocaleString('id-ID'),
+      avatarIcon: 'tabler-users',
+      avatarIconSize: 26,
+      avatarColor: 'error',
+      avatarSize: 42,
+      avatarSkin: 'light'
     },
     {
       title: 'TPS Lokasi Khusus',

@@ -7,12 +7,16 @@ import { forwardRef } from 'react'
 import MuiAvatar from '@mui/material/Avatar'
 import { lighten, styled } from '@mui/material/styles'
 
+import primaryColorConfig from '@configs/primaryColorConfig'
+
 const Avatar = styled(MuiAvatar)(({ skin, color, size, theme }) => {
   return {
     ...(color &&
       skin === 'light' && {
-        backgroundColor: `var(--mui-palette-${color}-lightOpacity)`,
-        color: `var(--mui-palette-${color}-main)`
+        // backgroundColor: `var(--mui-palette-${color}-lightOpacity)`,
+        // color: `var(--mui-palette-${color}-main)`
+        backgroundColor: '#E57611',
+        color: primaryColorConfig[1].dark
       }),
     ...(color &&
       skin === 'light-static' && {

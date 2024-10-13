@@ -78,7 +78,8 @@ const ChartUsia = ({ data, totalPemilihGender }) => {
               show: true,
               fontSize: '0.9375rem',
               fontWeight: 400,
-              label: 'Rata-Rata Pemilih',
+
+              // label: 'Rata-Rata Pemilih',
               color: 'white',
               formatter: () => totalPemilihGender.toLocaleString('id-ID')
             }
