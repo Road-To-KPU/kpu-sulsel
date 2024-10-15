@@ -18,8 +18,17 @@ export default function Page() {
   const theme = useTheme()
   const router = useRouter()
 
-  const handleClick = region => {
-    setSelectedRegion(region)
+  const handleClickRegion = kab => {
+    setSelectedRegion({
+      name: kab.kabupaten,
+      jumlahPemilih: kab.totalPemilih,
+      jumlahTPS: kab.totalTps,
+      jumlahKecamatan: kab.totalKecamatan,
+      jumlahKelurahan: kab.totalKelurahan,
+      jumlahLaki: kab.totalL,
+      jumlahPerempuan: kab.totalP,
+      link: kab.link
+    })
     setCardActive(true)
   }
 
@@ -87,6 +96,7 @@ export default function Page() {
           </div>
         </div>
       )}
+
       {!loading && (
         <div className='flex justify-center'>
           <div className='relative'>
@@ -103,23 +113,12 @@ export default function Page() {
                 className='absolute flex flex-col items-center cursor-pointer'
                 style={{ top: kab.coordsTop, left: kab.coordsLeft }}
               >
-                <Link href={`/rincian/dpt/${kab.link}`}>
+                <div onClick={() => handleClickRegion(kab)}>
                   <i className='tabler-map-pin-filled text-[16px] lg:text-[20px]' />
-                </Link>
+                </div>
                 <div
                   className='ml-1 text-[10px] lg:text-sm font-bold text-[#eaeaea]'
-                  onClick={() =>
-                    handleClick({
-                      name: kab.kabupaten,
-                      jumlahPemilih: kab.totalPemilih,
-                      jumlahTPS: kab.totalTps,
-                      jumlahKecamatan: kab.totalKecamatan,
-                      jumlahKelurahan: kab.totalKelurahan,
-                      jumlahLaki: kab.totalL,
-                      jumlahPerempuan: kab.totalP,
-                      link: kab.link
-                    })
-                  }
+                  onClick={() => handleClickRegion(kab)}
                 >
                   <div className='text-black'>{kab.kabupaten}</div>
                 </div>

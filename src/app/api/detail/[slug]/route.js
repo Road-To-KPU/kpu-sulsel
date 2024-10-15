@@ -18,6 +18,7 @@ export async function GET(request, { params }) {
         }
       },
       select: {
+        id: true,
         nama: true,
         disabilitas: {
           select: {
@@ -63,19 +64,38 @@ export async function GET(request, { params }) {
       return NextResponse.json({ error: 'Kabupaten not found' }, { status: 404 })
     }
 
-    let totalLakiLaki = 0
-    let totalPerempuan = 0
+    const rekapData = await prisma.tes_rekap.findFirst({
+      where: {
+        kode_wilayah: kabupaten.id
+      },
+      select: {
+        l: true,
+        p: true
+      }
+    })
 
-    if (kabupaten.kecamatan && kabupaten.kecamatan.length > 0) {
-      kabupaten.kecamatan.forEach(kecamatan => {
-        kecamatan.kelurahan.forEach(kelurahan => {
-          kelurahan.tps.forEach(tps => {
-            totalLakiLaki += tps.l || 0
-            totalPerempuan += tps.p || 0
-          })
-        })
-      })
+    if (!rekapData) {
+      return NextResponse.json({ error: 'Rekap data not found' }, { status: 404 })
     }
+
+    const totalLakiLaki = rekapData.l
+    const totalPerempuan = rekapData.p
+
+    const totalPemilih = totalLakiLaki + totalPerempuan
+
+    // let totalLakiLaki = 0
+    // let totalPerempuan = 0
+
+    // if (kabupaten.kecamatan && kabupaten.kecamatan.length > 0) {
+    //   kabupaten.kecamatan.forEach(kecamatan => {
+    //     kecamatan.kelurahan.forEach(kelurahan => {
+    //       kelurahan.tps.forEach(tps => {
+    //         totalLakiLaki += tps.l || 0
+    //         totalPerempuan += tps.p || 0
+    //       })
+    //     })
+    //   })
+    // }
 
     const result = {
       nama: kabupaten.nama,
@@ -83,7 +103,7 @@ export async function GET(request, { params }) {
       klasifikasi_usia: kabupaten.klasifikasi_usia,
       totalLakiLaki,
       totalPerempuan,
-      totalPemilih: totalLakiLaki + totalPerempuan
+      totalPemilih
     }
 
     return NextResponse.json({ data: result })
