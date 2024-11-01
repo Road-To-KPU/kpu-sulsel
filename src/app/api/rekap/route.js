@@ -8,29 +8,48 @@ export async function GET() {
       include: {
         kecamatan: {
           include: {
-            kelurahan: true
-          }
-        }
-      }
+            kelurahan: true,
+          },
+        },
+      },
     });
 
-    const rekapData = await prisma.tes_rekap.findMany({
+    const rekapData = await prisma.tps_data.findMany({
       select: {
-        kode_wilayah: true,
+        id_kelurahan: true,
         tps: true,
         l: true,
-        p: true
-      }
+        p: true,
+      },
     });
 
-    const data = kabupatenData.map(kabupaten => {
-      const totalKecamatan = kabupaten.kecamatan.length + 1;
-      const totalKelurahan = (kabupaten.kecamatan.reduce((sum, kecamatan) => sum + kecamatan.kelurahan.length, 0)) + 1;
+    console.log("🚀 ~ GET ~ rekapData:", rekapData)
 
-      const rekapForKabupaten = rekapData.filter(rekap => rekap.kode_wilayah === kabupaten.id);
+    const data = kabupatenData.map((kabupaten) => {
+      const totalKecamatan = kabupaten.kecamatan.length;
 
-      const totalTps = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.tps || 0), 0);
+      const totalKelurahan = kabupaten.kecamatan.reduce(
+        (sum, kecamatan) => sum + kecamatan.kelurahan.length,
+        0
+      );
+
+      // Collect all kelurahan IDs in the current kabupaten
+      const kelurahanIds = kabupaten.kecamatan.flatMap((kecamatan) =>
+        kecamatan.kelurahan.map((kelurahan) => kelurahan.id)
+      );
+
+      // Filter rekapData where id_kelurahan is in kelurahanIds
+      const rekapForKabupaten = rekapData.filter((rekap) =>
+        kelurahanIds.includes(rekap.id_kelurahan)
+      );
+
+      const totalTps = rekapForKabupaten.reduce(
+        (sum, rekap) => sum + (rekap.tps || 0),
+        0
+      );
+
       const totalL = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.l || 0), 0);
+
       const totalP = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.p || 0), 0);
       const totalPemilih = totalL + totalP;
 
@@ -44,7 +63,7 @@ export async function GET() {
         totalPemilih,
         totalKecamatan,
         totalKelurahan,
-        totalTps
+        totalTps,
       };
     });
 

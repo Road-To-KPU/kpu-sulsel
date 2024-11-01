@@ -18,8 +18,10 @@ import primaryColorConfig from '@configs/primaryColorConfig'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const ChartUsia = ({ data, totalPemilih }) => {
-  // Hooks
+const ChartJenisKelamin = ({ data, totalPemilih }) => {
+
+  console.log("🚀 ~ ChartJenisKelamin ~ data:", data)
+
   const theme = useTheme()
 
   const options = {
@@ -93,7 +95,7 @@ const ChartUsia = ({ data, totalPemilih }) => {
   }
 
   return (
-    <Card className='bs-full bg-orange-800'>
+    <Card className='bg-orange-800 bs-full'>
       <CardHeader
         title='Jenis Kelamin'
         sx={{
@@ -109,4 +111,4 @@ const ChartUsia = ({ data, totalPemilih }) => {
   )
 }
 
-export default ChartUsia
+export default ChartJenisKelamin

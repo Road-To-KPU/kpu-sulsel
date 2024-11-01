@@ -29,45 +29,22 @@ export async function GET(request) {
       }
     })
 
-    const kabupatenData = await prisma.kabupaten.findMany({
-      include: {
-        kecamatan: {
-          include: {
-            kelurahan: {
-              include: {
-                tps: {
-                  select: {
-                    l: true,
-                    p: true
-                  }
-                }
-              }
-            }
-          }
-        }
+    const tps = await prisma.tps_data.aggregate({
+      _sum: {
+        l: true,
+        p: true,
+        lp: true,
+        tps: true
       }
-    })
-
-    let totalL = 0
-    let totalP = 0
-
-    kabupatenData.forEach(kabupaten => {
-      kabupaten.kecamatan.forEach(kecamatan => {
-        kecamatan.kelurahan.forEach(kelurahan => {
-          kelurahan.tps.forEach(tps => {
-            totalL += tps.l || 0
-            totalP += tps.p || 0
-          })
-        })
-      })
     })
 
     const result = {
       totalDisabilitas: totalDisabilitas._sum,
       totalKlasifikasiUsia: totalKlasifikasiUsia._sum,
-      totalLakiLaki: totalL,
-      totalPerempuan: totalP,
-      totalPemilih: totalL + totalP
+      totalLakiLaki: tps._sum.l,
+      totalPerempuan: tps._sum.p,
+      totalPemilih: tps._sum.lp,
+      totalTps: tps._sum.tps
     }
 
     return NextResponse.json(result)

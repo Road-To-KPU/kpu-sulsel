@@ -44,7 +44,7 @@ model kelurahan {
   kecamatan_id String?    @db.VarChar(6)
   nama         String?    @db.VarChar(255)
   kecamatan    kecamatan? @relation(fields: [kecamatan_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "kelurahan_desa_kecamatan_id_fkey")
-  tps          tps[]
+  tps          tps_data[]
 }
 
 model klasifikasi_usia {
@@ -69,15 +69,6 @@ model kode_wilayah {
   @@ignore
 }
 
-model tps {
-  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  kelurahan_id String?    @db.VarChar(10)
-  no_tps       Int?
-  l            Int?
-  p            Int?
-  kelurahan    kelurahan? @relation(fields: [kelurahan_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model rekap {
   tps          Int?
@@ -96,18 +87,27 @@ model tes_rekap {
   p            Int?
 }
 
+model tps {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  kelurahan_id String?    @db.VarChar(10)
+  no_tps       Int?
+  l            Int?
+  p            Int?
+}
+
+model tps_data {
+  id_kelurahan String @id @db.VarChar(255)
+  l            Int?
+  p            Int?
+  lp           Int?
+  tps          Int?   @db.SmallInt
+  kelurahan    kelurahan? @relation(fields: [id_kelurahan], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 model tps_khusus {
   id     String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   kab_id String? @db.VarChar(4)
   tps    Int?
   l      Int?
   p      Int?
-}
-
-model tps_data {
-  id  String @id @db.VarChar(255)
-  l   Int?
-  p   Int?
-  lp  Int?
-  tps Int?   @db.SmallInt
 }
