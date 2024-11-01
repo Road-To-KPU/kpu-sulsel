@@ -64,7 +64,7 @@ export async function GET(request, { params }) {
       return NextResponse.json({ error: 'Kabupaten not found' }, { status: 404 })
     }
 
-    const rekapData = await prisma.tes_rekap.findFirst({
+    const rekapData = await prisma.tps_data.findFirst({
       where: {
         kode_wilayah: kabupaten.id
       },

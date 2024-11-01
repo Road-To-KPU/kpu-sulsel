@@ -79,26 +79,6 @@ model tps {
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model gowa {
-  kecamatan String? @db.VarChar(255)
-  kelurahan String? @db.VarChar(255)
-  no_tps    Int?
-  L         String? @db.VarChar(255)
-  P         String? @db.VarChar(255)
-  total     String? @db.VarChar(255)
-
-  @@ignore
-}
-
-model tps_uji {
-  id           String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  kelurahan_id String? @db.VarChar(10)
-  no_tps       Int?
-  l            Int?
-  p            Int?
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model rekap {
   tps          Int?
   l            Int?
@@ -122,4 +102,12 @@ model tps_khusus {
   tps    Int?
   l      Int?
   p      Int?
+}
+
+model tps_data {
+  id  String @id @db.VarChar(255)
+  l   Int?
+  p   Int?
+  lp  Int?
+  tps Int?   @db.SmallInt
 }

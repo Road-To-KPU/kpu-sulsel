@@ -21,11 +21,11 @@ export async function GET() {
     });
 
     const kelurahanData = await prisma.kelurahan.findMany({
-        select: {
-            id: true,
-            nama: true,
-            kecamatan_id: true,
-        },
+      select: {
+        id: true,
+        nama: true,
+        kecamatan_id: true,
+      },
     });
 
 
@@ -49,7 +49,7 @@ export async function GET() {
       item.nama_kecamatan = kecamatan?.nama || '';
 
       const kelurahan = kelurahanData.find(kel => kel.id === item.kode_wilayah.substring(0, 10));
-      
+
       item.nama_kelurahan = kelurahan?.nama || '';
     });
 
@@ -131,23 +131,23 @@ export async function GET() {
 
     const kelurahan_summaries = kelurahanData.map(kelurahan => {
 
-        const filteredRekap = rekapData.filter(item =>
+      const filteredRekap = rekapData.filter(item =>
         item.kode_wilayah.startsWith(kelurahan.id) && item.kode_wilayah.length === 10
-        );
+      );
 
 
-        const totalTPS = filteredRekap.reduce((acc, item) => acc + item.tps, 0);
-        const totalL = filteredRekap.reduce((acc, item) => acc + item.l, 0);
-        const totalP = filteredRekap.reduce((acc, item) => acc + item.p, 0);
-        const totalLP = totalL + totalP;
+      const totalTPS = filteredRekap.reduce((acc, item) => acc + item.tps, 0);
+      const totalL = filteredRekap.reduce((acc, item) => acc + item.l, 0);
+      const totalP = filteredRekap.reduce((acc, item) => acc + item.p, 0);
+      const totalLP = totalL + totalP;
 
-        return {
+      return {
         name: kelurahan.nama,
         tps: totalTPS,
         l: totalL,
         p: totalP,
         lp: totalLP,
-        };
+      };
     });
 
     const result = {
