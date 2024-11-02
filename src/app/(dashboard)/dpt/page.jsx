@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import Button from '@mui/material/Button'
 import { useTheme } from '@mui/material/styles'
@@ -120,7 +119,9 @@ export default function Page() {
                   className='ml-1 text-[10px] lg:text-sm font-bold text-[#eaeaea]'
                   onClick={() => handleClickRegion(kab)}
                 >
-                  <div className='text-black'>{kab.kabupaten}</div>
+                  <div className='text-black'>
+                    {kab.kabupaten === 'PANGKAJENE KEPULAUAN' ? 'PANGKEP' : kab.kabupaten}
+                  </div>
                 </div>
               </div>
             ))}

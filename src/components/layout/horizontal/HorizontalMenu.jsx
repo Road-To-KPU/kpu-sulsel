@@ -75,15 +75,15 @@ const HorizontalMenu = () => {
         </MenuItem>
         <SubMenu label={`Daftar Pemilih Tetap`} icon={<i className='tabler-list' />}>
           <MenuItem href='/dpt'>DPT</MenuItem>
-          <MenuItem href='/dpt/kab'>DPT Sulawesi Selatan</MenuItem>
-          <MenuItem>DPT Kab/Kota</MenuItem>
+          <MenuItem href='/dpt/sulsel'>DPT Sulawesi Selatan</MenuItem>
+          <MenuItem href='/dpt/kab-kota'>DPT Kab/Kota</MenuItem>
           <MenuItem href='/rincian/dpt/disabilitas'>Disabilitas</MenuItem>
           <MenuItem href='/rincian/dpt/klasifikasi-usia'>Klasifikasi Usia</MenuItem>
           <MenuItem href='https://cekdptonline.kpu.go.id/' target='_blank'>
             Cek DPT Online
           </MenuItem>
         </SubMenu>
-        <SubMenu label={"Daftar Pemilih Tambahan"} icon={<i className='tabler-checklist' />}>
+        <SubMenu label={'Daftar Pemilih Tambahan'} icon={<i className='tabler-checklist' />}>
           <MenuItem href='/dptb'>DPTb</MenuItem>
           <MenuItem href={'/dptb/syarat-pindah'}>Syarat Pindah Memilih</MenuItem>
           <MenuItem>Rekap DPTb Sulsel</MenuItem>
