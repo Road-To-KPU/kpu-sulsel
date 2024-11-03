@@ -10,13 +10,10 @@ import CardContent from '@mui/material/CardContent'
 import { useTheme } from '@mui/material/styles'
 
 // Components Imports
-import OptionMenu from '@core/components/option-menu'
 import primaryColorConfig from '@configs/primaryColorConfig'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
-
-// const deliveryExceptionsChartSeries = [60, 40]
 
 const ChartUsia = ({ data, totalPemilihGender }) => {
   // Hooks
@@ -67,7 +64,7 @@ const ChartUsia = ({ data, totalPemilihGender }) => {
           labels: {
             show: true,
             value: {
-              fontSize: '24px',
+              fontSize: '20px',
               color: 'white',
               fontWeight: 500,
               offsetY: -20,
@@ -100,7 +97,7 @@ const ChartUsia = ({ data, totalPemilihGender }) => {
         }}
       />
       <CardContent>
-        <AppReactApexCharts type='donut' height={452} width='100%' series={data} options={options} />
+        <AppReactApexCharts type='donut' height={288} width='100%' series={data} options={options} />
       </CardContent>
     </Card>
   )

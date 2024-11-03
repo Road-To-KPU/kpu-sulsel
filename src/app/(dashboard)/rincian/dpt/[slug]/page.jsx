@@ -2,43 +2,50 @@
 
 import { useEffect, useState } from 'react'
 
-import { usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
-import { Card, Typography } from '@mui/material'
-
-// import { set } from 'react-datepicker/dist/date_utils'
+import {
+  Card,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from '@mui/material'
 
 import { getImageByPathName } from '@/utils/imageMapper'
 import Peta from '@/app/(dashboard)/rincian/(component)/Peta'
 import LaporanTab from '@/app/(dashboard)/rincian/(component)/LaporanTab'
 import RincianGender from '@/app/(dashboard)/rincian/(component)/RincianGender'
-import CardUsia from '@/app/(dashboard)/rincian/(component)/(card-usia)/CardUsia'
-import CardDisablitas from '@/app/(dashboard)/rincian/(component)/(card-disabilitas)/CardDisablitas'
 import getKabupatenName from '@/utils/kabupatenName'
 
-const usiaCategoriesReport = ['Gen Z', 'Millenial', 'Gen X', 'Baby Boomer', 'Pre Boomer']
+const usiaCategoriesReport = ['0-20 Tahun', '21-30 Tahun', '31-50 Tahun', '51-70 Tahun', '71+ Tahun']
 const disabilitasCategoriesReport = ['Tuna Daksa', 'Tuna Netra', 'Tuna Rungu', 'Tuna Grahita', 'Tuna Wicara']
 
 export default function Page() {
+  const router = useRouter()
   const path = usePathname().split('/').pop()
   const image = getImageByPathName(path)
   const nameKabupaten = getKabupatenName(path)
 
-  // State untuk menyimpan data dari API
-  const [data, setData] = useState(null)
+  const [dataSummary, setDataSummary] = useState(null)
   const [dataJenisKelamin, setDataJenisKelamin] = useState([])
   const [totalPemilihKelamin, setTotalPemilihKelamin] = useState(0)
+  const [dataKecamatan, setDataKecamatan] = useState([])
 
-  // Fetch data dari API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/detail/${path}`)
+        const response = await fetch(`/api/detail/kec/?kab_id=${path}`)
         const result = await response.json()
 
-        setData(result?.data)
-        setDataJenisKelamin([result?.data?.totalLakiLaki, result?.data?.totalPerempuan])
-        setTotalPemilihKelamin(result?.data?.totalPemilih)
+        setDataSummary(result?.summary)
+        setDataJenisKelamin([result?.summary?.total_l, result?.summary?.total_p])
+        setTotalPemilihKelamin(result?.summary?.total_lp)
+        setDataKecamatan(result?.kecamatanData)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -47,69 +54,9 @@ export default function Page() {
     fetchData()
   }, [path])
 
-  if (!data) {
+  if (!dataSummary) {
     return <div>Loading...</div>
   }
-
-  const dataUsiaRincian = [
-    {
-      title: 'Gen Z',
-      image: '/images/genz.png',
-      data: (data?.klasifikasi_usia[0]?.usia_0_20 || 0).toLocaleString('id-ID'),
-      umur: 'Usia 17-25 tahun'
-    },
-    {
-      title: 'Gen Millenial',
-      image: '/images/genmilenial.png',
-      data: (data?.klasifikasi_usia[0]?.usia_21_30 || 0).toLocaleString('id-ID'),
-      umur: 'Usia 26-35 tahun'
-    },
-    {
-      title: 'Gen X',
-      image: '/images/genx.png',
-      data: (
-        (data?.klasifikasi_usia[0]?.usia_31_40 || 0) + (data?.klasifikasi_usia[0]?.usia_41_50 || 0)
-      ).toLocaleString('id-ID'),
-      umur: 'Usia 36-50 tahun'
-    },
-    {
-      title: 'Baby Boomer',
-      image: '/images/babyboomer.png',
-      data: (
-        (data?.klasifikasi_usia[0]?.usia_51_60 || 0) + (data?.klasifikasi_usia[0]?.usia_61_70 || 0)
-      ).toLocaleString('id-ID'),
-      umur: 'Usia 51-70 tahun'
-    },
-    {
-      title: 'Pre Boomer',
-      image: '/images/preboomer.png',
-      data: (data?.klasifikasi_usia[0]?.usia_71_keatas || 0).toLocaleString('id-ID'),
-      umur: 'Usia 71+ tahun'
-    }
-  ]
-
-  const dataDisabilitasRincian = [
-    {
-      title: 'Tuna Daksa',
-      jumlah: (data?.disabilitas[0]?.fisik || 0).toLocaleString('id-ID')
-    },
-    {
-      title: 'Tuna Netra',
-      jumlah: (data?.disabilitas[0]?.sensorik_netra || 0).toLocaleString('id-ID')
-    },
-    {
-      title: 'Tuna Rungu',
-      jumlah: (data?.disabilitas[0]?.sensorik_rungu || 0).toLocaleString('id-ID')
-    },
-    {
-      title: 'Tuna Grahita',
-      jumlah: ((data?.disabilitas[0]?.intelektual || 0) + (data?.disabilitas[0]?.mental || 0)).toLocaleString('id-ID')
-    },
-    {
-      title: 'Tuna Wicara',
-      jumlah: (data?.disabilitas[0]?.sensorik_wicara || 0).toLocaleString('id-ID')
-    }
-  ]
 
   const dataUsia = [
     {
@@ -117,11 +64,11 @@ export default function Page() {
       series: [
         {
           data: [
-            data?.klasifikasi_usia[0]?.usia_0_20 || 0,
-            data?.klasifikasi_usia[0]?.usia_21_30 || 0,
-            data?.klasifikasi_usia[0]?.usia_31_40 + data?.klasifikasi_usia[0]?.usia_41_50 || 0,
-            data?.klasifikasi_usia[0]?.usia_51_60 + data?.klasifikasi_usia[0]?.usia_61_70 || 0,
-            data?.klasifikasi_usia[0]?.usia_71_keatas || 0
+            dataSummary?.usia_0_20 || 0,
+            dataSummary?.usia_21_30 || 0,
+            dataSummary?.usia_31_40 + dataSummary?.usia_41_50 || 0,
+            dataSummary?.usia_51_60 + dataSummary?.usia_61_70 || 0,
+            dataSummary?.usia_71_keatas || 0
           ]
         }
       ]
@@ -134,25 +81,29 @@ export default function Page() {
       series: [
         {
           data: [
-            data?.disabilitas[0]?.fisik || 0,
-            data?.disabilitas[0]?.sensorik_netra || 0,
-            data?.disabilitas[0]?.sensorik_rungu || 0,
-            data?.disabilitas[0]?.intelektual + data?.disabilitas[0]?.mental || 0,
-            data?.disabilitas[0]?.sensorik_wicara || 0
+            dataSummary?.fisik || 0,
+            dataSummary?.sensorik_netra || 0,
+            dataSummary?.sensorik_rungu || 0,
+            dataSummary?.intelektual + dataSummary?.mental || 0,
+            dataSummary?.sensorik_wicara || 0
           ]
         }
       ]
     }
   ]
 
+  const handleRowClick = kecamatanId => {
+    router.push(`/rincian/kecamatan/${kecamatanId}`)
+  }
+
   return (
     <div>
       {/* First Row */}
-      <div className='flex flex-wrap justify-between gap-4 my-3'>
-        <div className='w-full md:w-[48%] lg:w-[30%]'>
+      <div className='flex flex-wrap justify-between gap-2 my-3'>
+        <div className='w-full md:w-[48%] lg:w-[24%]'>
           <Peta src={image} nameKabupaten={nameKabupaten} />
         </div>
-        <div className='w-full md:w-[48%] lg:w-[33%]'>
+        <div className='w-full md:w-[48%] lg:w-[24%]'>
           <LaporanTab
             title={'Klasifikasi Usia Pemilih'}
             multiplier={10000}
@@ -160,7 +111,7 @@ export default function Page() {
             tabData={dataUsia}
           />
         </div>
-        <div className='w-full md:w-[48%] lg:w-[33%]'>
+        <div className='w-full md:w-[48%] lg:w-[24%]'>
           <LaporanTab
             title={'Pemilih Disabilitas'}
             multiplier={4000}
@@ -168,26 +119,59 @@ export default function Page() {
             tabData={dataDisabilitas}
           />
         </div>
-      </div>
-
-      {/* Second Row */}
-      <div className='flex flex-wrap justify-between gap-4 my-5'>
-        <div className='w-full md:w-[48%] lg:w-[30%]'>
+        <div className='w-full md:w-[48%] lg:w-[24%]'>
           <RincianGender data={dataJenisKelamin} totalPemilihGender={totalPemilihKelamin} />
         </div>
-        <Card className='w-full md:w-[48%] lg:w-[33%] p-2 bg-orange-800'>
-          <Typography variant='h6' className='my-4 text-lg text-white'>
-            Rincian Usia
-          </Typography>
-          <CardUsia data={dataUsiaRincian} />
-        </Card>
-        <Card className='w-full md:w-[48%] lg:w-[33%] p-2 bg-orange-800'>
-          <Typography variant='h6' className='mt-4 mb-3 text-lg text-white'>
-            Rincian Disabilitas
-          </Typography>
-          <CardDisablitas data={dataDisabilitasRincian} />
-        </Card>
       </div>
+
+      {/* Table Kecamatan */}
+      <TableContainer component={Paper} sx={{ padding: 3, overflowX: 'auto' }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align='left' sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <strong>Kecamatan</strong>
+              </TableCell>
+              <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <strong>Jumlah Kelurahan</strong>
+              </TableCell>
+              <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <strong>Total Laki-Laki</strong>
+              </TableCell>
+              <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <strong>Total Perempuan</strong>
+              </TableCell>
+              <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <strong>Total Penduduk</strong>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {dataKecamatan.map(kecamatan => (
+              <TableRow
+                key={kecamatan.id}
+                hover
+                style={{ cursor: 'pointer' }}
+                onClick={() => handleRowClick(kecamatan.id)}
+              >
+                <TableCell sx={{ fontSize: { xs: 12, md: 14 } }}>{kecamatan.nama_kecamatan}</TableCell>
+                <TableCell align='right' sx={{ fontSize: { xs: 12, md: 14 } }}>
+                  {kecamatan.jumlah_kelurahan}
+                </TableCell>
+                <TableCell align='right' sx={{ fontSize: { xs: 12, md: 14 } }}>
+                  {kecamatan.total_l}
+                </TableCell>
+                <TableCell align='right' sx={{ fontSize: { xs: 12, md: 14 } }}>
+                  {kecamatan.total_p}
+                </TableCell>
+                <TableCell align='right' sx={{ fontSize: { xs: 12, md: 14 } }}>
+                  {kecamatan.total_lp}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   )
 }
