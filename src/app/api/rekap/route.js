@@ -6,6 +6,7 @@ export async function GET() {
   try {
     const result = await prisma.$queryRaw`
       SELECT
+        kabupaten.id,
         kabupaten.nama AS nama_kabupaten,
         kabupaten.coords_top,
         kabupaten.coords_left,
@@ -22,12 +23,13 @@ export async function GET() {
       LEFT JOIN kpu.kecamatan ON kelurahan.kecamatan_id = kecamatan.id
       LEFT JOIN kpu.kabupaten ON kecamatan.kabupaten_id = kabupaten.id
       GROUP BY
-        kabupaten.nama , kabupaten.coords_top, kabupaten.coords_left, kabupaten.link
+        kabupaten.id, kabupaten.nama , kabupaten.coords_top, kabupaten.coords_left, kabupaten.link
       ORDER BY
         kabupaten.nama;
-    `;
+    `
 
     const serializedResult = result.map(row => ({
+      id: row.id,
       nama_kabupaten: row.nama_kabupaten,
       coords_top: row.coords_top,
       coords_left: row.coords_left,
@@ -37,13 +39,13 @@ export async function GET() {
       jumlah_tps: row.jumlah_tps,
       total_l: row.total_l ? Number(row.total_l) : null,
       total_p: row.total_p ? Number(row.total_p) : null,
-      total_lp: row.total_lp ? Number(row.total_lp) : null,
-    }));
+      total_lp: row.total_lp ? Number(row.total_lp) : null
+    }))
 
-    return NextResponse.json(serializedResult);
+    return NextResponse.json(serializedResult)
   } catch (e) {
-    console.error(e);
+    console.error(e)
 
-    return NextResponse.json({ error: 'Terjadi kesalahan saat mengambil data' }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan saat mengambil data' }, { status: 500 })
   }
 }

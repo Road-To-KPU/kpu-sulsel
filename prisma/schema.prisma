@@ -46,7 +46,7 @@ model kabupaten {
   id               String             @id(map: "kabupaten_copy1_pkey") @db.VarChar(4)
   nama             String?            @db.VarChar(255)
   coords_top       String?            @db.VarChar(255)
-  coords_left       String?            @db.VarChar(255)
+  coords_left      String?            @db.VarChar(255)
   link             String?            @db.VarChar(255)
   disabilitas      disabilitas[]
   kecamatan        kecamatan[]
