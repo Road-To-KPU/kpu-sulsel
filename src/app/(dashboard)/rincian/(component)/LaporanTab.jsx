@@ -29,7 +29,7 @@ const renderTabPanels = (value, theme, options, colors, tabData) => {
       <TabPanel key={index} value={item.type} className='!p-0'>
         <AppReactApexCharts
           type='bar'
-          height={325}
+          height={285}
           width='100%'
           options={{ ...options, colors: finalColors }}
           series={item.series}
@@ -59,7 +59,7 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
       bar: {
         borderRadius: 6,
         distributed: true,
-        columnWidth: '48%',
+        columnWidth: '70%', // Perbesar hanya lebar batang statistik
         borderRadiusApplication: 'end',
         dataLabels: { position: 'top' }
       }
@@ -67,7 +67,7 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
     legend: { show: false },
     tooltip: { enabled: false },
     dataLabels: {
-      offsetY: -11,
+      offsetY: -20,
       formatter: val => {
         if (val >= 1000000) {
           return `${(val / 1000000).toFixed(2)}M`
@@ -80,7 +80,7 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
       style: {
         fontWeight: 500,
         colors: ['white'],
-        fontSize: theme.typography.body1.fontSize
+        fontSize: 11
       }
     },
     colors,
@@ -109,7 +109,7 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
         style: {
           colors: disabledText,
           fontFamily: theme.typography.fontFamily,
-          fontSize: theme.typography.body2.fontSize
+          fontSize: '11px'
         }
       }
     },
@@ -128,41 +128,10 @@ const LaporanTab = ({ categories, title, multiplier, tabData }) => {
         style: {
           colors: disabledText,
           fontFamily: theme.typography.fontFamily,
-          fontSize: theme.typography.body2.fontSize
+          fontSize: '11px'
         }
       }
-    },
-    responsive: [
-      {
-        breakpoint: 1450,
-        options: {
-          plotOptions: {
-            bar: { columnWidth: '45%' }
-          }
-        }
-      },
-      {
-        breakpoint: 600,
-        options: {
-          dataLabels: {
-            style: {
-              fontSize: theme.typography.body2.fontSize
-            }
-          },
-          plotOptions: {
-            bar: { columnWidth: '58%' }
-          }
-        }
-      },
-      {
-        breakpoint: 500,
-        options: {
-          plotOptions: {
-            bar: { columnWidth: '70%' }
-          }
-        }
-      }
-    ]
+    }
   }
 
   return (

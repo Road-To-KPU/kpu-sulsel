@@ -12,17 +12,19 @@ const Peta = ({ src, nameKabupaten }) => {
 
   return (
     <Card className='h-[100%] bg-orange-800'>
-      <CardContent className='p-5'>
-        <Typography variant='h5' className='text-white items-center mb-2'>
+      <CardContent className='p-4'>
+        <Typography variant='h5' className='text-white items-center mb-2 mt-1.5'>
+          {' '}
           {nameKabupaten}
         </Typography>
-        <div className='flex h-[21rem] pli-2.5 pbs-4 rounded bg-orange-600'>
+        <div className='flex h-[19rem] pli-2 pbs-2 rounded bg-orange-600 justify-center items-center'>
+          {' '}
           <Image
             src={src}
             alt='Peta'
-            className='items-center'
-            width={isMobile ? 250 : 300}
-            height={isMobile ? 310 : 300}
+            className='object-contain'
+            width={isMobile ? 200 : 250}
+            height={isMobile ? 220 : 250}
           />
         </div>
       </CardContent>
