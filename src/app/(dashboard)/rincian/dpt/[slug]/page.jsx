@@ -93,7 +93,7 @@ export default function Page() {
   ]
 
   const handleRowClick = kecamatanId => {
-    router.push(`/rincian/kecamatan/${kecamatanId}`)
+    router.push(`/rincian/kelurahan/${kecamatanId}`)
   }
 
   return (
