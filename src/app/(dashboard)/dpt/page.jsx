@@ -51,18 +51,18 @@ export default function Page() {
 
   return (
     <div className='flex flex-col items-center'>
-      <h1 className='text-2xl md:text-3xl font-bold mb-6 text-center'>
+      <h1 className='mb-6 text-2xl font-bold text-center md:text-3xl'>
         DAFTAR PEMILIH TETAP PROVINSI SULAWESI SELATAN
       </h1>
 
-      {loading && <div className='text-center py-10'>Loading...</div>}
+      {loading && <div className='py-10 text-center'>Loading...</div>}
 
       {!loading && cardActive && selectedRegion && (
-        <div className='fixed z-50 top-0 left-0 w-full h-full flex justify-center items-center'>
+        <div className='fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full'>
           <div
             className={`bg-white w-[90%] md:w-[700px] p-6 md:p-8 rounded-lg shadow-lg ${theme.palette.mode === 'dark' ? 'dark:bg-gray-800' : 'dark:bg-white'}`}
           >
-            <h2 className='text-lg md:text-xl font-bold mb-4'>{selectedRegion.name}</h2>
+            <h2 className='mb-4 text-lg font-bold md:text-xl'>{selectedRegion.name}</h2>
             <div className='grid grid-cols-2 gap-4 mb-6'>
               <div className='text-gray-700'>
                 <p>Jumlah DPT</p>
@@ -86,7 +86,7 @@ export default function Page() {
                 Tutup
               </Button>
               <Button
-                onClick={() => router.push(`/rincian/dpt/${selectedRegion.link}/${selectedRegion.id}`)}
+                onClick={() => router.push(`/rincian/dpt/kab_id=${selectedRegion.id}`)}
                 variant='contained'
                 className='rounded-full'
               >

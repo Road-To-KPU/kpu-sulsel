@@ -36,8 +36,6 @@ export default function Page() {
         const response = await fetch(`/api/detail/${path}`)
         const result = await response.json()
 
-        console.log('Data:', result?.data)
-
         setData(result?.data)
         setDataJenisKelamin([result?.data?.totalLakiLaki, result?.data?.totalPerempuan])
         setTotalPemilihKelamin(result?.data?.totalPemilih)
