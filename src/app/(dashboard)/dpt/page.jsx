@@ -19,13 +19,14 @@ export default function Page() {
 
   const handleClickRegion = kab => {
     setSelectedRegion({
-      name: kab.kabupaten,
-      jumlahPemilih: kab.totalPemilih,
-      jumlahTPS: kab.totalTps,
-      jumlahKecamatan: kab.totalKecamatan,
-      jumlahKelurahan: kab.totalKelurahan,
-      jumlahLaki: kab.totalL,
-      jumlahPerempuan: kab.totalP,
+      id: kab.id,
+      name: kab.nama_kabupaten,
+      jumlahPemilih: kab.total_lp,
+      jumlahTPS: kab.jumlah_tps,
+      jumlahKecamatan: kab.jumlah_kecamatan,
+      jumlahKelurahan: kab.jumlah_kelurahan,
+      jumlahLaki: kab.total_l,
+      jumlahPerempuan: kab.total_p,
       link: kab.link
     })
     setCardActive(true)
@@ -37,7 +38,7 @@ export default function Page() {
         const response = await fetch('/api/rekap')
         const data = await response.json()
 
-        setKabupaten(data?.data)
+        setKabupaten(data)
       } catch (error) {
         console.error('Fetch Error:', error.message)
       } finally {
@@ -85,7 +86,7 @@ export default function Page() {
                 Tutup
               </Button>
               <Button
-                onClick={() => router.push(`/rincian/dpt/${selectedRegion.link}`)}
+                onClick={() => router.push(`/rincian/dpt/${selectedRegion.link}/${selectedRegion.id}`)}
                 variant='contained'
                 className='rounded-full'
               >
@@ -110,7 +111,7 @@ export default function Page() {
               <div
                 key={index}
                 className='absolute flex flex-col items-center cursor-pointer'
-                style={{ top: kab.coordsTop, left: kab.coordsLeft }}
+                style={{ top: kab.coords_top, left: kab.coords_left }}
               >
                 <div onClick={() => handleClickRegion(kab)}>
                   <i className='tabler-map-pin-filled text-[16px] lg:text-[20px]' />
@@ -120,7 +121,7 @@ export default function Page() {
                   onClick={() => handleClickRegion(kab)}
                 >
                   <div className='text-black'>
-                    {kab.kabupaten === 'PANGKAJENE KEPULAUAN' ? 'PANGKEP' : kab.kabupaten}
+                    {kab.nama_kabupaten === 'PANGKAJENE KEPULAUAN' ? 'PANGKEP' : kab.nama_kabupaten}
                   </div>
                 </div>
               </div>
