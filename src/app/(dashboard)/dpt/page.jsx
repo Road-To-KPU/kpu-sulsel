@@ -86,7 +86,7 @@ export default function Page() {
                 Tutup
               </Button>
               <Button
-                onClick={() => router.push(`/rincian/dpt/kab_id=${selectedRegion.id}`)}
+                onClick={() => router.push(`/rincian/dpt/${selectedRegion.id}`)}
                 variant='contained'
                 className='rounded-full'
               >

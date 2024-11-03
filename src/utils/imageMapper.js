@@ -24,32 +24,32 @@ import jeneponto from '../../public/images/peta/Jeneponto.png'
 import palopo from '../../public/images/peta/palopo.png'
 
 const imageMap = {
-  luwu_utara: luwuUtara,
-  bantaeng: bantaeng,
-  barru: barru,
-  bone: bone,
-  bulukumba: bulukumba,
-  enrekang: enrekang,
-  jeneponto: jeneponto,
-  luwu: luwu,
-  luwu_timur: luwuTimur,
-  maros: maros,
-  pangkep: pangkep,
-  parepare: parepare,
-  pinrang: pinrang,
-  palopo: palopo,
-  selayar: selayar,
-  sidrap: sidrap,
-  soppeng: soppeng,
-  takalar: takalar,
-  tana_toraja: tanaToraja,
-  toraja_utara: torajaUtara,
-  wajo: wajo,
-  makassar: makassar,
-  gowa: gowa,
-  sinjai: sinjai
+  7301: selayar,
+  7302: bulukumba,
+  7303: bantaeng,
+  7304: jeneponto,
+  7305: takalar,
+  7306: gowa,
+  7307: sinjai,
+  7308: bone,
+  7309: maros,
+  7310: pangkep,
+  7311: barru,
+  7312: soppeng,
+  7313: wajo,
+  7314: sidrap,
+  7315: pinrang,
+  7316: enrekang,
+  7317: luwu,
+  7318: tanaToraja,
+  7322: luwuUtara,
+  7324: luwuTimur,
+  7326: torajaUtara,
+  7371: makassar,
+  7372: parepare,
+  7373: palopo
 }
 
-export function getImageByPathName(pathName) {
-  return imageMap[pathName] || null
+export function getImageByPathName(id) {
+  return imageMap[id] || null
 }
