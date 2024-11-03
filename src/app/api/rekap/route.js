@@ -4,73 +4,46 @@ import prisma from '@/libs/prisma';
 
 export async function GET() {
   try {
-    const kabupatenData = await prisma.kabupaten.findMany({
-      include: {
-        kecamatan: {
-          include: {
-            kelurahan: true,
-          },
-        },
-      },
-    });
+    const result = await prisma.$queryRaw`
+      SELECT
+        kabupaten.nama AS nama_kabupaten,
+        kabupaten.coords_top,
+        kabupaten.coords_left,
+        kabupaten.link,
+         COUNT(DISTINCT kecamatan.id)::VARCHAR AS jumlah_kecamatan,
+        COUNT(DISTINCT kelurahan.id)::VARCHAR AS jumlah_kelurahan,
+        COUNT(DISTINCT tps_data.id)::VARCHAR AS jumlah_tps,
+        SUM(tps_data.l) AS total_l,
+        SUM(tps_data.p) AS total_p,
+        SUM(tps_data.lp) AS total_lp
+      FROM
+        kpu.tps_data
+      LEFT JOIN kpu.kelurahan ON SUBSTR(tps_data.id, 1, 10) = kelurahan.id
+      LEFT JOIN kpu.kecamatan ON kelurahan.kecamatan_id = kecamatan.id
+      LEFT JOIN kpu.kabupaten ON kecamatan.kabupaten_id = kabupaten.id
+      GROUP BY
+        kabupaten.nama , kabupaten.coords_top, kabupaten.coords_left, kabupaten.link
+      ORDER BY
+        kabupaten.nama;
+    `;
 
-    const rekapData = await prisma.tps_data.findMany({
-      select: {
-        id_kelurahan: true,
-        tps: true,
-        l: true,
-        p: true,
-      },
-    });
+    const serializedResult = result.map(row => ({
+      nama_kabupaten: row.nama_kabupaten,
+      coords_top: row.coords_top,
+      coords_left: row.coords_left,
+      link: row.link,
+      jumlah_kecamatan: row.jumlah_kecamatan,
+      jumlah_kelurahan: row.jumlah_kelurahan,
+      jumlah_tps: row.jumlah_tps,
+      total_l: row.total_l ? Number(row.total_l) : null,
+      total_p: row.total_p ? Number(row.total_p) : null,
+      total_lp: row.total_lp ? Number(row.total_lp) : null,
+    }));
 
-    console.log("🚀 ~ GET ~ rekapData:", rekapData)
+    return NextResponse.json(serializedResult);
+  } catch (e) {
+    console.error(e);
 
-    const data = kabupatenData.map((kabupaten) => {
-      const totalKecamatan = kabupaten.kecamatan.length;
-
-      const totalKelurahan = kabupaten.kecamatan.reduce(
-        (sum, kecamatan) => sum + kecamatan.kelurahan.length,
-        0
-      );
-
-      // Collect all kelurahan IDs in the current kabupaten
-      const kelurahanIds = kabupaten.kecamatan.flatMap((kecamatan) =>
-        kecamatan.kelurahan.map((kelurahan) => kelurahan.id)
-      );
-
-      // Filter rekapData where id_kelurahan is in kelurahanIds
-      const rekapForKabupaten = rekapData.filter((rekap) =>
-        kelurahanIds.includes(rekap.id_kelurahan)
-      );
-
-      const totalTps = rekapForKabupaten.reduce(
-        (sum, rekap) => sum + (rekap.tps || 0),
-        0
-      );
-
-      const totalL = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.l || 0), 0);
-
-      const totalP = rekapForKabupaten.reduce((sum, rekap) => sum + (rekap.p || 0), 0);
-      const totalPemilih = totalL + totalP;
-
-      return {
-        kabupaten: kabupaten.nama,
-        coordsTop: kabupaten.coordsTop,
-        coordsLeft: kabupaten.coordsLeft,
-        link: kabupaten.link,
-        totalL,
-        totalP,
-        totalPemilih,
-        totalKecamatan,
-        totalKelurahan,
-        totalTps,
-      };
-    });
-
-    return NextResponse.json({ data });
-  } catch (error) {
-    console.error(error);
-
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: 'Terjadi kesalahan saat mengambil data' }, { status: 500 });
   }
 }
