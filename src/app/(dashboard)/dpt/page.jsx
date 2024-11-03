@@ -63,7 +63,7 @@ export default function Page() {
             className={`bg-white w-[90%] md:w-[700px] p-6 md:p-8 rounded-lg shadow-lg ${theme.palette.mode === 'dark' ? 'dark:bg-gray-800' : 'dark:bg-white'}`}
           >
             <h2 className='mb-4 text-lg font-bold md:text-xl'>{selectedRegion.name}</h2>
-            <div className='grid grid-cols-2 gap-4 mb-6'>
+            <div className='grid grid-cols-2 gap-1 mb-6'>
               <div className='text-gray-700'>
                 <p>Jumlah DPT</p>
                 <p>Jumlah TPS</p>
