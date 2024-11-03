@@ -17,7 +17,7 @@ model tps_data {
 
 model disabilitas {
   id              String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  kab_id          String?    @db.VarChar(4)
+  kab_id          String   @db.VarChar(4) @unique
   fisik           Int?
   intelektual     Int?
   mental          Int?
@@ -30,7 +30,7 @@ model disabilitas {
 
 model klasifikasi_usia {
   id             String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  kab_id         String?    @db.VarChar(4)
+  kab_id         String    @db.VarChar(4) @unique
   usia_0_20      Int?
   usia_21_30     Int?
   usia_31_40     Int?

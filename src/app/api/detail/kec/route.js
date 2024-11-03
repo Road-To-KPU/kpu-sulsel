@@ -3,22 +3,18 @@ import { NextResponse } from 'next/server';
 import prisma from '@/libs/prisma';
 
 export async function GET(request) {
-
-  console.log("jalan ini ?");
   const { searchParams } = new URL(request.url);
-
-  console.log("🚀 ~ GET ~ searchParams:", searchParams)
   const idKab = searchParams.get('kab_id');
-
-  console.log("🚀 ~ GET ~ idKab:", idKab)
 
   if (!idKab) {
     return NextResponse.json({ error: 'Parameter id_kab diperlukan' }, { status: 400 });
   }
 
   try {
+    // Query untuk kecamatan, kelurahan, dan total TPS
     const result = await prisma.$queryRaw`
       SELECT
+        kecamatan.id,
         kecamatan.nama AS nama_kecamatan,
         COUNT(DISTINCT kecamatan.id)::VARCHAR AS jumlah_kecamatan,
         COUNT(DISTINCT kelurahan.id)::VARCHAR AS jumlah_kelurahan,
@@ -32,12 +28,27 @@ export async function GET(request) {
       WHERE
         kecamatan.kabupaten_id = ${idKab}
       GROUP BY
+        kecamatan.id,
         kecamatan.nama
       ORDER BY
+       kecamatan.id,
         kecamatan.nama;
     `;
 
+    const dataUsia = await prisma.klasifikasi_usia.findUnique({
+      where: {
+        kab_id: idKab
+      },
+    });
+
+    const dataDisabilitas = await prisma.disabilitas.findUnique({
+      where: {
+        kab_id: idKab
+      },
+    });
+
     const serializedResult = result.map(row => ({
+      id: row.id,
       nama_kecamatan: row.nama_kecamatan,
       jumlah_kecamatan: row.jumlah_kecamatan,
       jumlah_kelurahan: row.jumlah_kelurahan,
@@ -46,7 +57,15 @@ export async function GET(request) {
       total_lp: row.total_lp ? Number(row.total_lp) : null,
     }));
 
-    return NextResponse.json(serializedResult);
+    const serializedSummary = {
+      total_l: result.reduce((acc, row) => acc + (row.total_l ? Number(row.total_l) : 0), 0),
+      total_p: result.reduce((acc, row) => acc + (row.total_p ? Number(row.total_p) : 0), 0),
+      total_lp: result.reduce((acc, row) => acc + (row.total_lp ? Number(row.total_lp) : 0), 0),
+      ...dataUsia,
+      ...dataDisabilitas,
+    };
+
+    return NextResponse.json({ kecamatanData: serializedResult, summary: serializedSummary });
   } catch (e) {
     console.error(e);
 
