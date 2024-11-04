@@ -19,7 +19,7 @@ export default function Page() {
   const theme = useTheme()
   const router = useRouter()
 
-  const handleClickRegion = (kab) => {
+  const handleClickRegion = kab => {
     setSelectedRegion({
       id: kab.id,
       name: kab.nama_kabupaten,
@@ -29,7 +29,7 @@ export default function Page() {
       jumlahKelurahan: kab.jumlah_kelurahan,
       jumlahLaki: kab.total_l,
       jumlahPerempuan: kab.total_p,
-      link: kab.link,
+      link: kab.link
     })
     setCardActive(true)
   }
@@ -66,8 +66,9 @@ export default function Page() {
       {!loading && cardActive && selectedRegion && (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
           <div
-            className={`bg-white w-[90%] md:w-[700px] p-6 md:p-8 rounded-lg shadow-lg ${theme.palette.mode === 'dark' ? 'dark:bg-gray-800' : 'dark:bg-white'
-              }`}
+            className={`bg-white w-[90%] md:w-[480px] p-6 md:p-8 rounded-lg shadow-lg ${
+              theme.palette.mode === 'dark' ? 'dark:bg-gray-800' : 'dark:bg-white'
+            }`}
           >
             <h2 className='mb-4 text-xl font-bold md:text-2xl'>{selectedRegion.name}</h2>
             <div className='grid grid-cols-2 gap-1 mb-6'>
@@ -80,12 +81,12 @@ export default function Page() {
                 <p>Pemilih Perempuan</p>
               </div>
               <div className='font-semibold text-right text-gray-900'>
-                <p>: {selectedRegion.jumlahPemilih.toLocaleString('id-ID')}</p>
-                <p>: {selectedRegion.jumlahTPS.toLocaleString('id-ID')}</p>
-                <p>: {selectedRegion.jumlahKecamatan.toLocaleString('id-ID')}</p>
-                <p>: {selectedRegion.jumlahKelurahan.toLocaleString('id-ID')}</p>
-                <p>: {selectedRegion.jumlahLaki.toLocaleString('id-ID')}</p>
-                <p>: {selectedRegion.jumlahPerempuan.toLocaleString('id-ID')}</p>
+                <p>{selectedRegion.jumlahPemilih.toLocaleString('id-ID')}</p>
+                <p>{selectedRegion.jumlahTPS.toLocaleString('id-ID')}</p>
+                <p>{selectedRegion.jumlahKecamatan.toLocaleString('id-ID')}</p>
+                <p>{selectedRegion.jumlahKelurahan.toLocaleString('id-ID')}</p>
+                <p>{selectedRegion.jumlahLaki.toLocaleString('id-ID')}</p>
+                <p>{selectedRegion.jumlahPerempuan.toLocaleString('id-ID')}</p>
               </div>
             </div>
             <div className='flex justify-end space-x-2 md:space-x-4'>
@@ -123,10 +124,7 @@ export default function Page() {
                 <div onClick={() => handleClickRegion(kab)}>
                   <i className='tabler-map-pin-filled text-[24px] text-red-600' />
                 </div>
-                <div
-                  className='ml-1 text-xs font-bold text-red-700 lg:text-sm'
-                  onClick={() => handleClickRegion(kab)}
-                >
+                <div className='ml-1 text-xs font-bold text-red-700 lg:text-sm' onClick={() => handleClickRegion(kab)}>
                   <div className='text-black'>
                     {kab.nama_kabupaten === 'PANGKAJENE KEPULAUAN' ? 'PANGKEP' : kab.nama_kabupaten}
                   </div>
