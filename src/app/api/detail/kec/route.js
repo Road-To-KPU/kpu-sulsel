@@ -18,6 +18,7 @@ export async function GET(request) {
         kecamatan.nama AS nama_kecamatan,
         COUNT(DISTINCT kecamatan.id)::VARCHAR AS jumlah_kecamatan,
         COUNT(DISTINCT kelurahan.id)::VARCHAR AS jumlah_kelurahan,
+        SUM(tps_data.tps) AS total_tps,
         SUM(tps_data.l) AS total_l,
         SUM(tps_data.p) AS total_p,
         SUM(tps_data.lp) AS total_lp
@@ -52,12 +53,14 @@ export async function GET(request) {
       nama_kecamatan: row.nama_kecamatan,
       jumlah_kecamatan: row.jumlah_kecamatan,
       jumlah_kelurahan: row.jumlah_kelurahan,
+      total_tps: row.total_tps ? Number(row.total_tps) : null,
       total_l: row.total_l ? Number(row.total_l) : null,
       total_p: row.total_p ? Number(row.total_p) : null,
       total_lp: row.total_lp ? Number(row.total_lp) : null,
     }));
 
     const serializedSummary = {
+      total_tps: result.reduce((acc, row) => acc + (row.total_tps ? Number(row.total_tps) : 0), 0),
       total_l: result.reduce((acc, row) => acc + (row.total_l ? Number(row.total_l) : 0), 0),
       total_p: result.reduce((acc, row) => acc + (row.total_p ? Number(row.total_p) : 0), 0),
       total_lp: result.reduce((acc, row) => acc + (row.total_lp ? Number(row.total_lp) : 0), 0),

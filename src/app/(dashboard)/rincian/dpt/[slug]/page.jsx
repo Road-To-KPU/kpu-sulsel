@@ -133,6 +133,9 @@ export default function Page() {
                 <strong>Kecamatan</strong>
               </TableCell>
               <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
+                <strong>Jumlah Tps</strong>
+              </TableCell>
+              <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
                 <strong>Jumlah Kelurahan</strong>
               </TableCell>
               <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
@@ -142,7 +145,7 @@ export default function Page() {
                 <strong>Total Perempuan</strong>
               </TableCell>
               <TableCell align='right' sx={{ fontSize: { xs: 14, md: 16 } }}>
-                <strong>Total Penduduk</strong>
+                <strong>Total Pemilih</strong>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -154,7 +157,11 @@ export default function Page() {
                 style={{ cursor: 'pointer' }}
                 onClick={() => handleRowClick(kecamatan.id)}
               >
+
                 <TableCell sx={{ fontSize: { xs: 12, md: 14 } }}>{kecamatan.nama_kecamatan}</TableCell>
+                <TableCell align='right' sx={{ fontSize: { xs: 12, md: 14 } }}>
+                  {kecamatan.total_tps}
+                </TableCell>
                 <TableCell align='right' sx={{ fontSize: { xs: 12, md: 14 } }}>
                   {kecamatan.jumlah_kelurahan}
                 </TableCell>
