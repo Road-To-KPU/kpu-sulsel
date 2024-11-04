@@ -16,9 +16,8 @@ export async function GET(request) {
       SELECT
         kecamatan.id,
         kecamatan.nama AS nama_kecamatan,
-        COUNT(DISTINCT kecamatan.id)::VARCHAR AS jumlah_kecamatan,
         COUNT(DISTINCT kelurahan.id)::VARCHAR AS jumlah_kelurahan,
-        SUM(tps_data.tps) AS total_tps,
+        COUNT(DISTINCT tps_data.id) AS total_tps,
         SUM(tps_data.l) AS total_l,
         SUM(tps_data.p) AS total_p,
         SUM(tps_data.lp) AS total_lp
