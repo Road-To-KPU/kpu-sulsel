@@ -28,6 +28,8 @@ export async function GET() {
         kabupaten.nama;
     `
 
+    console.log(result);
+
     const serializedResult = result.map(row => ({
       id: row.id,
       nama_kabupaten: row.nama_kabupaten,
@@ -39,7 +41,7 @@ export async function GET() {
       jumlah_tps: row.jumlah_tps,
       total_l: row.total_l ? Number(row.total_l) : null,
       total_p: row.total_p ? Number(row.total_p) : null,
-      total_lp: row.total_lp ? Number(row.total_lp) : null
+      total_lp: Number(row.total_l + row.total_p),
     }))
 
     return NextResponse.json(serializedResult)

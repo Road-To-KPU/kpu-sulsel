@@ -88,12 +88,12 @@ export default function KabupatenTablePage() {
           </TableHead>
           <TableBody>
             {dataKecamatan.map((row, index) => (
-              <TableRow key={index} hover style={{ cursor: 'pointer' }} onClick={() => handleRowClick(row.id)}>
-                <TableCell>{row.nama_kelurahan}</TableCell>
-                <TableCell align='center'>{row.jumlah_tps.toLocaleString()}</TableCell>
-                <TableCell align='center'>{row.total_l.toLocaleString()}</TableCell>
-                <TableCell align='center'>{row.total_p.toLocaleString()}</TableCell>
-                <TableCell align='center'>{row.total_lp.toLocaleString()}</TableCell>
+              <TableRow key={index} hover style={{ cursor: 'pointer' }} onClick={() => handleRowClick(row?.id)}>
+                <TableCell>{row?.nama_kelurahan}</TableCell>
+                <TableCell align='center'>{row?.jumlah_tps?.toLocaleString()}</TableCell>
+                <TableCell align='center'>{row?.total_l?.toLocaleString()}</TableCell>
+                <TableCell align='center'>{row?.total_p?.toLocaleString()}</TableCell>
+                <TableCell align='center'>{row?.total_lp?.toLocaleString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>

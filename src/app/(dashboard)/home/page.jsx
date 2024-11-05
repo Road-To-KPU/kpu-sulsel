@@ -25,7 +25,7 @@ export default function Page() {
         const data = await response.json()
 
         setTotalPemilih(data?.totalPemilih)
-        setTpsUmum(data?.totalTps)
+        setTpsUmum(data?.totalTPS)
         setJeniKelamin([data?.totalLakiLaki, data?.totalPerempuan])
 
         const usiaData = [

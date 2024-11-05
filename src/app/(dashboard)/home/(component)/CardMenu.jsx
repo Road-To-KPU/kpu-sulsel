@@ -3,6 +3,8 @@ import Box from '@mui/material/Box'
 import CardStatHorizontal from './CardStatHorizontal'
 
 const CardMenu = ({ pemilihTetap, tpsUmum, tpsKhusus }) => {
+
+
   const data = [
     {
       title: 'Daftar Pemilih Tetap',

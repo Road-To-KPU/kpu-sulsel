@@ -26,7 +26,7 @@ export async function GET(request) {
       WHERE
         kelurahan.kecamatan_id = ${idKec}
       GROUP BY
-      kelurahan.id,
+       kelurahan.id,
         kelurahan.nama
       ORDER BY
         kelurahan.id,

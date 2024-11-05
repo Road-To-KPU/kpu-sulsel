@@ -33,10 +33,13 @@ export async function GET(request) {
       _sum: {
         l: true,
         p: true,
-        lp: true,
-        tps: true
+        lp: true
+      },
+      _count: {
+        id: true  // Menghitung jumlah TPS berdasarkan kolom ID
       }
-    })
+    });
+
 
     const result = {
       totalDisabilitas: totalDisabilitas._sum,
@@ -44,7 +47,7 @@ export async function GET(request) {
       totalLakiLaki: tps._sum.l,
       totalPerempuan: tps._sum.p,
       totalPemilih: tps._sum.lp,
-      totalTps: tps._sum.tps
+      totalTPS: tps._count.id
     }
 
     return NextResponse.json(result)
