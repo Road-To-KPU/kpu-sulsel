@@ -28,8 +28,6 @@ export async function GET() {
         kabupaten.nama;
     `
 
-    console.log(result);
-
     const serializedResult = result.map(row => ({
       id: row.id,
       nama_kabupaten: row.nama_kabupaten,

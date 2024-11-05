@@ -8,8 +8,6 @@ export async function GET(request) {
     const [rows] = await db.query('SELECT * FROM dpt');
 
     // Log hasil query untuk debugging
-    console.log('Query Result:', rows);
-
     // Kirim data sebagai respons JSON
     return NextResponse.json(rows, { status: 200 });
   } catch (error) {

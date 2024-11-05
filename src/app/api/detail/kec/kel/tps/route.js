@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import prisma from '@/libs/prisma';
 
 export async function GET(request) {
-  console.log("masuk ke detail kelurahan");
 
   const { searchParams } = new URL(request.url);
   const idKel = searchParams.get('kel_id'); // Mengambil parameter `id_kel`

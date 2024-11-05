@@ -20,7 +20,6 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 
 const ChartJenisKelamin = ({ data, totalPemilih }) => {
 
-  console.log("🚀 ~ ChartJenisKelamin ~ data:", data)
 
   const theme = useTheme()
 
