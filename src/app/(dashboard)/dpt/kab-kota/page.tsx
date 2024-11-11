@@ -315,16 +315,16 @@ export default function KabupatenTablePage() {
                 <strong>Jumlah Kecamatan</strong>
               </TableCell>
               <TableCell align='center'>
-                <strong>Jumlah TPS</strong>
+                <strong>Jumlah Desa/Kelurahan</strong>
               </TableCell>
               <TableCell align='center'>
                 <strong>TPS</strong>
               </TableCell>
               <TableCell align='center'>
-                <strong>L</strong>
+                <strong>Total Laki-Laki</strong>
               </TableCell>
               <TableCell align='center'>
-                <strong>P</strong>
+                <strong>Total Perempuan</strong>
               </TableCell>
               <TableCell align='center'>
                 <strong>Jumlah Pemilih</strong>
